@@ -1,129 +1,204 @@
+
+__all__ = ['main']
+
 import pygame
-from settings import *
-from timers import Timer
+import pygame_menu
+
+from pygame_menu.examples import create_example_window
+
+from typing import Any
+from functools import partial
 from options_values import *
-from scrollbar import *
 
-class Window:
-    def __init__(self, player, toggle_menu):
-
-        # genereal setup
-        self.player = player
-        self.toggle_menu = toggle_menu
-        self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
-
-        # options
-        self.width = 500
-        self.height = 500
-        self.space = 10
-        self.padding = 8
-
-        # entries
-        self.options = MET
-        self.setup()
-
-        # movement
-        self.index = 0
-        self.timer = Timer(200)
+FPS = 30
+WINDOW_SIZE = (800, 600)
 
 
-    def setup(self):
+def on_button_click(value: str, text: Any = None) -> None:
+    """
+    Button event on menus.
 
-        # create text surfaces
-        self.text_surfs = []
-        # self.total_height = 0
-        for item in self.options:
-            text_surf = self.font.render(item, False, 'black') # render(string, AA, color)
-            # self.text_surfs.append(text_surf)
-            # self.total_height += text_surf.get_height() + (self.padding*2)
-        # self.total_height += (len(self.text_surfs) - 1) * self.space
-        self.menu_top = SCREEN_HEIGHT / 2 - self.height / 2 # meio da janela prinicpal - meio da altura do menu (assim o menu fica centrado verticalmente)
-        self.menu_width = SCREEN_WIDTH / 2 - self.width / 2 # meio da janela prinicpal - meio da largura do menu (assim o menu fica centrado horizontalmente)
-        self.main_rect = pygame.Rect(self.menu_width, self.menu_top, self.width, self.height) # left, top, width and height
-        
-        # buy/sell text
-        # self.buy_text = self.font.render('buy',False, 'red')
-        # self.sell_text = self.font.render('sell',False, 'green')
+    :param value: Button value
+    :param text: Button text
+    """
+    if not text:
+        print(f'Hello from {value}')
+    else:
+        print(f'Hello from {text} with {value}')
 
-    # def display_money(self):
-        # text_surf = self.font.render(f'${self.player.money}',False,'black')
-        # text_rect = text_surf.get_rect(midbottom = (SCREEN_WIDTH/2, SCREEN_HEIGHT-20))
+def toggle_gene(txt, **id) -> None:
+    """
+    Button event on menus.
 
-        # pygame.draw.rect(self.display_surface, 'white', text_rect.inflate(10,10),0,2) #ultimos 2 argumentos se quiser bordas redondas pode-se adicionar estes argumentos
-        # self.display_surface.blit(text_surf, text_rect)
-
-    def input(self):
-        keys = pygame.key.get_pressed()
-        self.timer.update()
-
-        if keys[pygame.K_ESCAPE]:
-            self.toggle_menu()
-        
-        if not self.timer.active:
-            if keys[pygame.K_UP]:
-                self.index -= 1
-                self.timer.activate()
-            if keys[pygame.K_DOWN]:
-                self.index += 1
-                self.timer.activate()
-
-            if keys[pygame.K_SPACE]:
-                self.timer.activate()
-                # get item
-                current_item = self.options[self.index]
-
-                # # sell
-                # if self.index <= self.sell_border:
-                #     if self.player.item_inventory[current_item] > 0:
-                #         self.player.item_inventory[current_item] -= 1
-                #         self.player.money += SALE_PRICES[current_item]
-                # # buy
-                # else:
-                #     seed_price = PURCHASE_PRICES[current_item]
-                #     if self.player.money >= seed_price:
-                #         self.player.seed_inventory[current_item] += 1
-                #         self.player.money -= seed_price
-                
-        # values
-        if self.index < 0:
-            self.index = len(self.options) -1
-        if self.index > len(self.options)-1:
-            self.index = 0
+    :param value: Button value
+    :param text: Button text
+    """
+    
+    if txt:
+        print(f'{id} on')
+    else:
+        print(f'{id} knockout')
 
 
-    def show_entry(self, text_surf, top, selected):
-        # background
-        bg_rect = pygame.Rect(self.main_rect.left, top, self.width, self.height)
-        pygame.draw.rect(self.display_surface, 'white', bg_rect, 0, 2)
+def paint_background(surface: 'pygame.Surface') -> None:
+    """
+    Paints a given surface with background color.
 
-        # text
-        text_rect = text_surf.get_rect(midleft = (self.main_rect.left + 20, bg_rect.centery))
-        self.display_surface.blit(text_surf, text_rect)
-
-        # amount
-        # amount_surf = self.font.render(str(amount), False, 'black')
-        # amount_rect = amount_surf.get_rect(midright = (self.main_rect.right - 20, bg_rect.centery)) # lado direito
-        # self.display_surface.blit(amount_surf, amount_rect)
-
-        # selected
-        if selected:
-            pygame.draw.rect(self.display_surface, 'black', bg_rect, 4,2)
-            # if self.index <= self.sell_border: # sell
-            #     pos_rect = self.sell_text.get_rect(midleft = (self.main_rect.left + 150, bg_rect.centery))
-            #     self.display_surface.blit(self.sell_text, pos_rect)
-            # else: # buy
-            #     pos_rect = self.buy_text.get_rect(midleft = (self.main_rect.left + 150, bg_rect.centery))
-            #     self.display_surface.blit(self.buy_text, pos_rect)
+    :param surface: Pygame surface
+    """
+    surface.fill((128, 230, 198))
 
 
-    def update(self):
-        self.input()
-        # self.display_money()
-        # pygame.draw.rect(self.display_surface, 'grey', self.main_rect) # BACKGROUND GRANDE MENU
-        for index, text_surf in enumerate(self.text_surfs):
-            top = self.main_rect.top + index * (text_surf.get_height() + (self.padding*2) + self.space)
-            # amount_list = list(self.player.item_inventory.values()) + list(self.player.seed_inventory.values())
-            # amount = amount_list[index]
+def make_long_menu() -> 'pygame_menu.Menu':
+    """
+    Create a long scrolling menu.
 
-            self.show_entry(text_surf, top, self.index == index)
+    :return: Menu
+    """
+    theme_menu = pygame_menu.themes.THEME_BLUE.copy()
+    theme_menu.scrollbar_cursor = pygame_menu.locals.CURSOR_HAND
+
+    # Main menu, pauses execution of the application
+    menu = pygame_menu.Menu(
+        height=400,
+        onclose=pygame_menu.events.EXIT,
+        theme=theme_menu,
+        title='Main Menu',
+        width=600
+    )
+
+    menu_sub = pygame_menu.Menu(
+        height=400,
+        center_content=False,
+        onclose=pygame_menu.events.EXIT,
+        theme=pygame_menu.themes.THEME_GREEN,
+        title='Menu with Genes',
+        width=600
+    )
+
+    # menu_sub = pygame_menu.Menu(
+    #     columns=3,
+    #     height=400,
+    #     center_content=False,
+    #     onclose=pygame_menu.events.EXIT,
+    #     rows=10,
+    #     theme=pygame_menu.themes.THEME_GREEN,
+    #     title='Menu with columns',
+    #     width=600
+    # )
+
+
+    menu_contributors = pygame_menu.Menu(
+        height=400,
+        onclose=pygame_menu.events.EXIT,
+        theme=pygame_menu.themes.THEME_SOLARIZED,
+        title='Contributors',
+        width=600
+    )
+
+    # Add table to contributors
+    table_contrib = menu_contributors.add.table()
+    table_contrib.default_cell_padding = 5
+    table_contrib.default_row_background_color = 'white'
+    bold_font = pygame_menu.font.FONT_OPEN_SANS_BOLD
+    table_contrib.add_row(['N°', 'Github User'], cell_font=bold_font)
+    for i in range(len(pygame_menu.__contributors__)):
+        table_contrib.add_row([i + 1, pygame_menu.__contributors__[i]], cell_font=bold_font if i == 0 else None)
+
+    table_contrib.update_cell_style(-1, -1, font_size=15)  # Update all column/row
+    table_contrib.update_cell_style(1, [2, -1], font=pygame_menu.font.FONT_OPEN_SANS_ITALIC)
+
+    menu_text = pygame_menu.Menu(
+        height=400,
+        onclose=pygame_menu.events.EXIT,
+        theme=pygame_menu.themes.THEME_DARK,
+        title='Text with scroll',
+        width=600
+    )
+
+    menu.add.button('Genes', menu_sub)
+    menu.add.button('Text scrolled', menu_text)
+    menu.add.button('Pygame-menu contributors', menu_contributors)
+    menu.add.vertical_margin(20)  # Adds margin
+
+    label1 = 'Button n°{}'
+    label2 = 'Text n°{}: '
+    for i in range(1, 20):
+        if i % 2 == 0:
+            menu.add.button(label1.format(i),
+                            on_button_click,
+                            f'Button n°{i}')
+        else:
+            menu.add.text_input(label2.format(i),
+                                onchange=on_button_click,
+                                text=f'Text n°{i}')
+    menu.add.button('Exit', pygame_menu.events.EXIT)
+
+   # MENU SUB (Genes)
+
+    label = '{}'
+
+    for i in range(len(OPTIONS['Genes'])):
+        txt = label.format(OPTIONS['Genes'][i])
+        # menu_sub.add.button(txt, on_button_click, txt + ' -> ' + str(i+1))
+        menu_sub.add.toggle_switch(txt, True, onchange=toggle_gene, kwargs=txt)
+    
+    menu_sub.add.button('Back', pygame_menu.events.BACK)
+
+    # noinspection SpellCheckingInspection
+    menu_text.add.label(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+        'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
+        'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
+        'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate '
+        'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
+        'cupidatat non proident, sunt in culpa qui officia deserunt mollit anim '
+        'id est laborum.',
+        max_char=33,
+        wordwrap=True,
+        align=pygame_menu.locals.ALIGN_LEFT,
+        margin=(0, -1)
+    )
+    return menu
+
+
+def main(test: bool = False) -> None:
+    """
+    Main function.
+
+    :param test: Indicate function is being tested
+    """
+    screen = create_example_window('Example - Scrolling Menu', WINDOW_SIZE)
+
+    clock = pygame.time.Clock()
+    menu = make_long_menu()
+
+    # -------------------------------------------------------------------------
+    # Main loop
+    # -------------------------------------------------------------------------
+    while True:
+
+        # Tick
+        clock.tick(FPS)
+
+        # Paint background
+        paint_background(screen)
+
+        # Execute main from principal menu if is enabled
+        menu.mainloop(
+            surface=screen,
+            bgfun=partial(paint_background, screen),
+            disable_loop=test,
+            fps_limit=FPS
+        )
+
+        # Update surface
+        pygame.display.flip()
+
+        # At first loop returns
+        if test:
+            break
+
+
+if __name__ == '__main__':
+    main()

@@ -43,15 +43,14 @@ class Level:
 		self.shop_active = True
 		self.menu = Menu(self.player, self.toggle_shop)
 		# self.menu = Window(self.player, self.toggle_shop)
-		scrollbar = ScrollBar(self.display_surface.get_height())
 
 		# sounds
 		self.success = pygame.mixer.Sound('../audio/success.wav')
 		self.success.set_volume(0.1)
 
-		self.music_bg = pygame.mixer.Sound('../audio/bg.mp3')
-		self.music_bg.set_volume(0.2)
-		self.music_bg.play(loops = -1)
+		# self.music_bg = pygame.mixer.Sound('../audio/bg.mp3')
+		# self.music_bg.set_volume(0.2)
+		# self.music_bg.play(loops = -1)
 
 	def setup(self):
 		tmx_data = load_pygame('../data/map.tmx')
@@ -184,7 +183,7 @@ class Level:
 		if self.raining and not self.shop_active:
 			self.rain.update()
 		## daytime
-		self.sky.display(dt)
+		# self.sky.display(dt)
 
 		## transition overlay
 		if self.player.sleep:

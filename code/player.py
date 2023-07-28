@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from support import *
 from timers import Timer
+from menu_2 import Menu
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, inventory):
@@ -119,6 +120,11 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.direction.x = 0
             
+            # MENU test
+            if keys[pygame.K_m]:
+                Menu()
+
+
             # tools use
             if keys[pygame.K_SPACE]:
                 # timer for tool use
