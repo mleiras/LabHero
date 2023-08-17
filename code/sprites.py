@@ -51,9 +51,9 @@ class Tree(Generic):
         super().__init__(pos, surf, groups)
 
         # tree atributes
-        self.health = 5
-        self.alive = True
-        self.stump_surf = pygame.image.load(f'../graphics/stumps/{"small" if name == "Small" else "large"}.png').convert_alpha()
+        # self.health = 5
+        # self.alive = True
+        # self.stump_surf = pygame.image.load(f'../graphics/stumps/{"small" if name == "Small" else "large"}.png').convert_alpha()
 
         # apples
         self.apples_surf = pygame.image.load('../graphics/fruit/apple.png')
@@ -64,7 +64,7 @@ class Tree(Generic):
         self.player_add = player_add
 
         # sounds
-        self.axe_sound = pygame.mixer.Sound('../audio/axe.mp3')
+        # self.axe_sound = pygame.mixer.Sound('../audio/axe.mp3')
 
     def create_fruit(self):
         for pos in self.apple_pos: # posição relativa à imagem da arvore, não do mapa
@@ -80,10 +80,10 @@ class Tree(Generic):
     def damage(self):
 
         #damaging tree
-        self.health -= 1
+        # self.health -= 11
 
         #play sound
-        self.axe_sound.play()
+        # self.axe_sound.play()
 
         #remove an apple
         if len(self.apple_sprites.sprites()) > 0:
@@ -96,23 +96,25 @@ class Tree(Generic):
             self.player_add('apple')
             random_apple.kill()
 
-    def check_death(self):
-        if self.health <= 0:
-            Particle(
-                pos = self.rect.topleft,
-                surf = self.image,
-                groups = self.groups()[0],
-                z = LAYERS['fruit'],
-                duration = 300)
-            self.player_add('wood')
-            self.image = self.stump_surf
-            self.rect = self.image.get_rect(midbottom = self.rect.midbottom)
-            self.hitbox = self.rect.copy().inflate(-10, -self.rect.height*0.6)
-            self.alive = False
+    # def check_death(self):
+    #     if self.health <= 0:
+    #         Particle(
+    #             pos = self.rect.topleft,
+    #             surf = self.image,
+    #             groups = self.groups()[0],
+    #             z = LAYERS['fruit'],
+    #             duration = 300)
+    #         self.player_add('wood')
+    #         self.image = self.stump_surf
+    #         self.rect = self.image.get_rect(midbottom = self.rect.midbottom)
+    #         self.hitbox = self.rect.copy().inflate(-10, -self.rect.height*0.6)
+    #         self.alive = False
 
     def update(self, dt):
-        if self.alive:
-            self.check_death()
+        pass
+        # if self.alive:
+        #     self.check_death()
+
 
 class Particle(Generic):
     def __init__(self, pos, surf, groups, z, duration = 200):

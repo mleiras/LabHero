@@ -12,3 +12,9 @@ def load_file(filename):
         #     print(entry)
 # save_file()
 # load_file('data')
+
+
+
+def save_simulation_file(data):
+    with open('simulation_file.txt', 'w') as test_file:
+        json.dump(data, test_file)

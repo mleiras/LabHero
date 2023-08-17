@@ -17,12 +17,11 @@ class Game:
 		
 		# load game if exists
 		try:
-			data = load_file('data')
+			name, *data = load_file('data')
 			print('continue game')
 			self.level = Level(data)
 		# if not, default values 
 		except:
-			print('No file game found')
 			self.level = Level(DEFAULT_INVENTORY)
 
 		self.intro_run()

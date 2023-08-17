@@ -2,15 +2,17 @@ import pygame
 from settings import *
 from support import *
 from player import Player
-from overlay import Overlay
+# from overlay import Overlay
 from sprites import *
 import pytmx
 from pytmx.util_pygame import load_pygame # pytmx map loader
 from transition import *
 from soil import *
-from sky import *
+# from sky import *
 from menu import *
-from window import *
+from menu_2 import *
+from window import Window
+from books import Books
 from save_load import save_file
 
 class Level:
@@ -30,19 +32,23 @@ class Level:
 
 		self.soil_layer = SoilLayer(self.all_sprites, self.collision_sprites)
 		self.setup()
-		self.overlay = Overlay(self.player)
+		# self.overlay = Overlay(self.player)
 		self.transition = Transition(self.reset, self.player)
 
 		# sky
-		self.sky = Sky()
-		self.rain = Rain(self.all_sprites)
-		self.raining = randint(0,10) > 7
-		self.soil_layer.raining = self.raining
+		# self.sky = Sky()
+		# self.rain = Rain(self.all_sprites)
+		# self.raining = randint(0,10) > 7
+		# self.soil_layer.raining = self.raining
 
 		# shop
-		self.shop_active = True
-		self.menu = Menu(self.player, self.toggle_shop)
-		# self.menu = Window(self.player, self.toggle_shop)
+		self.shop_active = False
+		self.desk_active = False
+		self.books_active = False
+		# self.menu = Menu(self.player, self.toggle_shop)
+		self.menu_2 = Menu_2(self.player, self.toggle_shop)
+		self.window = Window(self.desk_menu)
+		self.books = Books(self.read_books)
 
 		# sounds
 		self.success = pygame.mixer.Sound('../audio/success.wav')
@@ -53,7 +59,7 @@ class Level:
 		# self.music_bg.play(loops = -1)
 
 	def setup(self):
-		tmx_data = load_pygame('../data/map.tmx')
+		tmx_data = load_pygame('../data/map_lb.tmx')
 
 		# house
 		for layer in ['HouseFloor', 'HouseFurnitureBottom']:
@@ -102,6 +108,8 @@ class Level:
 					interaction = self.interaction_sprites,
 					soil_layer = self.soil_layer,
 					toggle_shop = self.toggle_shop,
+					desk_menu = self.desk_menu,
+					books= self.read_books,
 					inventory = self.load_game
 					)
 			if obj.name == 'Bed':
@@ -110,9 +118,16 @@ class Level:
 			if obj.name == 'Trader':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 			
+			if obj.name == 'Desk':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			
+			if obj.name == 'Books':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			
+
 		Generic(
 			pos = (0,0),
-			surf = pygame.image.load('../graphics/world/ground.png').convert_alpha(),
+			surf = pygame.image.load('../graphics/world/ground_lb.png').convert_alpha(),
 			groups = self.all_sprites,
 			z = LAYERS['ground'])
 
@@ -122,6 +137,12 @@ class Level:
 
 	def toggle_shop(self):
 		self.shop_active = not self.shop_active
+
+	def desk_menu(self):
+		self.desk_active = not self.desk_active
+
+	def read_books(self):
+		self.books_active = not self.books_active
 
 	def plant_collision(self):
 		if self.soil_layer.plant_sprites: # se houver plantas
@@ -153,14 +174,14 @@ class Level:
 			tree.create_fruit()
 
 		# soil
-		self.soil_layer.remove_water()
-		self.raining = randint(0,10) > 7
-		self.soil_layer.raining = self.raining
-		if self.raining:
-			self.soil_layer.water_all()
+		# self.soil_layer.remove_water()
+		# self.raining = randint(0,10) > 7
+		# self.soil_layer.raining = self.raining
+		# if self.raining:
+		# 	self.soil_layer.water_all()
 		
 		# sky
-		self.sky.start_color = [255,255,255]
+		# self.sky.start_color = [255,255,255]
 
 	def run(self,dt): #delta time
 
@@ -170,24 +191,30 @@ class Level:
 
 		#updates
 		if self.shop_active:
-			self.menu.update()
+			self.menu_2.update()
+
+		elif self.desk_active:
+			self.window.update()
+
+		elif self.books_active:
+			self.books.update()
 			
 		else:
 			self.all_sprites.update(dt)
 			self.plant_collision()
 
-		# weather
-		self.overlay.display()
+		# # weather
+		# self.overlay.display()
 
 		## rain
-		if self.raining and not self.shop_active:
-			self.rain.update()
+		# if self.raining and not self.shop_active:
+		# 	self.rain.update()
 		## daytime
 		# self.sky.display(dt)
 
 		## transition overlay
-		if self.player.sleep:
-			self.transition.play()
+		# if self.player.sleep:
+		# 	self.transition.play()
 
 
 		# print(self.player.item_inventory)

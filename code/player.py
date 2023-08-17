@@ -2,10 +2,9 @@ import pygame
 from settings import *
 from support import *
 from timers import Timer
-from menu_2 import Menu
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, inventory):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory):
         super().__init__(group)
 
         self.import_assets()
@@ -28,54 +27,55 @@ class Player(pygame.sprite.Sprite):
 
         # timers
         self.timers = {
-            'tool_use': Timer(350, self.use_tool),
-            'tool_switch': Timer(200),
-            'seed_use': Timer(350, self.use_seed),
-            'seed_switch': Timer(200)
+            'tool_use': Timer(350, self.use_tool)
         }
+        #     'tool_switch': Timer(200),
+        #     'seed_use': Timer(350, self.use_seed),
+        #     'seed_switch': Timer(200)
+        # }
 
         # tools
-        self.tools = ['axe', 'hoe', 'water']
-        self.tool_index = 0
-        self.selected_tool = self.tools[self.tool_index]
+        # self.tools = ['axe', 'hoe', 'water']
+        # self.tool_index = 0
+        # self.selected_tool = self.tools[self.tool_index]
 
         # seeds
-        self.seeds = ['corn', 'tomato']
-        self.seed_index = 0
-        self.selected_seed = self.seeds[self.seed_index]
+        # self.seeds = ['corn', 'tomato']
+        # self.seed_index = 0
+        # self.selected_seed = self.seeds[self.seed_index]
 
         # inventory
         self.item_inventory, self.seed_inventory, self.money = inventory[:3]
 
         # interaction
         self.toggle_shop = toggle_shop
+        self.desk_menu = desk_menu
+        self.books = books
         self.tree_sprites = tree_sprites
         self.interaction = interaction
-        self.sleep = False
         self.soil_layer = soil_layer
 
         # sound
-        self.watering = pygame.mixer.Sound('../audio/water.mp3')
-        self.watering.set_volume(0.2)
+        # self.watering = pygame.mixer.Sound('../audio/water.mp3')
+        # self.watering.set_volume(0.2)
 
     def use_tool(self):
-        if self.selected_tool == 'axe':
-            for tree in self.tree_sprites.sprites():
-                if tree.rect.collidepoint(self.target_pos):
-                    tree.damage()
-        if self.selected_tool == 'hoe':
-            self.soil_layer.get_hit(self.target_pos)
-        if self.selected_tool == 'water':
-            self.soil_layer.water(self.target_pos)
-            self.watering.play()
+        for tree in self.tree_sprites.sprites():
+            if tree.rect.collidepoint(self.target_pos):
+                tree.damage()
+        # if self.selected_tool == 'hoe':
+        #     self.soil_layer.get_hit(self.target_pos)
+        # if self.selected_tool == 'water':
+        #     self.soil_layer.water(self.target_pos)
+        #     self.watering.play()
 
     def get_target_pos(self):
         self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]] # status[0] (direção do jogador) para identificar o a posição da ferramenta no dict
 
-    def use_seed(self):
-        if self.seed_inventory[self.selected_seed] > 0:
-            self.soil_layer.plant_seed(self.target_pos, self.selected_seed)
-            self.seed_inventory[self.selected_seed] -= 1
+    # def use_seed(self):
+    #     if self.seed_inventory[self.selected_seed] > 0:
+    #         self.soil_layer.plant_seed(self.target_pos, self.selected_seed)
+    #         self.seed_inventory[self.selected_seed] -= 1
         
     def import_assets(self):
         self.animations = {'up': [], 'down': [], 'left': [], 'right': [],
@@ -98,9 +98,9 @@ class Player(pygame.sprite.Sprite):
 
         keys = pygame.key.get_pressed()
 
-        if not self.timers['tool_use'].active and not self.sleep:
+        if not self.timers['tool_use'].active:
+            
             # directions
-
             if keys[pygame.K_UP]:
                 self.direction.y = -1
                 self.status = 'up'
@@ -122,7 +122,13 @@ class Player(pygame.sprite.Sprite):
             
             # MENU test
             if keys[pygame.K_m]:
-                Menu()
+                self.toggle_shop()
+
+            if keys[pygame.K_k]:
+                self.desk_menu()
+            
+            if keys[pygame.K_b]:
+                self.books()
 
 
             # tools use
@@ -133,27 +139,27 @@ class Player(pygame.sprite.Sprite):
                 self.frame_index = 0
             
             #change tool
-            if keys[pygame.K_q] and not self.timers['tool_switch'].active:
-                self.timers['tool_switch'].activate()
-                self.tool_index += 1
-                if self.tool_index >= len(self.tools): self.tool_index = 0
-                self.selected_tool = self.tools[self.tool_index]
+            # if keys[pygame.K_q] and not self.timers['tool_switch'].active:
+            #     self.timers['tool_switch'].activate()
+            #     self.tool_index += 1
+            #     if self.tool_index >= len(self.tools): self.tool_index = 0
+            #     self.selected_tool = self.tools[self.tool_index]
 
             # seed use
-            if keys[pygame.K_LCTRL]:
-                # timer for tool use
-                self.timers['seed_use'].activate()
-                self.direction = pygame.math.Vector2()
-                self.frame_index = 0
-                # print('use seed')
+            # if keys[pygame.K_LCTRL]:
+            #     # timer for tool use
+            #     self.timers['seed_use'].activate()
+            #     self.direction = pygame.math.Vector2()
+            #     self.frame_index = 0
+            #     # print('use seed')
 
             #change seed
-            if keys[pygame.K_e] and not self.timers['seed_switch'].active:
-                self.timers['seed_switch'].activate()
-                self.seed_index += 1
-                if self.seed_index >= len(self.seeds): self.seed_index = 0
-                self.selected_seed = self.seeds[self.seed_index]
-                # print(self.selected_seed)
+            # if keys[pygame.K_e] and not self.timers['seed_switch'].active:
+            #     self.timers['seed_switch'].activate()
+            #     self.seed_index += 1
+            #     if self.seed_index >= len(self.seeds): self.seed_index = 0
+            #     self.selected_seed = self.seeds[self.seed_index]
+            #     # print(self.selected_seed)
 
             # interaction
             if keys[pygame.K_RETURN]:
@@ -162,9 +168,14 @@ class Player(pygame.sprite.Sprite):
                     if collided_interaction_sprite[0].name == 'Trader':
                         self.toggle_shop()
 
-                    elif collided_interaction_sprite[0].name == 'Bed':
+                    elif collided_interaction_sprite[0].name == 'Desk':
                         self.status = 'left_idle'
-                        self.sleep = True
+                        # self.toggle_shop()
+                        self.desk_menu()
+
+                    elif collided_interaction_sprite[0].name == 'Books':
+                        self.books()
+                        
             
     def get_status(self):
         # if player not moving add idle
@@ -173,7 +184,7 @@ class Player(pygame.sprite.Sprite):
 
         # tool use
         if self.timers['tool_use'].active:
-            self.status = self.status.split('_')[0] + '_' + self.selected_tool
+            self.status = self.status.split('_')[0] # + '_' + self.selected_tool
 
     def update_timers(self):
         for timer in self.timers.values():
