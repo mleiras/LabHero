@@ -169,8 +169,6 @@ class Player(pygame.sprite.Sprite):
                         self.toggle_shop()
 
                     elif collided_interaction_sprite[0].name == 'Desk':
-                        self.status = 'left_idle'
-                        # self.toggle_shop()
                         self.desk_menu()
 
                     elif collided_interaction_sprite[0].name == 'Books':

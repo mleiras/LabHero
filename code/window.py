@@ -83,6 +83,7 @@ class Window:
             width=1280
         )
 
+        # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
         for i in range(len(OPTIONS['Reactions'])):
             # menu_reactions.add.label(f'Reaction {OPTIONS["Reactions"][i]}', font_size=18)
             menu_reactions.add.range_slider(OPTIONS["Reactions"][i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30) #, rangeslider_id=OPTIONS['Reactions'][i])
@@ -107,6 +108,7 @@ class Window:
         label = '{}'
         for i in range(len(OPTIONS['Metabolites'])):
             txt = label.format(OPTIONS['Metabolites'][i])
+            # menu_met.add.label(METABOLITES['compartment'][i])
             menu_met.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt)
         
         menu_met.add.button('Back', pygame_menu.events.BACK)
@@ -117,13 +119,13 @@ class Window:
             """
             Print data of the menu.
             """
-            print('Settings data:')
-            data_method = menu.get_input_data()
+            print('Settings data:') # TASK: transformar prints num ficheiro para guardar dados
+            data_simul = menu.get_input_data()
             data_genes = menu_genes.get_input_data()
             data_met = menu_met.get_input_data()
             data_reac = menu_reactions.get_input_data()
-            for k in data_method.keys():
-                print(f'\t{k}\t=>\t{data_method[k]}')
+            for k in data_simul.keys():
+                print(f'\t{k}\t=>\t{data_simul[k]}')
             for k in data_genes.keys():
                 print(f'\t{k}\t=>\t{data_genes[k]}')
             for k in data_met.keys():
@@ -167,40 +169,34 @@ class Window:
         menu.add.vertical_margin(20)  # Adds margin
         # menu.add.button('Restore / Cancel', menu.reset_value, background_color=(100,0,0))
 
-
         menu.mainloop(self.display_surface)
 
         
-
 
 
     def toggle_menu(self):
         self.desk_menu = not self.desk_menu
 
 
-    def save_simulation(self):
-        save_simulation_file(['saved simulation file'])
+    # def save_simulation(self):
+    #     save_simulation_file(['saved simulation file'])
 
-        sceneExit = False
-        time = 1500
+    #     sceneExit = False
+    #     time = 1500
 
-        while not sceneExit:
+    #     while not sceneExit:
 
-            text_surf = self.font.render(f'Simulation saved',False,'black')
-            text_rect = text_surf.get_rect(midbottom = (SCREEN_WIDTH/2, SCREEN_HEIGHT-20))
-            pygame.draw.rect(self.display_surface, 'white', text_rect.inflate(10,10),0,2) #ultimos 2 argumentos se quiser bordas redondas pode-se adicionar estes argumentos
-            self.display_surface.blit(text_surf, text_rect)
+    #         text_surf = self.font.render(f'Simulation saved',False,'black')
+    #         text_rect = text_surf.get_rect(midbottom = (SCREEN_WIDTH/2, SCREEN_HEIGHT-20))
+    #         pygame.draw.rect(self.display_surface, 'white', text_rect.inflate(10,10),0,2) #ultimos 2 argumentos se quiser bordas redondas pode-se adicionar estes argumentos
+    #         self.display_surface.blit(text_surf, text_rect)
 
-            pygame.display.update()
+    #         pygame.display.update()
 
-            passed_time = pygame.time.Clock().tick(60)
-            time -= passed_time
-            if time <= 0:
-                sceneExit = True
-
-
-
-    
+    #         passed_time = pygame.time.Clock().tick(60)
+    #         time -= passed_time
+    #         if time <= 0:
+    #             sceneExit = True
 
     
     def on_button_click(self, value: str, text = None) -> None:

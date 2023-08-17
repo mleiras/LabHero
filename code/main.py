@@ -32,8 +32,10 @@ class Game:
 				if event.type == pygame.QUIT:
 					pygame.quit()
 					sys.exit() 
-				if event.type == pygame.KEYDOWN:
+				if pygame.key.get_pressed()[pygame.K_RETURN]:
 					self.run()
+				# if event.type == pygame.KEYDOWN:
+					# self.run()
   
 			self.intro.run()
 			pygame.display.update()

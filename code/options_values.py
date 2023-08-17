@@ -9,7 +9,10 @@ objective = simul.objective
 METABOLITES = simul.find_metabolites() # dataframe
 REACTIONS = simul.find_reactions() # dataframe
 GENES_v0 = simul.find_genes().name # dataframe
-COMPARTMENTS = list(simul.compartments) # dicionario
+COMPARTMENTS = simul.compartments # dicionario
+
+if len(COMPARTMENTS) > 1:
+    print('teste')
 
 # MET = {name for (id_met, name) in METABOLITES.items()}
 # REAC = {id_reac: name for (id_reac, name) in REACTIONS.items()}
@@ -44,13 +47,13 @@ if __name__ == '__main__':
     # print(OPTIONS['Genes'])
     # print(OPTIONS['Metabolites'])
     # print(OPTIONS['Reactions'])
-    print(REACTIONS)
-    print(str(objective))
-    # print(COMPARTMENTS)
+    # print(REACTIONS)
+    # print(str(objective))
+    print(OPTIONS['Compartments'])
     # for i in OPTIONS.values():
     #     print(i)
-    # print(OPTIONS)
+    print(METABOLITES)
     # for i in range(len(OPTIONS['Metabolites'])):
-    #     print(OPTIONS['Metabolites']['name'][i])
+    #     print(METABOLITES['compartment'][i])
     # print(OPTIONS['Metabolites']['name'])
 
