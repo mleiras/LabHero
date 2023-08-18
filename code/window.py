@@ -7,10 +7,14 @@ from options_values import *
 
 mytheme = pygame_menu.themes.THEME_GREEN.copy()
 font = pygame_menu.font.FONT_MUNRO
-mytheme.font = font
+mytheme.widget_font = font
+mytheme.title_font = font
+mytheme.title_font_size = 50
+mytheme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
+mytheme.title_offset = (20,4)
+mytheme.widget_margin = (10,10)
 sub_theme = mytheme.copy()
 # sub_theme.widget_alignment = pygame_menu.locals.ALIGN_LEFT
-
 
 class Window:
     def __init__(self, toggle_menu) -> None:
@@ -31,8 +35,8 @@ class Window:
             height=720,
             onclose=self.toggle_menu,
             theme=mytheme,
-            title='Main Menu',
-            width=1280
+            title='Simulation Menu',
+            width=1280,
         )
 
         menu_genes = pygame_menu.Menu(
@@ -40,7 +44,7 @@ class Window:
             center_content=False,
             onclose=pygame_menu.events.BACK,
             theme=mytheme,
-            title='Menu with Genes',
+            title='Genes',
             width=1280
         )
 
@@ -49,8 +53,8 @@ class Window:
             center_content=False,
             onclose=pygame_menu.events.BACK,
             theme=mytheme,
-            title='Menu with Metabolites',
-            width=1280
+            title='Metabolites',
+            width=1280,
         )
 
 
@@ -83,36 +87,45 @@ class Window:
             width=1280
         )
 
+        # MENU REACTIONS
+        menu_reactions.add.vertical_margin(50)
         # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
         for i in range(len(OPTIONS['Reactions'])):
             # menu_reactions.add.label(f'Reaction {OPTIONS["Reactions"][i]}', font_size=18)
             menu_reactions.add.range_slider(OPTIONS["Reactions"][i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30) #, rangeslider_id=OPTIONS['Reactions'][i])
             # menu_reactions.add.range_slider('LB', REACTIONS.lb[i], (-1000, 1000), 10, font_size=15) #, rangeslider_id=OPTIONS['Reactions'][i])
             # menu_reactions.add.range_slider('UP', REACTIONS.ub[i], (-1000, 1000), 10, font_size=16) #, rangeslider_id=OPTIONS['Reactions'][i])
-            # menu_reactions.add.vertical_margin(20)
+        menu_reactions.add.vertical_margin(20)
+        menu_reactions.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_reactions.add.vertical_margin(20)
 
-        
-    # MENU SUB (Genes)
-
+        # MENU SUB (Genes)
+        menu_genes.add.vertical_margin(50)
         label = '{}'
 
         for i in range(len(OPTIONS['Genes'])):
             txt = label.format(OPTIONS['Genes'][i])
             # menu_sub.add.button(txt, on_button_click, txt + ' -> ' + str(i+1))
             menu_genes.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt, toggleswitch_id=txt)
-        
-        menu_genes.add.button('Back', pygame_menu.events.BACK)
+        menu_genes.add.vertical_margin(20)
+        menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_genes.add.vertical_margin(20)
 
-
-
+        # MENU SUB METABOLITES
+        menu_met.add.vertical_margin(50)
+        menu_met.add.label(f'Compartments:', font_size=30,font_color=(70, 70, 70))
+        for k,v in COMPARTMENTS.items():
+            menu_met.add.label(f'{k}: {v}', font_size=25, font_color=(70, 70, 70))
+        menu_met.add.vertical_margin(50)
         label = '{}'
-        for i in range(len(OPTIONS['Metabolites'])):
-            txt = label.format(OPTIONS['Metabolites'][i])
+        for i in range(len(METABOLITES['name'])):
+            texto = str(METABOLITES['name'][i])+' - '+str(METABOLITES['compartment'][i])
+            txt = label.format(METABOLITES['name'][i])
             # menu_met.add.label(METABOLITES['compartment'][i])
-            menu_met.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt)
-        
-        menu_met.add.button('Back', pygame_menu.events.BACK)
-
+            menu_met.add.toggle_switch(texto, True, onchange=self.toggle_gene, kwargs=texto)
+        menu_met.add.vertical_margin(20)
+        menu_met.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_met.add.vertical_margin(20)
 
 
         def data_fun() -> None:
@@ -162,7 +175,7 @@ class Window:
         menu.add.text_input('Objective: ', default=str(OPTIONS['Objective']))
         menu.add.button('Genes', menu_genes)
         menu.add.button('Metabolites', menu_met)
-        menu.add.button('Table', menu_contributors)
+        # menu.add.button('Table', menu_contributors)
         menu.add.button('Reactions 2', menu_reactions)
         menu.add.vertical_margin(50)  # Adds margin
         menu.add.button('Save Simulation', action=data_fun, background_color=(50,100,100))        
