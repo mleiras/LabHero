@@ -4,17 +4,8 @@ from settings import *
 from save_load import *
 from timers import Timer
 from options_values import *
+from functions import animation_text_save
 
-mytheme = pygame_menu.themes.THEME_GREEN.copy()
-font = pygame_menu.font.FONT_MUNRO
-mytheme.widget_font = font
-mytheme.title_font = font
-mytheme.title_font_size = 50
-mytheme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
-mytheme.title_offset = (20,4)
-mytheme.widget_margin = (10,10)
-sub_theme = mytheme.copy()
-# sub_theme.widget_alignment = pygame_menu.locals.ALIGN_LEFT
 
 class Window:
     def __init__(self, toggle_menu) -> None:
@@ -82,7 +73,7 @@ class Window:
         menu_reactions = pygame_menu.Menu(
             height=720,
             onclose=pygame_menu.events.BACK,
-            theme=sub_theme,
+            theme=mytheme,
             title='Reactions',
             width=1280
         )
@@ -105,7 +96,6 @@ class Window:
 
         for i in range(len(OPTIONS['Genes'])):
             txt = label.format(OPTIONS['Genes'][i])
-            # menu_sub.add.button(txt, on_button_click, txt + ' -> ' + str(i+1))
             menu_genes.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt, toggleswitch_id=txt)
         menu_genes.add.vertical_margin(20)
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
@@ -116,12 +106,11 @@ class Window:
         menu_met.add.label(f'Compartments:', font_size=30,font_color=(70, 70, 70))
         for k,v in COMPARTMENTS.items():
             menu_met.add.label(f'{k}: {v}', font_size=25, font_color=(70, 70, 70))
-        menu_met.add.vertical_margin(50)
+        menu_met.add.vertical_margin(20)
         label = '{}'
         for i in range(len(METABOLITES['name'])):
             texto = str(METABOLITES['name'][i])+' - '+str(METABOLITES['compartment'][i])
             txt = label.format(METABOLITES['name'][i])
-            # menu_met.add.label(METABOLITES['compartment'][i])
             menu_met.add.toggle_switch(texto, True, onchange=self.toggle_gene, kwargs=texto)
         menu_met.add.vertical_margin(20)
         menu_met.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
@@ -132,36 +121,14 @@ class Window:
             """
             Print data of the menu.
             """
-            print('Settings data:') # TASK: transformar prints num ficheiro para guardar dados
             data_simul = menu.get_input_data()
             data_genes = menu_genes.get_input_data()
             data_met = menu_met.get_input_data()
             data_reac = menu_reactions.get_input_data()
-            for k in data_simul.keys():
-                print(f'\t{k}\t=>\t{data_simul[k]}')
-            for k in data_genes.keys():
-                print(f'\t{k}\t=>\t{data_genes[k]}')
-            for k in data_met.keys():
-                print(f'\t{k}\t=>\t{data_met[k]}')
-            for k in data_reac.keys():
-                print(f'\t{k}\t=>\t{data_reac[k]}')
 
-            sceneExit = False
-            time = 1500
-            while not sceneExit:
+            save_simulation_file([data_simul, data_genes, data_met, data_reac])
+            animation_text_save('Simulation saved')
 
-                text_surf = self.font.render(f'Simulation saved',False,'black')
-                text_rect = text_surf.get_rect(midbottom = (SCREEN_WIDTH/2, SCREEN_HEIGHT-20))
-                pygame.draw.rect(self.display_surface, 'white', text_rect.inflate(10,10),0,2) #ultimos 2 argumentos se quiser bordas redondas pode-se adicionar estes argumentos
-                self.display_surface.blit(text_surf, text_rect)
-
-                pygame.display.update()
-
-                passed_time = pygame.time.Clock().tick(60)
-                time -= passed_time
-                if time <= 0:
-                    sceneExit = True
-            #end of function
 
 
         menu.add.dropselect(title='Simulation Method: ',
@@ -190,26 +157,6 @@ class Window:
     def toggle_menu(self):
         self.desk_menu = not self.desk_menu
 
-
-    # def save_simulation(self):
-    #     save_simulation_file(['saved simulation file'])
-
-    #     sceneExit = False
-    #     time = 1500
-
-    #     while not sceneExit:
-
-    #         text_surf = self.font.render(f'Simulation saved',False,'black')
-    #         text_rect = text_surf.get_rect(midbottom = (SCREEN_WIDTH/2, SCREEN_HEIGHT-20))
-    #         pygame.draw.rect(self.display_surface, 'white', text_rect.inflate(10,10),0,2) #ultimos 2 argumentos se quiser bordas redondas pode-se adicionar estes argumentos
-    #         self.display_surface.blit(text_surf, text_rect)
-
-    #         pygame.display.update()
-
-    #         passed_time = pygame.time.Clock().tick(60)
-    #         time -= passed_time
-    #         if time <= 0:
-    #             sceneExit = True
 
     
     def on_button_click(self, value: str, text = None) -> None:

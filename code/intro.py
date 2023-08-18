@@ -18,7 +18,7 @@ class Intro:
 		self.title = self.font.render('Lab Hero', False, 'black') # render(string, AA, color)
 		self.title_rect = self.title.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 		self.display_surface.blit(self.title, self.title_rect)
-		self.text = self.font_text.render('press any key to start', False, 'red') # render(string, AA, color)
+		self.text = self.font_text.render('press ENTER to start', False, 'red') # render(string, AA, color)
 		self.text_rect = self.text.get_rect(center = (SCREEN_WIDTH/2, (SCREEN_HEIGHT/2)+75))
 		self.display_surface.blit(self.text, self.text_rect)
 

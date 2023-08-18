@@ -18,3 +18,9 @@ def load_file(filename):
 def save_simulation_file(data):
     with open('simulation_file.txt', 'w') as test_file:
         json.dump(data, test_file)
+
+
+
+def save_mission(data, n):
+    with open(f'mission0{n}.txt', 'w') as test_file:
+        json.dump(data, test_file)

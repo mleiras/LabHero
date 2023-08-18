@@ -1,12 +1,10 @@
 import pygame
 import pygame_menu
 from settings import *
+from options_values import *
 from save_load import *
 from timers import Timer
-
-mytheme = pygame_menu.themes.THEME_GREEN.copy()
-font = pygame_menu.font.FONT_MUNRO
-mytheme.font = font
+from functions import animation_text_save
 
 
 
@@ -26,25 +24,12 @@ class Menu_2:
         self.timer = Timer(200)
 
 
-    def save_game(self, name):
+
+    def save_game(self, menu):
+        name = menu.get_input_data()
         save_file([name, self.player.item_inventory, self.player.seed_inventory, self.player.money])
-
-        sceneExit = False
-        time = 1500
-
-        while not sceneExit:
-
-            text_surf = self.font.render(f'Game saved',False,'black')
-            text_rect = text_surf.get_rect(midbottom = (SCREEN_WIDTH/2, SCREEN_HEIGHT-20))
-            pygame.draw.rect(self.display_surface, 'white', text_rect.inflate(10,10),0,2) #ultimos 2 argumentos se quiser bordas redondas pode-se adicionar estes argumentos
-            self.display_surface.blit(text_surf, text_rect)
-
-            pygame.display.update()
-
-            passed_time = pygame.time.Clock().tick(60)
-            time -= passed_time
-            if time <= 0:
-                sceneExit = True
+        animation_text_save('Game saved')
+    
 
 
     def setup(self):
@@ -54,10 +39,9 @@ class Menu_2:
         
 
         # menu.add.button('Play', action=pygame_menu.events.BACK) # VER AQUI OUTRA SOLUÇÃO???
-        name_menu = menu.add.text_input('Name: ', default='Monica', textinput_id='name')
-        name = name_menu.get_value()
+        menu.add.text_input('Name: ', default='Margaret Dayhoff', textinput_id='name')
         # menu.add.selector('Difficulty: ', [('Easy', 1), ('Hard', 2)], onchange=self.set_difficulty)
-        menu.add.button('Save Game', self.save_game, name)
+        menu.add.button('Save Game', self.save_game, menu)
         menu.add.button('Quit Game', pygame_menu.events.EXIT)
         menu.mainloop(self.display_surface)
 

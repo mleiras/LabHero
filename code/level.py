@@ -13,6 +13,7 @@ from menu import *
 from menu_2 import *
 from window import Window
 from books import Books
+from mission01 import Mission01
 from save_load import save_file
 
 class Level:
@@ -45,8 +46,8 @@ class Level:
 		self.shop_active = False
 		self.desk_active = False
 		self.books_active = False
-		# self.menu = Menu(self.player, self.toggle_shop)
-		self.menu_2 = Menu_2(self.player, self.toggle_shop)
+		self.menu_2 = Mission01(self.toggle_shop)
+		# self.menu_2 = Menu_2(self.player, self.toggle_shop)
 		self.window = Window(self.desk_menu)
 		self.books = Books(self.read_books)
 
@@ -191,6 +192,7 @@ class Level:
 
 		#updates
 		if self.shop_active:
+			# self.menu.update()
 			self.menu_2.update()
 
 		elif self.desk_active:

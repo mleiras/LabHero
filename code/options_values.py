@@ -1,5 +1,16 @@
 import mewpy
 from mewpy.simulation import get_simulator
+import pygame_menu
+
+mytheme = pygame_menu.themes.THEME_GREEN.copy()
+font = pygame_menu.font.FONT_MUNRO
+mytheme.widget_font = font
+mytheme.title_font = font
+mytheme.title_font_size = 50
+mytheme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
+mytheme.title_offset = (20,4)
+mytheme.widget_margin = (10,10)
+
 
 from cobra.io import read_sbml_model
 model = read_sbml_model('../data/models/e_coli_core.xml.gz')
