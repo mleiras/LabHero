@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.6" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="19" nextobjectid="272">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="20" nextobjectid="275">
  <tileset firstgid="1" source="Tilesets/Grass.tsx"/>
  <tileset firstgid="81" source="Tilesets/Hills.tsx"/>
  <tileset firstgid="117" source="Tilesets/Fences.tsx"/>
@@ -10,7 +10,7 @@
  <tileset firstgid="171" source="Tilesets/Water.tsx"/>
  <tileset firstgid="172" source="Tilesets/House.tsx"/>
  <tileset firstgid="207" source="Tilesets/House Decoration.tsx"/>
- <layer id="2" name="Water" width="50" height="40" visible="0">
+ <layer id="2" name="Water" width="50" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -610,7 +610,7 @@
   <object id="78" gid="149" x="1746" y="622" width="56" height="116" visible="0"/>
   <object id="95" gid="144" x="962" y="442" width="56" height="68"/>
  </objectgroup>
- <layer id="14" name="Collision" width="50" height="40" visible="0">
+ <layer id="14" name="Collision" width="50" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
