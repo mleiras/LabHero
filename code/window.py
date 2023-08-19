@@ -116,6 +116,17 @@ class Window:
         menu_met.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_met.add.vertical_margin(20)
 
+        
+        def run_simulation() -> None:
+            """
+            Run the simulation MEWPY.
+            """
+            menu.remove_widget(self.run_simul)
+            print('RUN SIMULATION')
+            # add mewpy script here to run new simulation
+            animation_text_save('Simulation Running')
+            #close menu here?
+
 
         def data_fun() -> None:
             """
@@ -128,8 +139,10 @@ class Window:
 
             save_simulation_file([data_simul, data_genes, data_met, data_reac])
             animation_text_save('Simulation saved')
+            self.run_simul = menu.add.button('Run Simulation', action=run_simulation, background_color=(150,50,50))
+            self.run_simul
 
-
+       
 
         menu.add.dropselect(title='Simulation Method: ',
                             items=[('FBA', 'fba'),

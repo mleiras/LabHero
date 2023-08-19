@@ -82,6 +82,8 @@ class Mission01:
             max_char=33,
             wordwrap=True
         )
+        menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+
         
 
 

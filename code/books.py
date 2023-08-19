@@ -5,10 +5,6 @@ from save_load import *
 from timers import Timer
 from options_values import *
 
-mytheme = pygame_menu.themes.THEME_GREEN.copy()
-font = pygame_menu.font.FONT_MUNRO
-mytheme.font = font
-
 
 class Books:
     def __init__(self, toggle_menu) -> None:
@@ -30,47 +26,45 @@ class Books:
             height=720,
             onclose=self.toggle_menu,
             theme=mytheme,
-            title='Main Menu',
+            title='Books',
             width=1280
         )
 
-
-        menu_contributors = pygame_menu.Menu(
-            height=720,
-            onclose=self.toggle_menu,
-            theme=mytheme,
-            title='Contributors',
-            width=1280
-        )
-
-        # Add table to contributors
-        table_contrib = menu_contributors.add.table()
-        table_contrib.default_cell_padding = 5
-        table_contrib.default_row_background_color = 'grey'
-        bold_font = pygame_menu.font.FONT_OPEN_SANS_BOLD
-        table_contrib.add_row(['N°', 'Github User'], cell_font=bold_font)
-        for i in range(len(pygame_menu.__contributors__)):
-            table_contrib.add_row([i + 1, pygame_menu.__contributors__[i]], cell_font=bold_font if i == 0 else None)
-
-        table_contrib.update_cell_style(-1, -1, font_size=15)  # Update all column/row
-        table_contrib.update_cell_style(1, [2, -1], font=pygame_menu.font.FONT_OPEN_SANS_ITALIC)
 
         menu_text = pygame_menu.Menu(
             height=720,
             onclose=self.toggle_menu,
             theme=mytheme,
-            title='Text with scroll',
+            title='Book Intro to Modelation',
             width=1280
         )
+        
 
-        menu.add.button('Book 1', menu_text)
-        menu.add.button('Book 2', menu_contributors)
-        menu.add.vertical_margin(20)  # Adds margin
+        menu.add.label(
+            'Books Available:',
+            align=pygame_menu.locals.ALIGN_CENTER,
+            font_size=50,
+            font_color=(70,70,70))
+        menu.add.vertical_margin(15)  # Adds margin
+        menu.add.button('Systems Biology', menu_text, background_color = 'green')
+        menu.add.button('Intro to Modelation', menu_text, background_color = 'blue')
+        menu.add.button('How to Simulate', menu_text, background_color = 'red')
+        menu.add.button('Do You Know Microorganisms?', menu_text, background_color = 'orange')
+        menu.add.button('MEWpy Basics', menu_text, background_color = 'grey')
+        menu.add.button('How to Date a Model', menu_text, background_color = 'pink')
+        # menu.add.vertical_margin(20)  # Adds margin
 
 
 
         # noinspection SpellCheckingInspection
         menu_text.add.label(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+            'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
+            'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
+            'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate '
+            'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
+            'cupidatat non proident, sunt in culpa qui officia deserunt mollit anim '
+            'id est laborum.'
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
             'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
             'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
@@ -104,6 +98,9 @@ class Books:
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, -1)
         )
+        menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+
+
         menu.mainloop(self.display_surface)
 
         # return menu

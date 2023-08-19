@@ -15,7 +15,7 @@ class Game:
 		self.clock = pygame.time.Clock()
 		self.intro = Intro()
 		
-		# load game if exists
+		# load game if exists2
 		try:
 			name, *data = load_file('data')
 			print('continue game')
@@ -25,6 +25,7 @@ class Game:
 			self.level = Level(DEFAULT_INVENTORY)
 
 		self.intro_run()
+
 
 	def intro_run(self):
 		while True:
