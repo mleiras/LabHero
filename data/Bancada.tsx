@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="git" name="Bancada" tilewidth="64" tileheight="64" tilecount="9" columns="0">
+<tileset version="1.10" tiledversion="git" name="Bancada" tilewidth="64" tileheight="64" tilecount="12" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="3">
   <image width="64" height="64" source="../../../../../../Downloads/re (2)/canto superior esquerdo.png"/>
@@ -25,10 +25,19 @@
    <object id="1" x="0.909091" y="0.727273" width="62" height="62.3636"/>
   </objectgroup>
  </tile>
- <tile id="10">
-  <image width="64" height="64" source="../../../../../../Downloads/pc up.png"/>
- </tile>
  <tile id="11">
   <image width="64" height="64" source="../../../../../../Downloads/pc up (1).png"/>
+ </tile>
+ <tile id="13">
+  <image width="64" height="64" source="../graphics/aseprite/Martha.png"/>
+ </tile>
+ <tile id="14">
+  <image width="64" height="64" source="../../../../../../Downloads/re (3)/Sequeira.png"/>
+ </tile>
+ <tile id="15">
+  <image width="64" height="64" source="../../../../../../Downloads/re (3)/Pacheco.png"/>
+ </tile>
+ <tile id="16">
+  <image width="64" height="64" source="../../../../../../Downloads/re (3)/Marta.png"/>
  </tile>
 </tileset>
