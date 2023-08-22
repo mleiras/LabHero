@@ -83,7 +83,7 @@ class Window:
         # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
         for i in range(len(OPTIONS['Reactions'])):
             # menu_reactions.add.label(f'Reaction {OPTIONS["Reactions"][i]}', font_size=18)
-            menu_reactions.add.range_slider(OPTIONS["Reactions"][i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30) #, rangeslider_id=OPTIONS['Reactions'][i])
+            menu_reactions.add.range_slider(OPTIONS["Reactions"][i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
             # menu_reactions.add.range_slider('LB', REACTIONS.lb[i], (-1000, 1000), 10, font_size=15) #, rangeslider_id=OPTIONS['Reactions'][i])
             # menu_reactions.add.range_slider('UP', REACTIONS.ub[i], (-1000, 1000), 10, font_size=16) #, rangeslider_id=OPTIONS['Reactions'][i])
         menu_reactions.add.vertical_margin(20)
@@ -110,11 +110,36 @@ class Window:
         label = '{}'
         for i in range(len(METABOLITES['name'])):
             texto = str(METABOLITES['name'][i])+' - '+str(METABOLITES['compartment'][i])
-            txt = label.format(METABOLITES['name'][i])
-            menu_met.add.toggle_switch(texto, True, onchange=self.toggle_gene, kwargs=texto)
+            # txt = label.format(METABOLITES['name'][i])
+            menu_met.add.toggle_switch(texto, True, onchange=self.toggle_gene, kwargs=texto, toggleswitch_id=METABOLITES.index[i])
         menu_met.add.vertical_margin(20)
         menu_met.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_met.add.vertical_margin(20)
+
+        # MENU SUB OBJECTIVE
+        menu_objective = pygame_menu.Menu(
+            height=720,
+            onclose=pygame_menu.events.BACK,
+            theme=mytheme,
+            title='Objective',
+            width=1280
+        )
+
+        objectives = []
+        default_obj = 0
+        # print(str(objective))
+        
+        for i in range(len(REACTIONS)):
+            if REACTIONS.index[i] == str(objective):
+                default_obj = i
+            objectives.append((REACTIONS.index[i], REACTIONS.index[i]))
+        
+        menu_objective.add.dropselect(title='Objective: ',
+                            items=objectives,
+                                   default=default_obj,
+                                   selection_box_height=8,
+                                   selection_box_width=500,
+                                   dropselect_id='objective')
 
         
         def run_simulation() -> None:
@@ -133,11 +158,12 @@ class Window:
             Print data of the menu.
             """
             data_simul = menu.get_input_data()
+            data_objective = menu_objective.get_input_data()
             data_genes = menu_genes.get_input_data()
             data_met = menu_met.get_input_data()
             data_reac = menu_reactions.get_input_data()
 
-            save_simulation_file([data_simul, data_genes, data_met, data_reac])
+            save_simulation_file([data_simul, data_objective, data_genes, data_met, data_reac])
             animation_text_save('Simulation saved')
             self.run_simul = menu.add.button('Run Simulation', action=run_simulation, background_color=(150,50,50))
             self.run_simul
@@ -151,12 +177,13 @@ class Window:
                                    ('lMOMA', 'lmoma'),
                                    ('ROOM','room')],
                                    default=0,
-                                   selection_box_height=4)
-        menu.add.text_input('Objective: ', default=str(OPTIONS['Objective']))
+                                   selection_box_height=4, dropselect_id='method')
+        # menu.add.text_input('Objective: ', default=str(OPTIONS['Objective']), textinput_id='objective')
+        menu.add.button('Objective', menu_objective)
         menu.add.button('Genes', menu_genes)
         menu.add.button('Metabolites', menu_met)
         # menu.add.button('Table', menu_contributors)
-        menu.add.button('Reactions 2', menu_reactions)
+        menu.add.button('Reactions', menu_reactions)
         menu.add.vertical_margin(50)  # Adds margin
         menu.add.button('Save Simulation', action=data_fun, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  # Adds margin

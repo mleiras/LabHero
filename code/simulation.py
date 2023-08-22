@@ -1,10 +1,14 @@
 import mewpy
 from cobra.io import read_sbml_model
 from mewpy.simulation import get_simulator
+from save_load import *
 
 #import file (model) here:
 model = read_sbml_model('../data/models/e_coli_core.xml.gz')
 
+data_simul = load_file('simulation_file')
+for i in data_simul:
+    print(i)
 
 
 # environment conditions:
@@ -17,7 +21,6 @@ simul = get_simulator(model, envcond=envconditions)
 # choose objective (by default Biomass):
 # objective = ''
 # simul.objective = objective
-simul.objective='BIOMASS_Ecoli_core_w_GAM'
 
 # add constraints here (modifications on the game)
 constraints = {}
@@ -33,7 +36,7 @@ sim_method = 'pFBA'
 # run a pFBA simulation accounting with the new constraint
 result = simul.simulate(method=sim_method, constraints=constraints)
 
-print(result)
+# print(result)
 
 # print(result.fluxes['BIOMASS_Ecoli_core_w_GAM'])
 # print(result.fluxes['EX_succ_e'])
