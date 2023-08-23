@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="git" name="Bancada" tilewidth="64" tileheight="64" tilecount="12" columns="0">
+<tileset version="1.10" tiledversion="git" name="Bancada" tilewidth="64" tileheight="64" tilecount="19" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="3">
   <image width="64" height="64" source="../../../../../../Downloads/re (2)/canto superior esquerdo.png"/>
@@ -28,9 +28,6 @@
  <tile id="11">
   <image width="64" height="64" source="../../../../../../Downloads/pc up (1).png"/>
  </tile>
- <tile id="13">
-  <image width="64" height="64" source="../graphics/aseprite/Martha.png"/>
- </tile>
  <tile id="14">
   <image width="64" height="64" source="../../../../../../Downloads/re (3)/Sequeira.png"/>
  </tile>
@@ -39,5 +36,29 @@
  </tile>
  <tile id="16">
   <image width="64" height="64" source="../../../../../../Downloads/re (3)/Marta.png"/>
+ </tile>
+ <tile id="17">
+  <image width="64" height="64" source="../../../../../../Downloads/re (3)/Martha.png"/>
+ </tile>
+ <tile id="19">
+  <image width="64" height="64" source="../../../../../../Downloads/re (4)/Vitor.png"/>
+ </tile>
+ <tile id="20">
+  <image width="64" height="64" source="../../../../../../Downloads/re (4)/Oscar.png"/>
+ </tile>
+ <tile id="25">
+  <image width="64" height="64" source="../../../../../../Downloads/re (4) (1)/Nuno.png"/>
+ </tile>
+ <tile id="26">
+  <image width="64" height="64" source="../../../../../../Downloads/re (4) (1)/Maria João.png"/>
+ </tile>
+ <tile id="27">
+  <image width="64" height="64" source="../../../../../../Downloads/re (4) (1)/Emanuel.png"/>
+ </tile>
+ <tile id="28">
+  <image width="64" height="64" source="../../../../../../Downloads/re (4) (1)/Ed Sheeran.png"/>
+ </tile>
+ <tile id="29">
+  <image width="64" height="64" source="../../../../../../Downloads/re (4) (1)/Churches.png"/>
  </tile>
 </tileset>
