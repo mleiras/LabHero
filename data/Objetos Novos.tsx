@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="git" name="Objetos Novos" tilewidth="64" tileheight="64" tilecount="8" columns="0">
+<tileset version="1.10" tiledversion="git" name="Objetos Novos" tilewidth="64" tileheight="64" tilecount="15" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <image width="64" height="64" source="../graphics/environment/canto superior esquerdo.png"/>
@@ -24,5 +24,26 @@
  </tile>
  <tile id="8">
   <image width="64" height="64" source="../graphics/environment/computer.png"/>
+ </tile>
+ <tile id="9">
+  <image width="64" height="64" source="../graphics/environment/sofá esquerda.png"/>
+ </tile>
+ <tile id="10">
+  <image width="64" height="64" source="../graphics/environment/sofá direita.png"/>
+ </tile>
+ <tile id="11">
+  <image width="64" height="64" source="../graphics/environment/pc down.png"/>
+ </tile>
+ <tile id="12">
+  <image width="64" height="64" source="../graphics/environment/microscopio.png"/>
+ </tile>
+ <tile id="13">
+  <image width="64" height="64" source="../graphics/environment/maquina de café.png"/>
+ </tile>
+ <tile id="14">
+  <image width="64" height="64" source="../graphics/environment/estante livros up.png"/>
+ </tile>
+ <tile id="15">
+  <image width="64" height="64" source="../graphics/environment/estante livros down.png"/>
  </tile>
 </tileset>
