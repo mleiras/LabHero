@@ -2,9 +2,9 @@ import mewpy
 from cobra.io import read_sbml_model
 from mewpy.simulation import get_simulator
 from save_load import *
-
+from options_values import model
 #import file (model) here:
-model = read_sbml_model('../data/models/iML1515.xml.gz') #'.../data/models/iML1515.xml'
+
 
 data_simul = load_file('simulation_file')
 # print(data_simul)

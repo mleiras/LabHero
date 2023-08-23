@@ -82,8 +82,8 @@ class Window:
         menu_reactions.add.vertical_margin(50)
         # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
         
-        # for i in range(len(OPTIONS['Reactions'])):
-        #     menu_reactions.add.range_slider(OPTIONS["Reactions"][i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
+        for i in range(len(OPTIONS['Reactions'])):
+            menu_reactions.add.range_slider(OPTIONS["Reactions"][i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
         menu_reactions.add.vertical_margin(20)
         menu_reactions.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_reactions.add.vertical_margin(20)
@@ -92,9 +92,9 @@ class Window:
         menu_genes.add.vertical_margin(50)
         label = '{}'
 
-        # for i in range(len(OPTIONS['Genes'])):
-        #     txt = label.format(OPTIONS['Genes'][i])
-        #     menu_genes.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt, toggleswitch_id=txt)
+        for i in range(len(OPTIONS['Genes'])):
+            txt = label.format(OPTIONS['Genes'][i])
+            menu_genes.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt, toggleswitch_id=txt)
         menu_genes.add.vertical_margin(20)
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
@@ -123,14 +123,14 @@ class Window:
             width=1280
         )
 
-        objectives = [('1',1),('2',2),('3',3)]
+        objectives = []
         default_obj = 0
         # print(str(objective))
         
-        # for i in range(len(REACTIONS)):
-        #     if REACTIONS.index[i] == str(objective):
-        #         default_obj = i
-        #     objectives.append((REACTIONS.index[i], REACTIONS.index[i]))
+        for i in range(len(REACTIONS)):
+            if REACTIONS.index[i] == str(objective):
+                default_obj = i
+            objectives.append((REACTIONS.index[i], REACTIONS.index[i]))
         
         menu_objective.add.dropselect(title='Objective: ',
                             items=objectives,

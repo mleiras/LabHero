@@ -13,8 +13,8 @@ mytheme.widget_margin = (10,10)
 
 
 from cobra.io import read_sbml_model
-# model = read_sbml_model('../data/models/e_coli_core.xml.gz')
-model = read_sbml_model('../data/models/iML1515.xml.gz')
+model = read_sbml_model('../data/models/e_coli_core.xml.gz') #('.../data/models/iMM904.xml.gz') #('../data/models/e_coli_core.xml.gz')
+# model = read_sbml_model('../data/models/iML1515.xml.gz')
 simul = get_simulator(model)
 objective = list(simul.objective.keys())[0]
 
