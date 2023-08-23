@@ -13,7 +13,8 @@ mytheme.widget_margin = (10,10)
 
 
 from cobra.io import read_sbml_model
-model = read_sbml_model('../data/models/e_coli_core.xml.gz')
+# model = read_sbml_model('../data/models/e_coli_core.xml.gz')
+model = read_sbml_model('../data/models/iML1515.xml.gz')
 simul = get_simulator(model)
 objective = list(simul.objective.keys())[0]
 
@@ -68,8 +69,8 @@ if __name__ == '__main__':
     print(COMPARTMENTS)
     print(GENES)
     print(METABOLITES)
-    print(REACTIONS.index)
-    print(str(objective))
+    print(REACTIONS)
+    # print(str(objective))
     # for i in range(len(OPTIONS['Metabolites'])):
     #     print(METABOLITES['compartment'][i])
     # print(OPTIONS['Metabolites']['name'])
