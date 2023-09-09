@@ -3,6 +3,7 @@ from cobra.io import read_sbml_model
 from mewpy.simulation import get_simulator
 from save_load import *
 from options_values import model
+from options_values import *
 #import file (model) here:
 
 
@@ -15,15 +16,25 @@ method = method['method'][0][0]
 objective_name = objective['objective'][0][0]
 objective_fraction = objective['obj_fraction']
 
-# print(reactions)
-
-
 # environment conditions:
-envconditions = {'EX_glc__D_e': (-10.0, 100000.0),
-           'EX_o2_e':(-1000,1000)}
+
+# envconditions = {'EX_glc__D_e': (-10.0, 100000.0),'EX_o2_e':(-1000,1000)}
+envconditions = {}
 
 # initial simulation:
 simul = get_simulator(model) #, envcond=envconditions)
+
+for i,(k, x) in enumerate(reactions.items()):
+    if simul.find_reactions().lb[i] != x[0] or simul.find_reactions().ub[i] != x[1]:
+        envconditions[k] = (x[0], x[1])
+
+# for i,(k,x) in enumerate(genes.items()):
+#     if not x:
+#         print(k)
+#         envconditions[k] = 0
+
+# print(envconditions)
+
 
 # choose objective (by default Biomass):
 # objective = ''
@@ -31,6 +42,7 @@ simul = get_simulator(model) #, envcond=envconditions)
 
 # add constraints here (modifications on the game)
 constraints = {}
+constraints = envconditions
 # constraints = {'GND': 0, # deletion
 #                'PYK': 0, # deletion
 #                'ME2': 0, # deletion
@@ -40,7 +52,7 @@ constraints = {}
 sim_method = method
 
 
-# run a pFBA simulation accounting with the new constraint
+# run a simulation accounting with the new constraint
 result = simul.simulate(method=sim_method, constraints=constraints)
 
 print(result)
@@ -50,4 +62,5 @@ print(result)
 
 
 # from mewpy.visualization.envelope import plot_flux_envelope
-# print(plot_flux_envelope(simul,'BIOMASS_Ecoli_core_w_GAM','EX_succ_e'))
+# plot_flux_envelope(simul,'BIOMASS_Ecoli_core_w_GAM','EX_succ_e')
+
