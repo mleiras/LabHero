@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="git" name="Objetos Novos" tilewidth="64" tileheight="64" tilecount="15" columns="0">
+<tileset version="1.10" tiledversion="git" name="Objetos Novos" tilewidth="64" tileheight="64" tilecount="17" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <image width="64" height="64" source="../graphics/environment/canto superior esquerdo.png"/>
@@ -31,9 +31,6 @@
  <tile id="10">
   <image width="64" height="64" source="../graphics/environment/sofá direita.png"/>
  </tile>
- <tile id="11">
-  <image width="64" height="64" source="../graphics/environment/pc down.png"/>
- </tile>
  <tile id="12">
   <image width="64" height="64" source="../graphics/environment/microscopio.png"/>
  </tile>
@@ -45,5 +42,14 @@
  </tile>
  <tile id="15">
   <image width="64" height="64" source="../graphics/environment/estante livros down.png"/>
+ </tile>
+ <tile id="16">
+  <image width="64" height="64" source="../graphics/environment/Pc-left.png"/>
+ </tile>
+ <tile id="17">
+  <image width="64" height="64" source="../graphics/environment/Pc-right.png"/>
+ </tile>
+ <tile id="18">
+  <image width="64" height="64" source="../graphics/environment/pc down.png"/>
  </tile>
 </tileset>

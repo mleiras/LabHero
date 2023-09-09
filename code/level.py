@@ -67,7 +67,7 @@ class Level:
 			for x, y, surf in tmx_data.get_layer_by_name(layer).tiles(): # 'HouseFurnitureBottom' mesmo nome que layers no programa Tiled
 				Generic((x* TILE_SIZE, y* TILE_SIZE), surf, self.all_sprites, LAYERS['house bottom'])
 
-		for layer in ['HouseWalls', 'HouseFurnitureTop']:
+		for layer in ['HouseWalls', 'HouseFurnitureMiddle', 'HouseFurnitureTop']:
 			for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
 				Generic((x* TILE_SIZE, y* TILE_SIZE), surf, self.all_sprites, LAYERS['main'])
 
