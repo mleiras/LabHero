@@ -57,10 +57,13 @@ result = simul.simulate(method=sim_method, constraints=constraints)
 
 print(result)
 
+# print(simul.objective)
+
+
 # print(result.fluxes['BIOMASS_Ecoli_core_w_GAM'])
 # print(result.fluxes['EX_succ_e'])
 
 
 # from mewpy.visualization.envelope import plot_flux_envelope
-# plot_flux_envelope(simul,'BIOMASS_Ecoli_core_w_GAM','EX_succ_e')
+# plot_flux_envelope(simul,'BIOMASS_Ecoli_core_w_GAM','EX_o2_e')
 
