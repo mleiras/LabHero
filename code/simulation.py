@@ -45,9 +45,6 @@ def run_simul():
     # objective = ''
     # simul.objective = objective
 
-    
-
-
     # add constraints here (modifications on the game)
     constraints = {}
     constraints = envconditions
@@ -64,6 +61,9 @@ def run_simul():
 
     # print(constraints)
     print(result)
+    # save_results(result)
+
+    return result
 
     # print(simul.objective)
 
