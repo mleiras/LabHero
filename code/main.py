@@ -5,7 +5,6 @@ from intro import Intro
 from save_load import *
 import pygame_menu
 
-# from scrollbar import *
 
 class Game:
 	def __init__(self):
@@ -16,7 +15,7 @@ class Game:
 		self.clock = pygame.time.Clock()
 		self.intro = Intro()
 		
-		# load game if exists2
+		# load game if exists
 		try:
 			name, *data = load_file('data')
 			print('continue game')

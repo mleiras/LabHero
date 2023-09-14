@@ -4,6 +4,7 @@ from settings import *
 from save_load import *
 from timers import Timer
 from options_values import *
+from simulation import *
 from functions import animation_text_save
 
 
@@ -39,42 +40,12 @@ class Window:
             width=1280
         )
 
-        # menu_met = pygame_menu.Menu(
-        #     height=720,
-        #     center_content=False,
-        #     onclose=pygame_menu.events.BACK,
-        #     theme=mytheme,
-        #     title='Metabolites',
-        #     width=1280,
-        # )
-
-
-        # menu_contributors = pygame_menu.Menu(
-        #     height=720,
-        #     onclose=pygame_menu.events.BACK,
-        #     theme=mytheme,
-        #     title='Contributors',
-        #     width=1280
-        # )
-
-        # # Add table to contributors
-        # table_contrib = menu_contributors.add.table()
-        # table_contrib.default_cell_padding = 5
-        # table_contrib.default_row_background_color = 'grey'
-        # bold_font = pygame_menu.font.FONT_OPEN_SANS_BOLD
-        # table_contrib.add_row(['Nº', 'Github User'], cell_font=bold_font)
-        # for i in range(len(pygame_menu.__contributors__)):
-        #     table_contrib.add_row([i + 1, pygame_menu.__contributors__[i]], cell_font=bold_font if i == 0 else None)
-
-        # table_contrib.update_cell_style(-1, -1, font_size=15)  # Update all column/row
-        # table_contrib.update_cell_style(1, [2, -1], font=pygame_menu.font.FONT_OPEN_SANS_ITALIC)
-
 
         menu_reactions = pygame_menu.Menu(
             height=720,
             onclose=pygame_menu.events.BACK,
             theme=mytheme,
-            title='Reactions',
+            title='Environmental Conditions',
             width=1280
         )
 
@@ -82,8 +53,8 @@ class Window:
         menu_reactions.add.vertical_margin(50)
         # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
         
-        for i in range(len(OPTIONS['Reactions'])):
-            menu_reactions.add.range_slider(OPTIONS["Reactions"][i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
+        for i in range(len(REACTIONS.name)):
+            menu_reactions.add.range_slider(REACTIONS.name[i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
         menu_reactions.add.vertical_margin(20)
         menu_reactions.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_reactions.add.vertical_margin(20)
@@ -92,27 +63,14 @@ class Window:
         menu_genes.add.vertical_margin(50)
         label = '{}'
 
-        for i in range(len(OPTIONS['Genes'])):
-            txt = label.format(OPTIONS['Genes'][i])
+        for i in range(len(GENES)):
+            txt = label.format(GENES[i])
             menu_genes.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt, toggleswitch_id=txt)
         menu_genes.add.vertical_margin(20)
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
 
-        # MENU SUB METABOLITES
-        # menu_met.add.vertical_margin(50)
-        # menu_met.add.label(f'Compartments:', font_size=30,font_color=(70, 70, 70))
-        # for k,v in COMPARTMENTS.items():
-        #     menu_met.add.label(f'{k}: {v}', font_size=25, font_color=(70, 70, 70))
-        # menu_met.add.vertical_margin(20)
-        # label = '{}'
-        # for i in range(len(METABOLITES['name'])):
-        #     texto = str(METABOLITES['name'][i])+' - '+str(METABOLITES['compartment'][i])
-        #     # txt = label.format(METABOLITES['name'][i])
-        #     menu_met.add.toggle_switch(texto, True, onchange=self.toggle_gene, kwargs=texto, toggleswitch_id=METABOLITES.index[i])
-        # menu_met.add.vertical_margin(20)
-        # menu_met.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
-        # menu_met.add.vertical_margin(20)
+    
 
         # MENU SUB OBJECTIVE
         menu_objective = pygame_menu.Menu(
@@ -146,9 +104,9 @@ class Window:
             Run the simulation MEWPY.
             """
             menu.remove_widget(self.run_simul)
-            print('RUN SIMULATION')
-            # add mewpy script here to run new simulation
-            animation_text_save('Simulation Running')
+            animation_text_save('Running')
+            run_simul()
+            animation_text_save('Simulation Done')
             #close menu here?
 
 
@@ -167,6 +125,16 @@ class Window:
             self.run_simul = menu.add.button('Run Simulation', action=run_simulation, background_color=(150,50,50))
             self.run_simul
 
+        def restore_data() -> None:
+            """
+            """
+            menu.reset_value()
+            menu_objective.reset_value()
+            menu_genes.reset_value()
+            menu_reactions.reset_value()
+            # substituir simulation_file por simulation_file_initial (restaurar dados no ficheiro também)
+
+        
        
 
         menu.add.dropselect(title='Simulation Method: ',
@@ -180,14 +148,14 @@ class Window:
         # menu.add.text_input('Objective: ', default=str(OPTIONS['Objective']), textinput_id='objective')
         menu.add.button('Objective', menu_objective)
         menu.add.button('Genes', menu_genes)
-        # menu.add.button('Metabolites', menu_met)
-        # menu.add.button('Table', menu_contributors)
-        menu.add.button('Reactions', menu_reactions)
+        menu.add.button('Environmental Conditions', menu_reactions)
         menu.add.vertical_margin(50)  # Adds margin
+        menu.add.button('Restore Data', restore_data, background_color=(100,0,0))
+        menu.add.vertical_margin(20)  # Adds margin
+
         menu.add.button('Save Simulation', action=data_fun, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  # Adds margin
-        # menu.add.button('Restore / Cancel', menu.reset_value, background_color=(100,0,0))
-
+        
         menu.mainloop(self.display_surface)
 
         

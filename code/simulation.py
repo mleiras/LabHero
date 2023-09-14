@@ -2,68 +2,78 @@ import mewpy
 from cobra.io import read_sbml_model
 from mewpy.simulation import get_simulator
 from save_load import *
-from options_values import model
+# from options_values import model
 from options_values import *
 #import file (model) here:
 
+def run_simul():
 
-data_simul = load_file('simulation_file')
-# print(data_simul)
+    data_simul = load_file('simulation_file')
+    # print(data_simul)
 
-method, objective, genes, reactions = data_simul
+    method, objective, genes, reactions = data_simul
 
-method = method['method'][0][0]
-objective_name = objective['objective'][0][0]
-objective_fraction = objective['obj_fraction']
+    method = method['method'][0][0]
+    objective_name = objective['objective'][0][0]
+    objective_fraction = objective['obj_fraction']
 
-# environment conditions:
+    # environment conditions:
 
-# envconditions = {'EX_glc__D_e': (-10.0, 100000.0),'EX_o2_e':(-1000,1000)}
-envconditions = {}
+    # envconditions = {'EX_glc__D_e': (-10.0, 100000.0),'EX_o2_e':(-1000,1000)}
+    envconditions = {}
 
-# initial simulation:
-simul = get_simulator(model) #, envcond=envconditions)
+    # initial simulation:
+    simul = get_simulator(model) #, envcond=envconditions)
 
-for i,(k, x) in enumerate(reactions.items()):
-    if simul.find_reactions().lb[i] != x[0] or simul.find_reactions().ub[i] != x[1]:
-        envconditions[k] = (x[0], x[1])
+    for i,(k, x) in enumerate(reactions.items()):
+        if simul.find_reactions().lb[i] != x[0] or simul.find_reactions().ub[i] != x[1]:
+            envconditions[k] = (x[0], x[1])
 
-# for i,(k,x) in enumerate(genes.items()):
-#     if not x:
-#         print(k)
-#         envconditions[k] = 0
+    for i,(k,x) in enumerate(genes.items()):
+        if not x:
+            print(k)
+            
+            # model.genes.k.knock_out()
+            # envconditions[k] = 0
 
-# print(envconditions)
+    # gene knockout:
+    # model.genes.b4152.knock_out()
 
+    # print(envconditions)
 
-# choose objective (by default Biomass):
-# objective = ''
-# simul.objective = objective
+    # choose objective (by default Biomass):
+    # objective = ''
+    # simul.objective = objective
 
-# add constraints here (modifications on the game)
-constraints = {}
-constraints = envconditions
-# constraints = {'GND': 0, # deletion
-#                'PYK': 0, # deletion
-#                'ME2': 0, # deletion
-#               }
-
-# chooose simulation method (by default FBA):
-sim_method = method
+    
 
 
-# run a simulation accounting with the new constraint
-result = simul.simulate(method=sim_method, constraints=constraints)
+    # add constraints here (modifications on the game)
+    constraints = {}
+    constraints = envconditions
+    # constraints = {'GND': 0, # deletion
+    #                'PYK': 0, # deletion
+    #                'ME2': 0, # deletion
+    #               }
 
-print(result)
+    # chooose simulation method (by default FBA):
+    sim_method = method
 
-# print(simul.objective)
+    # run a simulation accounting with the new constraint
+    result = simul.simulate(method=sim_method, constraints=constraints)
+
+    # print(constraints)
+    print(result)
+
+    # print(simul.objective)
+
+    # print(result.fluxes['BIOMASS_Ecoli_core_w_GAM'])
+    # print(result.fluxes['EX_succ_e'])
+
+    # from mewpy.visualization.envelope import plot_flux_envelope
+    # plot_flux_envelope(simul,'BIOMASS_Ecoli_core_w_GAM','EX_o2_e')
 
 
-# print(result.fluxes['BIOMASS_Ecoli_core_w_GAM'])
-# print(result.fluxes['EX_succ_e'])
 
-
-# from mewpy.visualization.envelope import plot_flux_envelope
-# plot_flux_envelope(simul,'BIOMASS_Ecoli_core_w_GAM','EX_o2_e')
-
+if __name__ == '__main__':
+    run_simul()
