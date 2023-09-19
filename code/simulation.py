@@ -60,10 +60,10 @@ def run_simul():
     result = simul.simulate(method=sim_method, constraints=constraints)
 
     # print(constraints)
-    print(result)
+    # print(result)
     # save_results(result)
 
-    return result
+    return str(result)
 
     # print(simul.objective)
 

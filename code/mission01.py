@@ -19,7 +19,6 @@ class Mission01:
         self.index = 0
         self.timer = Timer(200)
 
-
         self.mission01 = False # mudar com o load game
 
 

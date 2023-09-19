@@ -20,7 +20,19 @@ def save_simulation_file(data):
         json.dump(data, test_file)
 
 
-
 def save_mission(data, n):
     with open(f'mission0{n}.txt', 'w') as test_file:
         json.dump(data, test_file)
+
+
+def save_results(data):
+    try:
+        results = open('results.txt', 'r')
+        old_data = json.load(results)
+        data = data + '\n' + '\n' + old_data
+        results.close()
+    except:
+        pass
+    with open(f'results.txt', 'w') as results_file:
+        json.dump(data, results_file)
+        results_file.close()

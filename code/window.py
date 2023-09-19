@@ -72,23 +72,47 @@ class Window:
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
 
-        def run_simulation() -> None:
-            """
-            Run the simulation MEWPY.
-            """
-            try:
-                menu.remove_widget(self.run_simul)
-            except:
-                pass
-            animation_text_save('Running')
-            self.results = run_simul()
-            animation_text_save('Simulation Done')
-            menu.add.button('Results', action=menu_simul, background_color=(0,150,50))
-            print(type(self.results))
-            # for i in self.results:
-            #     print(i)
+        # MENU RESULTS
+        menu_results = pygame_menu.Menu(
+            height=720,
+            onclose=pygame_menu.events.BACK,
+            theme=mytheme,
+            title='Last Results',
+            width=1280
+        )
+        menu_results.add.vertical_margin(20)
+        try:
+            res = load_file('results')
+            # print(res)
+            menu_results.add.label(res)
+        except:
+            menu_results.add.label('You have to make at least one simulation to see results.')
 
 
+
+
+        # def run_simulation() -> None:
+        #     """
+        #     Run the simulation MEWPY.
+        #     """
+        #     try:
+        #         menu.remove_widget(self.run_simul)
+        #         # menu.remove_widget(last_results)
+        #     except:
+        #         pass
+        #     animation_text_save('Running')
+        #     self.results = run_simul()
+        #     animation_text_save('Simulation Done')
+        #     menu.add.button('Results', action=menu_simul, background_color=(0,150,50))
+        #     menu_simul.add.label(self.results)
+        #     save_results(self.results)
+        #     menu_simul.add.vertical_margin(100)  # Adds margin
+        #     menu_simul.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        #     # menu_results.remove_widget(no_results)
+        #     # for i in self.results:
+        #     #     print(i)
+
+        # MENU AFTER SIMULATION RESULTS
         menu_simul = pygame_menu.Menu(
             height=720,
             onclose=pygame_menu.events.BACK,
@@ -100,11 +124,8 @@ class Window:
         # menu_simul.add.button('Run Simulation', run_simulation)
         menu_simul.add.label("Results:")
         menu_simul.add.vertical_margin(50)  # Adds margin
-        
-        menu_simul.add.label(str(self.results))
-
         # menu_simul.add.button('Run Simulation', action=run_simulation, background_color=(0,150,50))
-        menu_simul.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        
 
         # MENU SUB OBJECTIVE
         menu_objective = pygame_menu.Menu(
@@ -144,9 +165,17 @@ class Window:
             data_reac = menu_reactions.get_input_data()
 
             save_simulation_file([data_simul, data_objective, data_genes, data_reac])
-            animation_text_save('Simulation saved')
+            # animation_text_save('Simulation saved')
             # self.run_simul = menu.add.button('Next', action=menu_simul, background_color=(0,150,50))
-            self.run_simul = menu.add.button('Run Simulation', action=run_simulation, background_color=(0,150,50))
+            # self.run_simul = menu.add.button('Run Simulation', action=run_simulation, background_color=(0,150,50))
+            animation_text_save('Running')
+            self.results = run_simul()
+            # animation_text_save('Simulation Done')
+            menu.add.button('New Results', action=menu_simul, background_color=(0,150,50))
+            menu_simul.add.label(self.results)
+            save_results(self.results)
+            menu_simul.add.vertical_margin(100)  # Adds margin
+            menu_simul.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
            
 
 
@@ -159,6 +188,12 @@ class Window:
             menu_reactions.reset_value()
             # substituir simulation_file por simulation_file_initial (restaurar dados no ficheiro também)
 
+        # if self.results == '':
+        #     # no_results = menu_results.add.label('You have to make at least one simulation to see results.')
+        #     menu_results.add.label('You have to make at least one simulation to see results.')
+        # else:
+        #     last_results = menu.add.button('Last Results', action=menu_results, background_color=(0,50,150))
+        #     menu.add.vertical_margin(50)  # Adds margin
 
         menu.add.dropselect(title='Simulation Method: ',
                             items=[('FBA', 'fba'),
@@ -176,8 +211,10 @@ class Window:
         # menu.add.button('Restore Data', restore_data, background_color=(100,0,0))
         # menu.add.vertical_margin(20)  # Adds margin
 
-        menu.add.button('Save Simulation', action=data_fun, background_color=(50,100,100))        
+        menu.add.button('Run Simulation', action=data_fun, background_color=(20,100,100))        
         menu.add.vertical_margin(20)  # Adds margin
+        menu.add.button('Last Results', action=menu_results, background_color=(20,0,150))  
+        # menu.add.vertical_margin(50)  # Adds margin
 
         menu.mainloop(self.display_surface)
         
