@@ -17,8 +17,7 @@ class Window:
         self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
         self.results = ''
 
-
-        self.index = 0
+        # self.index = 0
         self.timer = Timer(200)
 
 

@@ -25,7 +25,7 @@ def save_mission(data, n):
         json.dump(data, test_file)
 
 
-def save_results(data):
+def save_results(data): # TASK: add date and number of result
     try:
         results = open('results.txt', 'r')
         old_data = json.load(results)

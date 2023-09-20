@@ -76,4 +76,11 @@ def run_simul():
 
 
 if __name__ == '__main__':
+
+    import sys
+    from time import sleep
+    words = 'This is a test'
+    for char in words:
+        sleep(0.1)
+        print(char, end='', flush=True)
     run_simul()

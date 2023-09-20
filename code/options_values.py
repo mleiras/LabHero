@@ -11,6 +11,7 @@ mytheme.title_font_size = 50
 mytheme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
 mytheme.title_offset = (20,4)
 mytheme.widget_margin = (10,10)
+# mytheme.background_color=(0, 0, 0, 0)
 
 # data_simul = load_file('simulation_file')
 # method, objective, genes, reactions = data_simul
