@@ -14,64 +14,52 @@ class Mission01: # alterar nome classe no caso de usar para todas
     def __init__(self, toggle_menu) -> None:
         self.toggle_menu = toggle_menu
 
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',24)
+        self.font = pygame.font.Font('../font/LycheeSoda.ttf',34)
         self.screen = pygame.display.get_surface() ### set_mode([1280,720])
         self.timer = Timer(200)
 
-        # pygame.draw.rect(self.screen, 'black', [0,520,1280,200])
 
-        self.mission01 = """Lorem ipsum dolor sit amet, consectetur adipiscing elit"""
-
-        self.mission01_list = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                          "Teste 2",
-                          "Testeeeeeee 3"]
+        self.mission01 = ["Cientista: Olá! Tenho uma missão para ti",
+                          "Ajuda-me com este modelo de E. coli",
+                          "Consegues?"]
         self.done = False
 
     
 
     def update(self):
-        # mission = self.mission01
         message = self.mission01
-        # active_message = 0
-        # message = mission[active_message]
-        # snip = self.font.render('', True, 'white')
         counter = 0
-        message_counter = 0
-        speed = 100
+        speed = 50
         pygame.draw.rect(self.screen, 'black', [0,520,1280,200])
 
-        while message_counter < len(self.mission01_list)-1 and not self.done:
+        while not self.done:
 
-        # while not self.done:
-            if counter < (speed*len(message)):
+            if counter < (speed*len(' '.join(message))):
                 counter += 1
-            elif counter >= speed * len(message):
+            elif counter >= speed * len(' '.join(message)):
                 self.done = True
 
-            # for event in pygame.event.get():
-            #     if event.type == pygame.KEYDOWN:
-            #         if event.key == pygame.K_RETURN and done and active_message < len(message)-1:
-            #             active_message += 1
-            #             done = False
-            #             message = mission[active_message]
-            #             counter = 0
-            
-            # print(int(counter//(1/speed)))
+            label = []
+            for i, line in enumerate(message): 
+                label.append(self.font.render(line[0:(counter//speed)], True, 'white'))
 
-            line_height = 530
+                self.screen.blit(label[i],(10,530+(i*20)+(15*i)))
 
-            for m in self.mission01_list:
-                
-                snip = self.font.render(m[0:(counter//speed)], True, 'white')
-                self.screen.blit(snip, (10, line_height))
-                line_height += 20
-                # message_counter += 1
 
             pygame.display.flip()
 
         if self.done:
-            snip = self.font.render(message, True, 'white')
-            self.screen.blit(snip, (10, 530))
+            
+            label = []
+            for line in message: 
+                label.append(self.font.render(line, True, 'white'))
+
+            for line in range(len(label)):
+                self.screen.blit(label[line],(10,530+(line*20)+(15*line)))
+
+
+            # snip = self.font.render(message, True, 'white')
+            # self.screen.blit(snip, (10, 530))
 
             pygame.display.flip()
 
@@ -85,9 +73,8 @@ class Mission01: # alterar nome classe no caso de usar para todas
 
 
 
-if __name__ == '__main__':
-    m1 = Mission01
-    m1.update()
+# if __name__ == '__main__':
+#     pass
 
 
 
