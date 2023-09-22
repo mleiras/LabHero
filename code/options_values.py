@@ -3,7 +3,7 @@ from mewpy.simulation import get_simulator
 import pygame_menu
 from save_load import *
 
-mytheme = pygame_menu.themes.THEME_GREEN.copy()
+mytheme = pygame_menu.themes.THEME_GREEN.copy() #(186,214,177)
 font = pygame_menu.font.FONT_MUNRO
 mytheme.widget_font = font
 mytheme.title_font = font
@@ -11,7 +11,10 @@ mytheme.title_font_size = 50
 mytheme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
 mytheme.title_offset = (20,4)
 mytheme.widget_margin = (10,10)
-# mytheme.background_color=(0, 0, 0, 0)
+# mytheme.background_color=(255,215,0, 255) #gold #transparency 100% = 255
+mytheme.background_color=(150,190,140)
+
+
 
 # data_simul = load_file('simulation_file')
 # method, objective, genes, reactions = data_simul

@@ -61,3 +61,10 @@ DEFAULT_INVENTORY = [{
                 'corn': 5,
                 'tomato': 5},
                 200]
+
+
+DEFAULT_INVENTORY_2 = [
+    ['List of Results'],
+    ['List of activated missions'],
+    ['List of completed missions']
+    ]

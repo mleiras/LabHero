@@ -13,7 +13,6 @@ class Intro:
 		self.padding = 8
 		
 	def run(self):
-		self.total_height = 0
 		self.display_surface.fill('gold')
 		self.title = self.font.render('Lab Hero', False, 'black') # render(string, AA, color)
 		self.title_rect = self.title.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))

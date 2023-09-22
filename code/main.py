@@ -3,7 +3,7 @@ from settings import *
 from level import Level
 from intro import Intro
 from save_load import *
-import pygame_menu
+from functions import animation_text_save
 
 
 class Game:
@@ -46,6 +46,7 @@ class Game:
 		while True:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
+					animation_text_save('Saving Game', fullscreen=True)
 					save_file([self.level.player.item_inventory, self.level.player.seed_inventory, self.level.player.money])
 					pygame.quit()
 					sys.exit()
