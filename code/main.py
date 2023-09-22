@@ -8,6 +8,7 @@ import pygame_menu
 
 class Game:
 	def __init__(self):
+
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 		pygame.display.set_caption('Lab Hero')
@@ -58,6 +59,7 @@ class Game:
 # class GameState():
 # 	def __init__(self):
 # 		self.state = 'main_game'
+
 
 # 		for event in pygame.event.get():
 # 			if event.type == pygame.QUIT:
