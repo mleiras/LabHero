@@ -14,11 +14,12 @@ class Mission01: # alterar nome classe no caso de usar para todas
         self.toggle_menu = toggle_menu
 
         self.font = pygame.font.Font('../font/LycheeSoda.ttf',34)
+        self.font_nome = pygame.font.Font('../font/LycheeSoda.ttf',24)
         self.screen = pygame.display.get_surface() ### set_mode([1280,720])
         self.timer = Timer(200)
 
 
-        self.mission01 = ["Cientista: Olá! Tenho uma missão para ti",
+        self.mission01 = ["Olá! Tenho uma missão para ti",
                           "Ajuda-me com este modelo de e coli",
                           "Consegues?"]
         self.done = False
@@ -44,22 +45,26 @@ class Mission01: # alterar nome classe no caso de usar para todas
 
     def menu_message(self, message):
 
-        menu_border = pygame.draw.rect(self.screen, 'black', [0,515,1280,205], width=5)
-        menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,520,1270,195])
+        menu_border = pygame.draw.rect(self.screen, 'black', [0,500,1280,220], width=5)
+        menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
-        pygame.display.set_caption('Display an image')
+        # pygame.display.set_caption('Cientista')
         imagem = pygame.image.load("../graphics/dialogues/cientista2.jpg").convert()
         
-        x = 10; # x coordnate of image
-        y = 530; # y coordinate of image
+        x = 20; # x coordnate of image
+        y = 520; # y coordinate of image
         self.screen.blit(imagem, ( x,y)) 
+
+        nome = self.font_nome.render('Cientista', True, 'black')
+        self.screen.blit(nome,(30,690))
 
         for line, msg in enumerate(message):
             surf = self.font.render(msg, True, 'black')
-            self.screen.blit(surf,(200,530+(line*20)+(15*line)))
+            self.screen.blit(surf,(220,530+(line*20)+(15*line)))
 
-        botao_teste = Button(200,650,150,60,self.screen, 'Sim', self.menu.update)
-        botao_teste_2 = Button(380,650,220,60,self.screen, 'Agora não', self.toggle_menu)
+        botao_teste = Button(220,650,150,50,self.screen, 'Sim', self.menu.update)
+        botao_teste_2 = Button(390,650,220,50,self.screen, 'Agora não', self.toggle_menu)
+        
         
         botao_teste.process()
         botao_teste_2.process()
@@ -81,7 +86,7 @@ class Mission_info:
         self.index = 0
         self.timer = Timer(200)
 
-        self.mission01 = False # mudar com o load game #mudar para atributo do player (não aqui)
+        self.mission01 = False #mudar para atributo do player (não aqui) - assim pode-se fazer load game com esta info
 
 
 
@@ -145,8 +150,6 @@ class Mission_info:
         )
         menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
 
-        
-
 
         # image_path = '../graphics/objects/merchant.png'
         # menu.add.image(image_path, scale=(2,2))
@@ -170,7 +173,6 @@ class Mission_info:
 
         menu.mainloop(self.display_surface)
 
-        
 
 
     def toggle_menu(self):
