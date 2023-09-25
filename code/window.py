@@ -6,12 +6,14 @@ from timers import Timer
 from options_values import *
 from simulation import *
 from functions import animation_text_save
+import time
 
 
 class Window:
-    def __init__(self, toggle_menu) -> None:
+    def __init__(self, toggle_menu, player) -> None:
 
         # general setup
+        self.player = player
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
         self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
@@ -55,10 +57,19 @@ class Window:
         # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
         
         for i in range(len(REACTIONS.name)):
-            menu_reactions.add.range_slider(REACTIONS.name[i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
+            menu_reactions.add.range_slider(REACTIONS.name[i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
+            # menu_reactions.add.toggle_switch('Bounds',True, onchange=None, state_text=('Deactivated', 'Active'), state_text_font_size=20, font_size = 24, state_color=('grey','gold')) #, kwargs=txt, toggleswitch_id=txt)
+            menu_reactions.add.vertical_margin(30)
         menu_reactions.add.vertical_margin(20)
         menu_reactions.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_reactions.add.vertical_margin(20)
+
+        # def toggle_reaction(txt, **id):
+        #     if not txt:
+        #         REACTIONS.lb[i] = 0
+        #         REACTIONS.ub[i] = 0
+        #     else:
+        #         pass
 
         # MENU SUB (Genes)
         menu_genes.add.vertical_margin(50)
@@ -71,6 +82,9 @@ class Window:
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
 
+        
+            
+
         # MENU RESULTS
         menu_results = pygame_menu.Menu(
             height=720,
@@ -81,8 +95,11 @@ class Window:
         )
         menu_results.add.vertical_margin(20)
         try:
+            # res = load_file('data')[0]
             res = load_file('results')
-            # print(res)
+            # print(str(res))
+            # print(res2)
+
             menu_results.add.label(res)
         except:
             menu_results.add.label('You have to make at least one simulation to see results.')
@@ -169,7 +186,7 @@ class Window:
             # self.run_simul = menu.add.button('Run Simulation', action=run_simulation, background_color=(0,150,50))
             animation_text_save('Running')
             self.results = run_simul()
-            # animation_text_save('Simulation Done')
+            self.player.results.insert(0,self.results)
             menu.add.button('New Results', action=menu_simul, background_color=(0,150,50))
             menu_simul.add.label(self.results)
             save_results(self.results)
@@ -215,6 +232,8 @@ class Window:
         menu.add.button('Last Results', action=menu_results, background_color=(20,0,150))  
         # menu.add.vertical_margin(50)  # Adds margin
 
+        # print(time.time())
+
         menu.mainloop(self.display_surface)
         
 
@@ -229,6 +248,9 @@ class Window:
             print(f'Hello from {value}')
         else:
             print(f'Hello from {text} with {value}')
+
+    
+
 
 
     def toggle_gene(self, txt, **id) -> None:
