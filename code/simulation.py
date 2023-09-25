@@ -25,9 +25,17 @@ def run_simul():
     # initial simulation:
     simul = get_simulator(model) #, envcond=envconditions)
 
+    count = 0
     for i,(k, x) in enumerate(reactions.items()):
-        if simul.find_reactions().lb[i] != x[0] or simul.find_reactions().ub[i] != x[1]:
-            envconditions[k] = (x[0], x[1])
+        if k == REACTIONS.index[count]:
+            if simul.find_reactions().lb[count] != x[0] or simul.find_reactions().ub[count] != x[1]:
+                    envconditions[k] = (x[0], x[1])
+        else:
+            count += 1
+            if not x:
+                envconditions[REACTIONS.index[count-1]] = (0, 0)
+
+        
 
     for i,(k,x) in enumerate(genes.items()):
         if not x:

@@ -54,4 +54,5 @@ if __name__ == '__main__':
     print(GENES)
     # print(METABOLITES)
     print(REACTIONS)
+    print(REACTIONS.index)
     

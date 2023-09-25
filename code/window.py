@@ -58,7 +58,7 @@ class Window:
         
         for i in range(len(REACTIONS.name)):
             menu_reactions.add.range_slider(REACTIONS.name[i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
-            # menu_reactions.add.toggle_switch('Bounds',True, onchange=None, state_text=('Deactivated', 'Active'), state_text_font_size=20, font_size = 24, state_color=('grey','gold')) #, kwargs=txt, toggleswitch_id=txt)
+            menu_reactions.add.toggle_switch('Bounds',True, onchange=None, state_text=('Deactivated', 'Active'), state_text_font_size=20, font_size = 24, state_color=('grey','gold')) #, kwargs=txt, toggleswitch_id=txt)
             menu_reactions.add.vertical_margin(30)
         menu_reactions.add.vertical_margin(20)
         menu_reactions.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
