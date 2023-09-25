@@ -45,25 +45,27 @@ class Mission01: # alterar nome classe no caso de usar para todas
 
     def menu_message(self, message):
 
-        menu_border = pygame.draw.rect(self.screen, 'black', [0,500,1280,220], width=5)
+        menu_border = pygame.draw.rect(self.screen, (255,215,0), [0,500,1280,220], width=5)
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
         # pygame.display.set_caption('Cientista')
         imagem = pygame.image.load("../graphics/dialogues/cientista2.jpg").convert()
         
-        x = 20; # x coordnate of image
+        x = 25; # x coordnate of image
         y = 520; # y coordinate of image
-        self.screen.blit(imagem, ( x,y)) 
+        self.screen.blit(imagem, ( x,y))
+
+        cientista_rect = pygame.draw.rect(self.screen, 'white', [25,675,150,25])
 
         nome = self.font_nome.render('Cientista', True, 'black')
-        self.screen.blit(nome,(30,690))
+        self.screen.blit(nome,(55,677))
 
         for line, msg in enumerate(message):
             surf = self.font.render(msg, True, 'black')
-            self.screen.blit(surf,(220,530+(line*20)+(15*line)))
+            self.screen.blit(surf,(200,525+(line*20)+(15*line)))
 
-        botao_teste = Button(220,650,150,50,self.screen, 'Sim', self.menu.update)
-        botao_teste_2 = Button(390,650,220,50,self.screen, 'Agora não', self.toggle_menu)
+        botao_teste = Button(200,650,150,50,self.screen, 'Sim', self.menu.update)
+        botao_teste_2 = Button(370,650,220,50,self.screen, 'Agora não', self.toggle_menu)
         
         
         botao_teste.process()

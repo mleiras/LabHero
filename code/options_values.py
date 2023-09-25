@@ -12,7 +12,7 @@ mytheme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
 mytheme.title_offset = (20,4)
 mytheme.widget_margin = (10,10)
 # mytheme.background_color=(255,215,0, 255) #gold #transparency 100% = 255
-mytheme.background_color=(150,190,140)
+# mytheme.background_color=(150,190,140)
 
 
 
