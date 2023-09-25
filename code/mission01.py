@@ -9,8 +9,13 @@ from button import Button
 
 #############################################
 
-class Mission01: # alterar nome classe no caso de usar para todas
-    def __init__(self, toggle_menu) -> None:
+class Mission01: 
+    def __init__(self, toggle_menu, player) -> None:
+        #general setup 
+        self.player = player
+        self.missions_activated = self.player.missions_activated
+        self.missions_completed = self.player.missions_completed
+
         self.toggle_menu = toggle_menu
 
         self.font = pygame.font.Font('../font/LycheeSoda.ttf',34)
@@ -19,12 +24,16 @@ class Mission01: # alterar nome classe no caso de usar para todas
         self.timer = Timer(200)
 
 
-        self.mission01 = ["Olá! Tenho uma missão para ti",
+        self.m01_step1 = ["Olá! Tenho uma missão para ti",
                           "Ajuda-me com este modelo de e coli",
                           "Consegues?"]
-        self.done = False
+        
+        self.m01_step2 = ["Queres entregar os resultados?"]
 
-        self.menu = Mission_info(self.toggle_menu)
+        self.m01_step3 = ["Obrigada pela tua ajuda!"]
+        
+
+        self.menu = Mission_info(self.toggle_menu, self.player)
 
     
     def input(self):
@@ -39,11 +48,19 @@ class Mission01: # alterar nome classe no caso de usar para todas
 
     def update(self):
         self.input()
-        if not self.done:
-            self.menu_message(self.mission01)
+        if '01' in self.missions_completed:
+            self.menu_message(self.m01_step3, buttons=False)
 
+        elif '01' in self.missions_activated:
+            self.menu_message(self.m01_step2)
 
-    def menu_message(self, message):
+        # elif '01' not in self.missions_activated:
+        else:
+            self.menu_message(self.m01_step1)
+
+       
+
+    def menu_message(self, message, buttons = True):
 
         menu_border = pygame.draw.rect(self.screen, (255,215,0), [0,500,1280,220], width=5)
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
@@ -64,12 +81,11 @@ class Mission01: # alterar nome classe no caso de usar para todas
             surf = self.font.render(msg, True, 'black')
             self.screen.blit(surf,(200,525+(line*20)+(15*line)))
 
-        botao_teste = Button(200,650,150,50,self.screen, 'Sim', self.menu.update)
-        botao_teste_2 = Button(370,650,220,50,self.screen, 'Agora não', self.toggle_menu)
-        
-        
-        botao_teste.process()
-        botao_teste_2.process()
+        if buttons:
+            botao_teste = Button(200,650,150,50,self.screen, 'Sim', self.menu.update)
+            botao_teste_2 = Button(370,650,220,50,self.screen, 'Agora não', self.toggle_menu)
+            botao_teste.process()
+            botao_teste_2.process()
 
 
         pygame.display.flip()
@@ -78,9 +94,13 @@ class Mission01: # alterar nome classe no caso de usar para todas
 
 
 class Mission_info:
-    def __init__(self, toggle_menu) -> None:
+    def __init__(self, toggle_menu, player) -> None:
 
         # general setup
+        self.player = player
+        self.missions_activated = self.player.missions_activated
+        self.missions_completed = self.player.missions_completed
+
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
         self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
@@ -88,8 +108,13 @@ class Mission_info:
         self.index = 0
         self.timer = Timer(200)
 
-        self.mission01 = False #mudar para atributo do player (não aqui) - assim pode-se fazer load game com esta info
+        # if '01' in self.missions_completed:
 
+
+        if '01' in self.missions_activated:
+            self.mission01 = True
+        else:
+            self.mission01 = False
 
 
     def setup(self):
@@ -168,7 +193,7 @@ class Mission_info:
         if self.mission01:
             menu.add.label('Mission Activated', font_color=(150, 150, 150))
             menu.add.vertical_margin(20)  
-            menu.add.button('Deliver Results', action=None, background_color=(50,100,100)) ## TASK: ADICIONAR FUNÇÃO ENTREGAR RESULTADOS  
+            menu.add.button('Deliver Results', action=self.deliver_results, background_color=(50,100,100)) ## TASK: ADICIONAR FUNÇÃO ENTREGAR RESULTADOS  
         else:
             menu.add.button('Activate Mission', action=self.activate_mission01, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  
@@ -183,7 +208,13 @@ class Mission_info:
 
     def activate_mission01(self):
         self.mission01 = True
+        self.missions_activated.insert(0, '01')
         animation_text_save('Mission 01 Activated')
+
+
+    def deliver_results(self):
+        self.missions_completed.insert(0, '01')
+        animation_text_save('Congratulations! Mission Completed!') # Falta 1 passo! Verificar resultados e criar duas alternativas (se falhar ou acertar)
 
 
 

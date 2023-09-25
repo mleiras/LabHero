@@ -1,10 +1,12 @@
 import pygame
 from settings import *
 from support import *
+from functions import *
 from timers import Timer
+import time
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory2):
         super().__init__(group)
 
         self.import_assets()
@@ -45,7 +47,11 @@ class Player(pygame.sprite.Sprite):
         # self.selected_seed = self.seeds[self.seed_index]
 
         # inventory
-        self.item_inventory, self.seed_inventory, self.money = inventory[:3]
+        # self.item_inventory, self.seed_inventory, self.money = inventory[:3]
+
+        self.item_inventory = DEFAULT_INVENTORY[0]
+
+        self.results, self.missions_activated, self.missions_completed = inventory2[:3]
 
         # interaction
         self.toggle_shop = toggle_shop
@@ -169,6 +175,8 @@ class Player(pygame.sprite.Sprite):
                         self.toggle_shop()
 
                     elif collided_interaction_sprite[0].name == 'Desk':
+                        # print(time.time())
+                        animation_text_save('... please wait ...', time = 100) #, time=500)
                         self.desk_menu()
 
                     elif collided_interaction_sprite[0].name == 'Books':

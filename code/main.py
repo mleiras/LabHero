@@ -11,19 +11,24 @@ class Game:
 
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+		
 		pygame.display.set_caption('Lab Hero')
 		
 		self.clock = pygame.time.Clock()
+		
 		self.intro = Intro()
 		
 		# load game if exists
 		try:
-			name, *data = load_file('data')
-			print('continue game')
+			# name, *data = load_file('data')
+			data = load_file('../data/player_history/data')
+			# print(data)
+			# print('continue game')
 			self.level = Level(data)
 		# if not, default values 
 		except:
-			self.level = Level(DEFAULT_INVENTORY)
+			# self.level = Level(DEFAULT_INVENTORY)
+			self.level = Level(DEFAULT_INVENTORY_2)
 
 		self.intro_run()
 
@@ -47,7 +52,8 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					animation_text_save('Saving Game', fullscreen=True)
-					save_file([self.level.player.item_inventory, self.level.player.seed_inventory, self.level.player.money])
+					# save_file([self.level.player.item_inventory, self.level.player.seed_inventory, self.level.player.money])
+					save_file([self.level.player.results, self.level.player.missions_activated, self.level.player.missions_completed])
 					pygame.quit()
 					sys.exit()
 					

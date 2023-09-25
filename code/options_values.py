@@ -33,7 +33,7 @@ objective = list(simul.objective.keys())[0]
 
 
 METABOLITES = simul.find_metabolites() # dataframe
-REACTIONS = simul.find_reactions() # dataframe
+REACTIONS = simul.find_reactions('EX') # dataframe
 GENES_v0 = simul.find_genes().name # dataframe
 COMPARTMENTS = simul.compartments # dicionario
 

@@ -1,0 +1,1 @@
+[["objective: 3.557984716105909\nStatus: OPTIMAL\nMethod:FBA", "objective: 0.0\nStatus: INFEASIBLE\nMethod:FBA"], [], []]

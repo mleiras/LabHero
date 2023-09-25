@@ -1,1 +1,0 @@
-[{"wood": 3, "apple": 2, "corn": 0, "tomato": 0}, {"corn": 5, "tomato": 5}, 200]

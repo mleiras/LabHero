@@ -46,16 +46,18 @@ class Level:
 		self.shop_active = False
 		self.desk_active = False
 		self.books_active = False
-		self.menu_2 = Mission01(self.toggle_shop)
+		self.menu_2 = Mission01(self.toggle_shop, self.player)
 		# self.menu_2 = Menu_2(self.player, self.toggle_shop)
-		self.window = Window(self.desk_menu)
+		self.window = Window(self.desk_menu, self.player)
 		self.books = Books(self.read_books)
 
 		# sounds
 		self.success = pygame.mixer.Sound('../audio/success.wav')
 		self.success.set_volume(0.1)
 
-		# self.music_bg = pygame.mixer.Sound('../audio/bg.mp3')
+		# music
+
+		# self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
 		# self.music_bg.set_volume(0.2)
 		# self.music_bg.play(loops = -1)
 
@@ -110,8 +112,9 @@ class Level:
 					soil_layer = self.soil_layer,
 					toggle_shop = self.toggle_shop,
 					desk_menu = self.desk_menu,
-					books= self.read_books,
-					inventory = self.load_game
+					books = self.read_books,
+					# inventory = self.load_game,
+					inventory2 = self.load_game
 					)
 			if obj.name == 'Bed':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
@@ -163,7 +166,8 @@ class Level:
 
 	def reset(self):
 		#save game
-		save_file([self.player.item_inventory, self.player.seed_inventory, self.player.money])
+		# save_file([self.player.item_inventory, self.player.seed_inventory, self.player.money])
+		save_file([self.player.results, self.player.missions_activated, self.player.missions_completed])
 
 		# plants
 		self.soil_layer.update_plants()

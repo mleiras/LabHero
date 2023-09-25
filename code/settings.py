@@ -4,6 +4,17 @@ SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 TILE_SIZE = 64
 
+
+MUSIC = {
+    'Serene': '../audio/bg.mp3',
+    'Hope': '../audio/Hope.mp3',
+    'Happy': '../audio/Happy.mp3',
+    'Surf': '../audio/Surf.mp3',
+}
+
+MUSIC_NAME = MUSIC['Hope']
+
+
 # overlay positions 
 OVERLAY_POSITIONS = {
 	'tool' : (40, SCREEN_HEIGHT - 15), 
@@ -64,7 +75,7 @@ DEFAULT_INVENTORY = [{
 
 
 DEFAULT_INVENTORY_2 = [
-    ['List of Results'],
-    ['List of activated missions'],
-    ['List of completed missions']
+    [], #'List of Results'
+    [], #'List of activated missions'
+    [] #'List of completed missions'
     ]

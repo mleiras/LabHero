@@ -1,6 +1,7 @@
 import pygame
 import pygame_menu
 from settings import *
+from level import *
 from options_values import *
 from save_load import *
 from timers import Timer
@@ -40,7 +41,8 @@ class Menu_2:
 
         # menu.add.button('Play', action=pygame_menu.events.BACK) # VER AQUI OUTRA SOLUÇÃO???
         menu.add.text_input('Name: ', default='Margaret Dayhoff', textinput_id='name')
-        # menu.add.selector('Difficulty: ', [('Easy', 1), ('Hard', 2)], onchange=self.set_difficulty)
+
+        # menu.add.selector('Music: ', [('Serene', 0), ('Hope', 1), ('Happy', 2), ('Surf', 3)], onchange=self.set_music)
         menu.add.button('Save Game', self.save_game, menu)
         menu.add.button('Quit Game', pygame_menu.events.EXIT)
         menu.mainloop(self.display_surface)
@@ -49,9 +51,12 @@ class Menu_2:
     def toggle_menu(self):
         self.toggle_shop = not self.toggle_shop
 
-    def set_difficulty(value, difficulty):
-        # Do the job here !
-        pass
+    def set_music(self, value, difficulty):
+        print(value)
+        print(value[0][0])
+        MUSIC_NAME = value[0][0]
+        # print(MUSIC_NAME)
+        
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -65,8 +70,4 @@ class Menu_2:
         self.input()
         self.setup()
         
-
-
-
-    
 
