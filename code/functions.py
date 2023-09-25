@@ -1,18 +1,18 @@
 import pygame
 from settings import *
 
-def animation_text_save(text, fullscreen=False):
+def animation_text_save(text, time=1200, fullscreen=False):
         display_surface = pygame.display.get_surface()
 
         if fullscreen:
+            time = 1000
             display_surface.fill('gold')
             title = pygame.font.Font('../font/LycheeSoda.ttf',100).render('Lab Hero', False, 'black')
             title_rect = title.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
             display_surface.blit(title, title_rect)
 
-
         sceneExit = False
-        time = 1500
+        # time = 1500
 
         while not sceneExit:
 
