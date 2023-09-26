@@ -156,10 +156,10 @@ class Window:
         default_obj = 0
         # print(str(objective))
         
-        for i in range(len(REACTIONS)):
-            if REACTIONS.index[i] == str(objective):
+        for i in range(len(REACTIONS_v0)):
+            if REACTIONS_v0.index[i] == str(objective):
                 default_obj = i
-            objectives.append((REACTIONS.index[i], REACTIONS.index[i]))
+            objectives.append((REACTIONS_v0.index[i], REACTIONS_v0.index[i]))
         
         menu_objective.add.dropselect(title='Objective: ',
                             items=objectives,
@@ -214,7 +214,7 @@ class Window:
         menu.add.dropselect(title='Simulation Method: ',
                             items=[('FBA', 'fba'),
                                    ('pFBA', 'pfba'),
-                                   ('MOMA', 'moma'),
+                                #    ('MOMA', 'moma'),
                                    ('lMOMA', 'lmoma'),
                                    ('ROOM','room')],
                                    default=0,

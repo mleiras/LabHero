@@ -31,12 +31,12 @@ model = read_sbml_model('../data/models/e_coli_core.xml.gz') #('.../data/models/
 simul = get_simulator(model)
 objective = list(simul.objective.keys())[0]
 
-
-METABOLITES = simul.find_metabolites() # dataframe
+# METABOLITES = simul.find_metabolites() # dataframe
+# COMPARTMENTS = simul.compartments # dicionario
+REACTIONS_v0 = simul.find_reactions()
 REACTIONS = simul.find_reactions('EX') # dataframe
-GENES_v0 = simul.find_genes().name # dataframe
-COMPARTMENTS = simul.compartments # dicionario
 
+GENES_v0 = simul.find_genes().name # dataframe
 GENES = [name for (name, _) in GENES_v0.items()]
 
 
