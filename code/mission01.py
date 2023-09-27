@@ -206,7 +206,8 @@ class Mission_info:
 
         if right:
             self.missions_completed.insert(0, '01')
-            animation_text_save('Congratulations! Mission Completed!') 
+            animation_text_save('Congratulations! Mission Completed!')
+        else:
             animation_text_save('No... Try again!')
 
 
