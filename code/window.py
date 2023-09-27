@@ -101,7 +101,7 @@ class Window:
             # print(res2)
 
             menu_results.add.label(res)
-        except:
+        except FileNotFoundError:
             menu_results.add.label('You have to make at least one simulation to see results.')
 
 
