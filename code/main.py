@@ -8,18 +8,12 @@ import os
 
 class Game:
 	def __init__(self):
-
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-		
 		pygame.display.set_caption('Lab Hero')
-		
 		self.clock = pygame.time.Clock()
-		
 		self.intro = Intro()
-		
 		self.intro_run()
-
 
 
 	def intro_run(self):
@@ -55,34 +49,14 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					animation_text_save('Saving Game', fullscreen=True)
-					# save_file([self.level.player.item_inventory, self.level.player.seed_inventory, self.level.player.money])
 					save_file([self.level.player.results, self.level.player.missions_activated, self.level.player.missions_completed])
 					pygame.quit()
 					sys.exit()
 					
-  
-			dt = self.clock.tick() / 1000 # retirar o 30 depois
+			dt = self.clock.tick() / 1000 
 			self.level.run(dt)
 			pygame.display.update()
 		
-
-# class GameState():
-
-# 	def __init__(self):
-# 		self.state = 'main_game'
-
-
-# 		for event in pygame.event.get():
-# 			if event.type == pygame.QUIT:
-# 				save_file([self.level.player.item_inventory, self.level.player.seed_inventory, self.level.player.money])
-# 				pygame.quit()
-# 				sys.exit()
-  
-# 		dt = self.clock.tick() / 1000 # retirar o 30 depois
-# 		self.level.run(dt)
-# 		pygame.display.update()
-
-
 
 if __name__ == '__main__':
 	game = Game()

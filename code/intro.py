@@ -1,8 +1,5 @@
 import pygame 
 from settings import *
-from timers import Timer
-from button import Button
-
 
 class Intro:
 	def __init__(self):
@@ -25,8 +22,3 @@ class Intro:
 		self.text_rect2 = self.text2.get_rect(center = (SCREEN_WIDTH/2, (SCREEN_HEIGHT/2)+120))
 		self.display_surface.blit(self.text, self.text_rect)
 		self.display_surface.blit(self.text2, self.text_rect2)
-
-
-		
-		
-

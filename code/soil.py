@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-from support import *
+from functions import *
 from pytmx.util_pygame import load_pygame
 from random import choice
 

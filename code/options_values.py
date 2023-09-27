@@ -15,19 +15,8 @@ mytheme.widget_margin = (10,10)
 # mytheme.background_color=(150,190,140)
 
 
-
-# data_simul = load_file('simulation_file')
-# method, objective, genes, reactions = data_simul
-
-# objective_name = objective['objective'][0][0]
-# objective_fraction = objective['obj_fraction']
-
-# REACTIONS = reactions
-# GENES = genes
-
 from cobra.io import read_sbml_model
 model = read_sbml_model('../data/models/e_coli_core.xml.gz') #('.../data/models/iMM904.xml.gz') #('../data/models/e_coli_core.xml.gz')
-# model = read_sbml_model('../data/models/iML1515.xml.gz')
 simul = get_simulator(model)
 objective = list(simul.objective.keys())[0]
 
@@ -40,19 +29,9 @@ GENES_v0 = simul.find_genes().name # dataframe
 GENES = [name for (name, _) in GENES_v0.items()]
 
 
-# OPTIONS = {
-#     'Metabolites': METABOLITES.name,
-#     'Reactions': REACTIONS.name,
-#     'Genes' : GENES,
-#     'Compartments': COMPARTMENTS,
-#     'Objective': objective
-# }
-
 if __name__ == '__main__':
     
-    # print(COMPARTMENTS)
     print(GENES)
-    # print(METABOLITES)
     print(REACTIONS)
     print(REACTIONS.index)
     

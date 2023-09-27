@@ -1,6 +1,5 @@
 import pygame
 from settings import *
-from support import *
 from functions import *
 from timers import Timer
 import time

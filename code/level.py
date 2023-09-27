@@ -1,20 +1,17 @@
 import pygame 
 from settings import *
-from support import *
 from player import Player
-# from overlay import Overlay
 from sprites import *
 import pytmx
 from pytmx.util_pygame import load_pygame # pytmx map loader
-from transition import *
 from soil import *
-# from sky import *
-from menu import *
+# from menu import *
 from menu_2 import *
 from window import Window
 from books import Books
 from mission01 import Mission01
 from save_load import save_file
+from functions import *
 
 class Level:
 	def __init__(self, load_game):
@@ -33,14 +30,6 @@ class Level:
 
 		self.soil_layer = SoilLayer(self.all_sprites, self.collision_sprites)
 		self.setup()
-		# self.overlay = Overlay(self.player)
-		self.transition = Transition(self.reset, self.player)
-
-		# sky
-		# self.sky = Sky()
-		# self.rain = Rain(self.all_sprites)
-		# self.raining = randint(0,10) > 7
-		# self.soil_layer.raining = self.raining
 
 		# shop
 		self.shop_active = False
@@ -166,7 +155,6 @@ class Level:
 
 	def reset(self):
 		#save game
-		# save_file([self.player.item_inventory, self.player.seed_inventory, self.player.money])
 		save_file([self.player.results, self.player.missions_activated, self.player.missions_completed])
 
 		# plants
@@ -178,15 +166,6 @@ class Level:
 				apple.kill()
 			tree.create_fruit()
 
-		# soil
-		# self.soil_layer.remove_water()
-		# self.raining = randint(0,10) > 7
-		# self.soil_layer.raining = self.raining
-		# if self.raining:
-		# 	self.soil_layer.water_all()
-		
-		# sky
-		# self.sky.start_color = [255,255,255]
 
 	def run(self,dt): #delta time
 
@@ -209,21 +188,7 @@ class Level:
 			self.all_sprites.update(dt)
 			self.plant_collision()
 
-		# # weather
-		# self.overlay.display()
-
-		## rain
-		# if self.raining and not self.shop_active:
-		# 	self.rain.update()
-		## daytime
-		# self.sky.display(dt)
-
-		## transition overlay
-		# if self.player.sleep:
-		# 	self.transition.play()
-
-
-		# print(self.player.item_inventory)
+		
 
 
 class CameraGroup(pygame.sprite.Group):

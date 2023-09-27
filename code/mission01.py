@@ -9,8 +9,6 @@ from button import Button
 from math import isclose
 
 
-#############################################
-
 class Mission01: 
     def __init__(self, toggle_menu, player) -> None:
         #general setup 
@@ -22,7 +20,7 @@ class Mission01:
 
         self.font = pygame.font.Font('../font/LycheeSoda.ttf',34)
         self.font_nome = pygame.font.Font('../font/LycheeSoda.ttf',24)
-        self.screen = pygame.display.get_surface() ### set_mode([1280,720])
+        self.screen = pygame.display.get_surface() 
         self.timer = Timer(200)
 
 
@@ -42,9 +40,6 @@ class Mission01:
         keys = pygame.key.get_pressed()
         self.timer.update()
 
-        # if keys[pygame.K_RETURN]:
-        #     self.done = True
-
         if keys[pygame.K_ESCAPE]:
             self.toggle_menu()
 
@@ -56,7 +51,6 @@ class Mission01:
         elif '01' in self.missions_activated:
             self.menu_message(self.m01_step2)
 
-        # elif '01' not in self.missions_activated:
         else:
             self.menu_message(self.m01_step1)
 
@@ -89,7 +83,6 @@ class Mission01:
             botao_teste.process()
             botao_teste_2.process()
 
-
         pygame.display.flip()
 
 
@@ -109,9 +102,6 @@ class Mission_info:
         
         self.index = 0
         self.timer = Timer(200)
-
-        # if '01' in self.missions_completed:
-
 
         if '01' in self.missions_activated:
             self.mission01 = True
@@ -179,9 +169,6 @@ class Mission_info:
         )
         menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
 
-
-        # image_path = '../graphics/objects/merchant.png'
-        # menu.add.image(image_path, scale=(2,2))
         menu.add.label(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
             'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.'
@@ -219,22 +206,19 @@ class Mission_info:
 
         if right:
             self.missions_completed.insert(0, '01')
-            animation_text_save('Congratulations! Mission Completed!') # Falta 1 passo! Verificar resultados e criar duas alternativas (se falhar ou acertar)
-        else:
+            animation_text_save('Congratulations! Mission Completed!') 
             animation_text_save('No... Try again!')
 
 
     def check_results(self):
-        m01_results = load_file('mission01') # não pode ser assim, casas decimais não dão sempre iguais. Talvez pelo ficheiro de simulação, as condições têm de ser iguais (e não necessariamente o resultado)?
+        m01_results = load_file('mission01') 
         data = load_file('player_history/data')
         results = data[0][0]
 
         value = float(results[11:21])
         right_value = float(m01_results[11:21])
         
-        # isclose(a, b, abs_tol=10**-9)
-
-        if isclose(value, right_value, abs_tol=10**-8): #m01_results == results:
+        if isclose(value, right_value, abs_tol=10**-8): 
             return True
         else:
             return False

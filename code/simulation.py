@@ -2,14 +2,11 @@ import mewpy
 from cobra.io import read_sbml_model
 from mewpy.simulation import get_simulator
 from save_load import *
-# from options_values import model
 from options_values import *
-#import file (model) here:
 
 def run_simul():
 
     data_simul = load_file('player_history/simulation_file')
-    # print(data_simul)
 
     method, objective, genes, reactions = data_simul
 
@@ -17,9 +14,6 @@ def run_simul():
     objective_name = objective['objective'][0][0]
     objective_fraction = objective['obj_fraction']
 
-    # environment conditions:
-
-    # envconditions = {'EX_glc__D_e': (-10.0, 100000.0),'EX_o2_e':(-1000,1000)}
     envconditions = {}
 
     # initial simulation:
@@ -75,20 +69,3 @@ def run_simul():
 
     # print(simul.objective)
 
-    # print(result.fluxes['BIOMASS_Ecoli_core_w_GAM'])
-    # print(result.fluxes['EX_succ_e'])
-
-    # from mewpy.visualization.envelope import plot_flux_envelope
-    # plot_flux_envelope(simul,'BIOMASS_Ecoli_core_w_GAM','EX_o2_e')
-
-
-
-if __name__ == '__main__':
-
-    import sys
-    from time import sleep
-    words = 'This is a test'
-    for char in words:
-        sleep(0.1)
-        print(char, end='', flush=True)
-    run_simul()
