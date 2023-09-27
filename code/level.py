@@ -46,9 +46,9 @@ class Level:
 
 		# music
 
-		# self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
-		# self.music_bg.set_volume(0.07)
-		# self.music_bg.play(loops = -1)
+		self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
+		self.music_bg.set_volume(0.07)
+		self.music_bg.play(loops = -1)
 
 	def setup(self):
 		tmx_data = load_pygame('../data/map_lb.tmx')
