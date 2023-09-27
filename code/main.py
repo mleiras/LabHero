@@ -4,7 +4,7 @@ from level import Level
 from intro import Intro
 from save_load import *
 from functions import animation_text_save
-
+import os
 
 class Game:
 	def __init__(self):
@@ -18,19 +18,8 @@ class Game:
 		
 		self.intro = Intro()
 		
-		# load game if exists
-		try:
-			# name, *data = load_file('data')
-			data = load_file('../data/player_history/data')
-			# print(data)
-			# print('continue game')
-			self.level = Level(data)
-		# if not, default values 
-		except:
-			# self.level = Level(DEFAULT_INVENTORY)
-			self.level = Level(DEFAULT_INVENTORY_2)
-
 		self.intro_run()
+
 
 
 	def intro_run(self):
@@ -40,9 +29,23 @@ class Game:
 					pygame.quit()
 					sys.exit() 
 				if pygame.key.get_pressed()[pygame.K_RETURN]:
+					# load game if exists
+					try:
+						data = load_file('player_history/data')
+						self.level = Level(data)
+					except FileNotFoundError:
+						# self.level = Level(DEFAULT_INVENTORY)
+						self.level = Level(DEFAULT_INVENTORY_2)
 					self.run()
-				# if event.type == pygame.KEYDOWN:
-					# self.run()
+				elif pygame.key.get_pressed()[pygame.K_SPACE]:
+					self.level = Level(DEFAULT_INVENTORY_2)
+					if os.path.exists("player_history/data.txt"):
+						os.remove("player_history/data.txt")
+					if os.path.exists("player_history/results.txt"):
+						os.remove("player_history/results.txt")
+					if os.path.exists("player_history/simulation_file.txt"):
+						os.remove("player_history/simulation_file.txt")
+					self.run()
   
 			self.intro.run()
 			pygame.display.update()
