@@ -8,7 +8,7 @@ from options_values import *
 
 def run_simul():
 
-    data_simul = load_file('simulation_file')
+    data_simul = load_file('player_history/simulation_file')
     # print(data_simul)
 
     method, objective, genes, reactions = data_simul

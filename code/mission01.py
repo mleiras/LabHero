@@ -6,6 +6,8 @@ from timers import Timer
 from options_values import *
 from functions import animation_text_save
 from button import Button
+from math import isclose
+
 
 #############################################
 
@@ -213,9 +215,30 @@ class Mission_info:
 
 
     def deliver_results(self):
-        self.missions_completed.insert(0, '01')
-        animation_text_save('Congratulations! Mission Completed!') # Falta 1 passo! Verificar resultados e criar duas alternativas (se falhar ou acertar)
+        right = self.check_results()
 
+        if right:
+            self.missions_completed.insert(0, '01')
+            animation_text_save('Congratulations! Mission Completed!') # Falta 1 passo! Verificar resultados e criar duas alternativas (se falhar ou acertar)
+        else:
+            animation_text_save('No... Try again!')
+
+
+    def check_results(self):
+        m01_results = load_file('mission01') # não pode ser assim, casas decimais não dão sempre iguais. Talvez pelo ficheiro de simulação, as condições têm de ser iguais (e não necessariamente o resultado)?
+        data = load_file('player_history/data')
+        results = data[0][0]
+
+        value = float(results[11:21])
+        right_value = float(m01_results[11:21])
+        
+        # isclose(a, b, abs_tol=10**-9)
+
+        if isclose(value, right_value, abs_tol=10**-8): #m01_results == results:
+            return True
+        else:
+            return False
+    
 
 
     def input(self):
@@ -230,5 +253,4 @@ class Mission_info:
         self.input()
         self.setup()
         
-
 

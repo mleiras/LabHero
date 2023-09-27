@@ -96,7 +96,7 @@ class Window:
         menu_results.add.vertical_margin(20)
         try:
             # res = load_file('data')[0]
-            res = load_file('results')
+            res = load_file('player_history/results')
             # print(str(res))
             # print(res2)
 
@@ -190,6 +190,7 @@ class Window:
             menu.add.button('New Results', action=menu_simul, background_color=(0,150,50))
             menu_simul.add.label(self.results)
             save_results(self.results)
+            save_file([self.player.results, self.player.missions_activated, self.player.missions_completed])
             menu_simul.add.vertical_margin(100)  # Adds margin
             menu_simul.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
            
@@ -218,7 +219,7 @@ class Window:
                                    ('lMOMA', 'lmoma'),
                                    ('ROOM','room')],
                                    default=0,
-                                   selection_box_height=4, dropselect_id='method')
+                                   selection_box_height=5, dropselect_id='method')
         # menu.add.text_input('Objective: ', default=str(OPTIONS['Objective']), textinput_id='objective')
         menu.add.button('Objective', menu_objective)
         menu.add.button('Genes', menu_genes)
@@ -240,14 +241,6 @@ class Window:
 
     def toggle_menu(self):
         self.desk_menu = not self.desk_menu
-
-
-
-    def on_button_click(self, value: str, text = None) -> None:
-        if not text:
-            print(f'Hello from {value}')
-        else:
-            print(f'Hello from {text} with {value}')
 
     
 
