@@ -11,12 +11,14 @@ mytheme.title_font_size = 50
 mytheme.title_bar_style = pygame_menu.widgets.MENUBAR_STYLE_SIMPLE
 mytheme.title_offset = (20,4)
 mytheme.widget_margin = (10,10)
+mytheme.widget_font_color = 'black'
 # mytheme.background_color=(255,215,0, 255) #gold #transparency 100% = 255
 # mytheme.background_color=(150,190,140)
 
 
 from cobra.io import read_sbml_model
 model = read_sbml_model('../data/models/e_coli_core.xml.gz') #('.../data/models/iMM904.xml.gz') #('../data/models/e_coli_core.xml.gz')
+# model = read_sbml_model('.../data/models/iML1515.xml.gz')
 simul = get_simulator(model)
 objective = list(simul.objective.keys())[0]
 

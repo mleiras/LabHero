@@ -1,10 +1,11 @@
-import pygame, sys
+import pygame, sys, os
 from settings import *
 from level import Level
 from intro import Intro
 from save_load import *
 from functions import animation_text_save
-import os
+
+
 
 class Game:
 	def __init__(self):

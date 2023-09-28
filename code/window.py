@@ -6,7 +6,6 @@ from timers import Timer
 from options_values import *
 from simulation import *
 from functions import animation_text_save
-import time
 
 
 class Window:
@@ -82,8 +81,6 @@ class Window:
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
 
-        
-            
 
         # MENU RESULTS
         menu_results = pygame_menu.Menu(
@@ -95,38 +92,12 @@ class Window:
         )
         menu_results.add.vertical_margin(20)
         try:
-            # res = load_file('data')[0]
             res = load_file('player_history/results')
-            # print(str(res))
-            # print(res2)
 
             menu_results.add.label(res)
         except FileNotFoundError:
             menu_results.add.label('You have to make at least one simulation to see results.')
 
-
-
-
-        # def run_simulation() -> None:
-        #     """
-        #     Run the simulation MEWPY.
-        #     """
-        #     try:
-        #         menu.remove_widget(self.run_simul)
-        #         # menu.remove_widget(last_results)
-        #     except:
-        #         pass
-        #     animation_text_save('Running')
-        #     self.results = run_simul()
-        #     animation_text_save('Simulation Done')
-        #     menu.add.button('Results', action=menu_simul, background_color=(0,150,50))
-        #     menu_simul.add.label(self.results)
-        #     save_results(self.results)
-        #     menu_simul.add.vertical_margin(100)  # Adds margin
-        #     menu_simul.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
-        #     # menu_results.remove_widget(no_results)
-        #     # for i in self.results:
-        #     #     print(i)
 
         # MENU AFTER SIMULATION RESULTS
         menu_simul = pygame_menu.Menu(
@@ -137,10 +108,8 @@ class Window:
             width=1280
         )
         
-        # menu_simul.add.button('Run Simulation', run_simulation)
         menu_simul.add.label("Results:")
         menu_simul.add.vertical_margin(50)  # Adds margin
-        # menu_simul.add.button('Run Simulation', action=run_simulation, background_color=(0,150,50))
         
 
         # MENU SUB OBJECTIVE
@@ -181,13 +150,10 @@ class Window:
             data_reac = menu_reactions.get_input_data()
 
             save_simulation_file([data_simul, data_objective, data_genes, data_reac])
-            # animation_text_save('Simulation saved')
-            # self.run_simul = menu.add.button('Next', action=menu_simul, background_color=(0,150,50))
-            # self.run_simul = menu.add.button('Run Simulation', action=run_simulation, background_color=(0,150,50))
             animation_text_save('Running')
             self.results = run_simul()
             self.player.results.insert(0,self.results)
-            menu.add.button('New Results', action=menu_simul, background_color=(0,150,50))
+            menu.add.button('New Results', action=menu_simul, font_color = 'white', background_color=(0,150,50))
             menu_simul.add.label(self.results)
             save_results(self.results)
             save_file([self.player.results, self.player.missions_activated, self.player.missions_completed])
@@ -203,14 +169,7 @@ class Window:
             menu_objective.reset_value()
             menu_genes.reset_value()
             menu_reactions.reset_value()
-            # substituir simulation_file por simulation_file_initial (restaurar dados no ficheiro também)
-
-        # if self.results == '':
-        #     # no_results = menu_results.add.label('You have to make at least one simulation to see results.')
-        #     menu_results.add.label('You have to make at least one simulation to see results.')
-        # else:
-        #     last_results = menu.add.button('Last Results', action=menu_results, background_color=(0,50,150))
-        #     menu.add.vertical_margin(50)  # Adds margin
+           
 
         menu.add.dropselect(title='Simulation Method: ',
                             items=[('FBA', 'fba'),
@@ -220,7 +179,6 @@ class Window:
                                    ('ROOM','room')],
                                    default=0,
                                    selection_box_height=5, dropselect_id='method')
-        # menu.add.text_input('Objective: ', default=str(OPTIONS['Objective']), textinput_id='objective')
         menu.add.button('Objective', menu_objective)
         menu.add.button('Genes', menu_genes)
         menu.add.button('Environmental Conditions', menu_reactions)
@@ -228,12 +186,10 @@ class Window:
         # menu.add.button('Restore Data', restore_data, background_color=(100,0,0))
         # menu.add.vertical_margin(20)  # Adds margin
 
-        menu.add.button('Run Simulation', action=data_fun, background_color=(20,100,100))        
+        menu.add.button('Run Simulation', action=data_fun, font_color = 'white', background_color=(20,100,100))        
         menu.add.vertical_margin(20)  # Adds margin
-        menu.add.button('Last Results', action=menu_results, background_color=(20,0,150))  
+        last_results = menu.add.button('Last Results', action=menu_results, font_color = 'white', background_color=(20,0,150))  
         # menu.add.vertical_margin(50)  # Adds margin
-
-        # print(time.time())
 
         menu.mainloop(self.display_surface)
         
@@ -241,9 +197,6 @@ class Window:
 
     def toggle_menu(self):
         self.desk_menu = not self.desk_menu
-
-    
-
 
 
     def toggle_gene(self, txt, **id) -> None:

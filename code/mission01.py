@@ -77,8 +77,8 @@ class Mission01:
 
         cientista_rect = pygame.draw.rect(self.screen, 'white', [25,675,150,25])
 
-        nome = self.font_nome.render('Cientista', True, 'black')
-        self.screen.blit(nome,(55,677))
+        nome = self.font_nome.render('Dr. Martinez', True, 'black')
+        self.screen.blit(nome,(40,677))
 
         for line, msg in enumerate(message):
             surf = self.font.render(msg, True, 'black')

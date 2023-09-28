@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="git" name="Objetos Novos" tilewidth="64" tileheight="64" tilecount="19" columns="0">
+<tileset version="1.10" tiledversion="git" name="Objetos Novos" tilewidth="64" tileheight="65" tilecount="41" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <image width="64" height="64" source="../graphics/environment/canto superior esquerdo.png"/>
@@ -57,5 +57,71 @@
  </tile>
  <tile id="20">
   <image width="64" height="64" source="../graphics/environment/black_chair_right.png"/>
+ </tile>
+ <tile id="25">
+  <image width="64" height="64" source="../graphics/environment/Pc-left_2.png"/>
+ </tile>
+ <tile id="26">
+  <image width="64" height="64" source="../graphics/environment/Pc-right_2.png"/>
+ </tile>
+ <tile id="33">
+  <image width="64" height="64" source="../graphics/environment/pc down_2.png"/>
+ </tile>
+ <tile id="34">
+  <image width="64" height="64" source="../graphics/environment/pc down_3.png"/>
+ </tile>
+ <tile id="35">
+  <image width="64" height="64" source="../graphics/environment/pc down_4.png"/>
+ </tile>
+ <tile id="36">
+  <image width="64" height="64" source="../graphics/environment/pc down_5.png"/>
+ </tile>
+ <tile id="37">
+  <image width="64" height="64" source="../graphics/environment/computer.png"/>
+ </tile>
+ <tile id="38">
+  <image width="64" height="64" source="../graphics/environment/maquina de café.png"/>
+ </tile>
+ <tile id="39">
+  <image width="64" height="64" source="../graphics/environment/sofá esquerda.png"/>
+ </tile>
+ <tile id="40">
+  <image width="64" height="64" source="../graphics/environment/sofá direita.png"/>
+ </tile>
+ <tile id="47">
+  <image width="64" height="64" source="../graphics/environment/tabela_periodica_left.png"/>
+ </tile>
+ <tile id="48">
+  <image width="64" height="64" source="../graphics/environment/tabela_periodica_right.png"/>
+ </tile>
+ <tile id="49">
+  <image width="64" height="64" source="../graphics/environment/quadro_dna.png"/>
+ </tile>
+ <tile id="51">
+  <image width="64" height="64" source="../graphics/environment/flasks.png"/>
+ </tile>
+ <tile id="52">
+  <image width="64" height="64" source="../graphics/environment/flasks_2.png"/>
+ </tile>
+ <tile id="53">
+  <image width="64" height="64" source="../graphics/environment/flasks_3.png"/>
+ </tile>
+ <tile id="54">
+  <image width="64" height="65" source="../graphics/environment/reator_down.png"/>
+ </tile>
+ <tile id="55">
+  <image width="64" height="65" source="../graphics/environment/reator_top.png"/>
+ </tile>
+ <tile id="56">
+  <image width="64" height="64" source="../graphics/environment/pc down_6.png"/>
+ </tile>
+ <tile id="57">
+  <image width="64" height="64" source="../graphics/environment/black_chair_back.png"/>
+ </tile>
+ <tile id="58">
+  <image width="64" height="64" source="../graphics/environment/flasks_4.png"/>
+ </tile>
+ <tile id="59">
+  <image width="64" height="64" source="../graphics/environment/pc down_7.png"/>
  </tile>
 </tileset>

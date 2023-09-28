@@ -1,1 +1,1 @@
-"objective: 0.21166294973530927\nStatus: OPTIMAL\nMethod:FBA"
+"objective: 0.8739215069684295\nStatus: OPTIMAL\nMethod:FBA"
