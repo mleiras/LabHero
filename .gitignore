@@ -1,3 +1,8 @@
+# Player History
+.player_history/data.txt
+.player_history/results.txt
+.player_history/simulation_file.txt
+
 # PyCharm
 .idea
 
@@ -134,7 +139,3 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Player History
-/player_history/data.txt
-/player_history/results.txt
-/player_history/simulation_file.txt
