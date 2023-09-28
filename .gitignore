@@ -135,6 +135,6 @@ dmypy.json
 .pyre/
 
 # Player History
-player_history/data.txt
-player_history/results.txt
-player_history/simulation_file.txt
+/player_history/data.txt
+/player_history/results.txt
+/player_history/simulation_file.txt
