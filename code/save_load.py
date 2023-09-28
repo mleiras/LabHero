@@ -1,4 +1,4 @@
-import json
+import json, os
 
 def save_file(data):
     with open('player_history/data.txt', 'w') as test_file:

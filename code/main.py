@@ -11,7 +11,7 @@ class Game:
 	def __init__(self):
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-		pygame.display.set_caption('Lab Hero')
+		pygame.display.set_caption('Lab Hero') 
 		self.clock = pygame.time.Clock()
 		self.intro = Intro()
 		self.intro_run()

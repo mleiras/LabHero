@@ -219,7 +219,7 @@ class Mission_info:
         #     menu_results.add.label(res)
         # except:
         #     menu_results.add.label('You have to make at least one simulation to see results.')
-        m01_results = load_file('mission01') 
+        m01_results = load_file('player_history/mission01') 
         try:
             data = load_file('player_history/data')
             results = data[0][0]
