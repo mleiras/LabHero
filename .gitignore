@@ -133,3 +133,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Player History
+./code/player_history/data.txt
+./code/player_history/results.txt
+./code/player_history/simulation_file.txt
