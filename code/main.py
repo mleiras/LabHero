@@ -6,7 +6,6 @@ from save_load import *
 from functions import animation_text_save
 
 
-
 class Game:
 	def __init__(self):
 		pygame.init()
@@ -44,6 +43,7 @@ class Game:
   
 			self.intro.run()
 			pygame.display.update()
+
 
 	def run(self):
 		while True:

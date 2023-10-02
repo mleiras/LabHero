@@ -31,24 +31,24 @@ class Level:
 		self.soil_layer = SoilLayer(self.all_sprites, self.collision_sprites)
 		self.setup()
 
-		# shop
-		self.shop_active = False
+		# MENUS
+		self.menu_active = False
 		self.desk_active = False
 		self.books_active = False
-		self.menu_2 = Mission01(self.toggle_shop, self.player)
-		# self.menu_2 = Menu_2(self.player, self.toggle_shop)
+		self.talk_1_active = False
+		self.talk_1 = Mission01(self.toggle_talk, self.player)
+		self.menu = Menu(self.player, self.toggle_shop)
 		self.window = Window(self.desk_menu, self.player)
 		self.books = Books(self.read_books)
 
 		# sounds
-		self.success = pygame.mixer.Sound('../audio/success.wav')
+		self.success = pygame.mixer.Sound('../audio/success_2.wav') 
 		self.success.set_volume(0.1)
 
 		# music
-
-		self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
-		self.music_bg.set_volume(0.07)
-		self.music_bg.play(loops = -1)
+		# self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
+		# self.music_bg.set_volume(0.07)
+		# self.music_bg.play(loops = -1)
 
 	def setup(self):
 		tmx_data = load_pygame('../data/map_lb.tmx')
@@ -103,7 +103,9 @@ class Level:
 					desk_menu = self.desk_menu,
 					books = self.read_books,
 					# inventory = self.load_game,
-					inventory2 = self.load_game
+					inventory2 = self.load_game,
+					talk_1 = self.toggle_talk
+					# music = self.music_bg
 					)
 			if obj.name == 'Bed':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
@@ -129,7 +131,10 @@ class Level:
 		self.success.play()
 
 	def toggle_shop(self):
-		self.shop_active = not self.shop_active
+		self.menu_active = not self.menu_active
+
+	def toggle_talk(self):
+		self.talk_1_active = not self.talk_1_active
 
 	def desk_menu(self):
 		self.desk_active = not self.desk_active
@@ -174,9 +179,12 @@ class Level:
 		self.all_sprites.custom_draw(self.player)
 
 		#updates
-		if self.shop_active:
+		if self.menu_active:
 			# self.menu.update()
-			self.menu_2.update()
+			self.menu.update()
+
+		elif self.talk_1_active:
+			self.talk_1.update()
 
 		elif self.desk_active:
 			self.window.update()

@@ -115,6 +115,10 @@ class Mission_info:
         else:
             self.mission01 = False
 
+        #sounds     
+        self.success = pygame.mixer.Sound('../audio/success_2.wav')
+        self.success.set_volume(0.3)
+
 
     def setup(self):
         
@@ -190,7 +194,7 @@ class Mission_info:
 
 
     def toggle_menu(self):
-        self.toggle_shop = not self.toggle_shop
+        self.toggle_talk = not self.toggle_talk
 
 
     def activate_mission01(self):
@@ -203,8 +207,10 @@ class Mission_info:
         right = self.check_results()
 
         if right:
+            self.success.play()
             self.missions_completed.insert(0, '01')
             animation_text_save('Congratulations! Mission Completed!', time=2000)
+            # self.success.play()
         else:
             animation_text_save('No ... Try again!', time=2000)
 
