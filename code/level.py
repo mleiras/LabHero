@@ -42,7 +42,7 @@ class Level:
 		self.books = Books(self.read_books)
 
 		# sounds
-		self.success = pygame.mixer.Sound('../audio/success_2.wav') 
+		self.success = pygame.mixer.Sound('../audio/success.wav') 
 		self.success.set_volume(0.1)
 
 		# music
