@@ -1,4 +1,6 @@
-# Book "A Brief History of Microorganisms" OU "The Amazing World of Microorganisms"
+# Book "A Brief History of Microorganisms"
+
+## Alternative: "The Amazing World of Microorganisms"
 
 
 This book is your guide to the incredible world of microorganisms. You'll learn how these tiny beings are everywhere around us, how they help or sometimes harm us, and how science and technology have helped us understand and live safely with them. 
