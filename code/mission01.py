@@ -69,7 +69,7 @@ class Mission01:
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
         # pygame.display.set_caption('Cientista')
-        imagem = pygame.image.load("../graphics/dialogues/cientista2.jpg").convert()
+        imagem = pygame.image.load("../graphics/dialogues/martinez.jpg").convert()
         
         x = 25; # x coordnate of image
         y = 520; # y coordinate of image
