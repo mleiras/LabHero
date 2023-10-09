@@ -76,7 +76,7 @@ class Window:
 
         for i in range(len(GENES)):
             txt = label.format(GENES[i])
-            menu_genes.add.toggle_switch(txt, True, onchange=self.toggle_gene, kwargs=txt, toggleswitch_id=txt)
+            menu_genes.add.toggle_switch(txt, True, kwargs=txt, toggleswitch_id=txt)
         menu_genes.add.vertical_margin(20)
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
@@ -199,17 +199,17 @@ class Window:
         self.desk_menu = not self.desk_menu
 
 
-    def toggle_gene(self, txt, **id) -> None:
-        """
-        Button event on menus.
+    # def toggle_gene(self, txt, **id) -> None:
+    #     """
+    #     Button event on menus.
 
-        :param value: Button value
-        :param text: Button text
-        """
-        if txt:
-            print(f'{id} on')
-        else:
-            print(f'{id} knockout')
+    #     :param value: Button value
+    #     :param text: Button text
+    #     """
+    #     if txt:
+    #         print(f'{id} on')
+    #     else:
+    #         print(f'{id} knockout')
 
 
 

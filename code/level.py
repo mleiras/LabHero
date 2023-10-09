@@ -10,6 +10,7 @@ from menu_2 import *
 from window import Window
 from books import Books
 from mission01 import Mission01
+from mission02 import Mission02
 from save_load import save_file
 from functions import *
 
@@ -36,7 +37,11 @@ class Level:
 		self.desk_active = False
 		self.books_active = False
 		self.talk_1_active = False
-		self.talk_1 = Mission01(self.toggle_talk, self.player)
+		self.talk_1 = Mission01(self.toggle_talk_1, self.player)
+		self.talk_2_active = False
+		self.talk_2 = Mission02(self.toggle_talk_2, self.player)
+		self.talk_3_active = False
+		self.talk_3 = Mission02(self.toggle_talk_3, self.player)
 		self.menu = Menu(self.player, self.toggle_shop)
 		self.window = Window(self.desk_menu, self.player)
 		self.books = Books(self.read_books)
@@ -104,13 +109,19 @@ class Level:
 					books = self.read_books,
 					# inventory = self.load_game,
 					inventory2 = self.load_game,
-					talk_1 = self.toggle_talk
+					talk_1 = self.toggle_talk_1,
+					talk_2 = self.toggle_talk_2,
+					talk_3 = self.toggle_talk_3,
 					# music = self.music_bg
 					)
-			if obj.name == 'Bed':
+			
+			if obj.name == 'Mission01':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 			
-			if obj.name == 'Trader':
+			if obj.name == 'Mission02':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Mission03':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 			
 			if obj.name == 'Desk':
@@ -133,8 +144,14 @@ class Level:
 	def toggle_shop(self):
 		self.menu_active = not self.menu_active
 
-	def toggle_talk(self):
+	def toggle_talk_1(self):
 		self.talk_1_active = not self.talk_1_active
+
+	def toggle_talk_2(self):
+		self.talk_2_active = not self.talk_2_active
+	
+	def toggle_talk_3(self):
+		self.talk_3_active = not self.talk_3_active
 
 	def desk_menu(self):
 		self.desk_active = not self.desk_active
@@ -185,6 +202,12 @@ class Level:
 
 		elif self.talk_1_active:
 			self.talk_1.update()
+
+		elif self.talk_2_active:
+			self.talk_2.update()
+
+		elif self.talk_3_active:
+			self.talk_3.update()
 
 		elif self.desk_active:
 			self.window.update()

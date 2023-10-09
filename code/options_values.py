@@ -34,6 +34,8 @@ GENES = [name for (name, _) in GENES_v0.items()]
 if __name__ == '__main__':
     
     print(GENES)
-    print(REACTIONS)
-    print(REACTIONS.index)
+    # print(REACTIONS)
+    # print(REACTIONS_v0)
+    print(simul.essential_genes())
+    
     

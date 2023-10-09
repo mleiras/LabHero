@@ -5,7 +5,7 @@ from timers import Timer
 import time
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory2, talk_1):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory2, talk_1, talk_2, talk_3):
         super().__init__(group)
 
         self.import_assets()
@@ -55,6 +55,8 @@ class Player(pygame.sprite.Sprite):
         # interaction
         self.toggle_shop = toggle_shop
         self.talk_1 = talk_1
+        self.talk_2 = talk_2
+        self.talk_3 = talk_3
         self.desk_menu = desk_menu
         self.books = books
         self.tree_sprites = tree_sprites
@@ -65,7 +67,8 @@ class Player(pygame.sprite.Sprite):
         # music
 
         self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
-        self.music_bg.set_volume(0.07)
+        # self.music_bg.set_volume(0.07)
+        self.music_bg.set_volume(0)
         self.music_bg.play(loops = -1)
 
         # sound
@@ -135,7 +138,7 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.direction.x = 0
             
-            # MENU test
+            # MENU tests (APAGAR DEPOIS ATALHOS)
             if keys[pygame.K_m]:
                 self.toggle_shop()
 
@@ -144,9 +147,10 @@ class Player(pygame.sprite.Sprite):
             
             if keys[pygame.K_b]:
                 self.books()
-            
+
             if keys[pygame.K_t]:
-                self.talk_1()
+                self.talk_2()
+
 
 
             # tools use
@@ -183,8 +187,15 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_RETURN]:
                 collided_interaction_sprite = pygame.sprite.spritecollide(self, self.interaction, False) # spritecollide(sprite, group, dokill)
                 if collided_interaction_sprite:
-                    if collided_interaction_sprite[0].name == 'Trader':
+                    if collided_interaction_sprite[0].name == 'Mission01':
                         self.talk_1()
+
+                    elif collided_interaction_sprite[0].name == 'Mission02':
+                        self.talk_2()
+
+                    elif collided_interaction_sprite[0].name == 'Mission03':
+                        self.talk_3()
+                    
 
                     elif collided_interaction_sprite[0].name == 'Desk':
                         # print(time.time())

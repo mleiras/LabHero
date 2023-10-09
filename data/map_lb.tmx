@@ -677,9 +677,9 @@
    <point/>
   </object>
   <object id="2" name="Desk" x="2048.67" y="2113.67" width="61.6667" height="123.333"/>
-  <object id="3" name="Mission03" x="1625" y="995.333" width="134.334" height="124.666"/>
-  <object id="83" name="Trader" x="2111.67" y="1022.33" width="63.9997" height="65.333"/>
-  <object id="87" name="Mission01" x="1175" y="988.5" width="142.5" height="135.5"/>
+  <object id="3" name="Mission02" x="1665" y="1025" width="61.6673" height="61.3327"/>
+  <object id="83" name="Mission01" x="2113" y="1024.66" width="61.9997" height="61.9997"/>
+  <object id="87" name="Mission03" x="1217" y="1024.83" width="61.8333" height="62.1667"/>
   <object id="102" name="Books" x="1282" y="1920.5" width="252.667" height="62.3337"/>
   <object id="108" name="Books" x="1024.5" y="1919.83" width="126.75" height="63.667"/>
  </objectgroup>
