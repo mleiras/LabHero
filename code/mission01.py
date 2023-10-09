@@ -116,8 +116,11 @@ class Mission_info:
             self.mission01 = False
 
         #sounds     
-        self.success = pygame.mixer.Sound('../audio/success_2.wav')
-        self.success.set_volume(0.3)
+        self.success = pygame.mixer.Sound('../audio/success_3.wav')
+        self.success.set_volume(1.2)
+
+        self.failed = pygame.mixer.Sound('../audio/failed.wav')
+        self.failed.set_volume(1.2)
 
 
     def setup(self):
@@ -212,6 +215,7 @@ class Mission_info:
             animation_text_save('Congratulations! Mission Completed!', time=2000)
             # self.success.play()
         else:
+            self.failed.play()
             animation_text_save('No ... Try again!', time=2000)
 
 
