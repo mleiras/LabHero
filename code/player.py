@@ -30,23 +30,7 @@ class Player(pygame.sprite.Sprite):
         self.timers = {
             'tool_use': Timer(350, self.use_tool)
         }
-        #     'tool_switch': Timer(200),
-        #     'seed_use': Timer(350, self.use_seed),
-        #     'seed_switch': Timer(200)
-        # }
-
-        # tools
-        # self.tools = ['axe', 'hoe', 'water']
-        # self.tool_index = 0
-        # self.selected_tool = self.tools[self.tool_index]
-
-        # seeds
-        # self.seeds = ['corn', 'tomato']
-        # self.seed_index = 0
-        # self.selected_seed = self.seeds[self.seed_index]
-
-        # inventory
-        # self.item_inventory, self.seed_inventory, self.money = inventory[:3]
+        
 
         self.item_inventory = DEFAULT_INVENTORY[0]
 
@@ -76,26 +60,16 @@ class Player(pygame.sprite.Sprite):
         for tree in self.tree_sprites.sprites():
             if tree.rect.collidepoint(self.target_pos):
                 tree.damage()
-        # if self.selected_tool == 'hoe':
-        #     self.soil_layer.get_hit(self.target_pos)
-        # if self.selected_tool == 'water':
-        #     self.soil_layer.water(self.target_pos)
-        #     self.watering.play()
+       
 
     def get_target_pos(self):
         self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]] # status[0] (direção do jogador) para identificar o a posição da ferramenta no dict
 
-    # def use_seed(self):
-    #     if self.seed_inventory[self.selected_seed] > 0:
-    #         self.soil_layer.plant_seed(self.target_pos, self.selected_seed)
-    #         self.seed_inventory[self.selected_seed] -= 1
+    
         
     def import_assets(self):
         self.animations = {'up': [], 'down': [], 'left': [], 'right': [],
-                           'right_idle': [], 'left_idle': [], 'up_idle': [], 'down_idle': [],
-                           'right_hoe': [], 'left_hoe': [], 'up_hoe': [], 'down_hoe': [],
-                           'right_axe': [], 'left_axe': [], 'up_axe': [], 'down_axe': [],
-                           'right_water': [], 'left_water': [], 'up_water': [], 'down_water': []}
+                           'right_idle': [], 'left_idle': [], 'up_idle': [], 'down_idle': []}
         
         for animation in self.animations.keys():
             full_path = '../graphics/character/' + animation
@@ -156,28 +130,7 @@ class Player(pygame.sprite.Sprite):
                 self.direction = pygame.math.Vector2()
                 self.frame_index = 0
             
-            #change tool
-            # if keys[pygame.K_q] and not self.timers['tool_switch'].active:
-            #     self.timers['tool_switch'].activate()
-            #     self.tool_index += 1
-            #     if self.tool_index >= len(self.tools): self.tool_index = 0
-            #     self.selected_tool = self.tools[self.tool_index]
-
-            # seed use
-            # if keys[pygame.K_LCTRL]:
-            #     # timer for tool use
-            #     self.timers['seed_use'].activate()
-            #     self.direction = pygame.math.Vector2()
-            #     self.frame_index = 0
-            #     # print('use seed')
-
-            #change seed
-            # if keys[pygame.K_e] and not self.timers['seed_switch'].active:
-            #     self.timers['seed_switch'].activate()
-            #     self.seed_index += 1
-            #     if self.seed_index >= len(self.seeds): self.seed_index = 0
-            #     self.selected_seed = self.seeds[self.seed_index]
-            #     # print(self.selected_seed)
+            
 
             # interaction
             if keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER]:
