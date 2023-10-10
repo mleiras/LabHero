@@ -75,7 +75,7 @@ class Tutorial:
         )
         menu_how_to_play.add.label(
             """
-            Use arrows (up, down, left, righ) or AWSD keys to move the character.
+            Use arrows (up, down, left, righ) or WASD keys to move the character.
             """,
             max_char=-1,
             wordwrap=True,
