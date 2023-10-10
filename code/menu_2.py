@@ -45,7 +45,7 @@ class Menu:
         
         menu_how_to_play = pygame_menu.Menu('How to Play', 1280, 720,
                         onclose=self.toggle_menu,
-                        theme=mytheme)
+                        theme=tutorial_theme)
         
 
         
@@ -57,7 +57,7 @@ class Menu:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color = 'darkblue',
+            background_color = (60, 150, 140),
             font_color = 'white',
             font_size = 30,
             padding = (25,25,25,25)
@@ -78,7 +78,7 @@ class Menu:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color = 'darkblue',
+            background_color = (60, 150, 140),
             font_color = 'white',
             font_size = 30,
             padding = (25,25,25,25)
@@ -105,7 +105,7 @@ class Menu:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color = 'darkblue',
+            background_color = (60, 150, 140),
             font_color = 'white',
             font_size = 30,
             padding = (25,25,25,25)
@@ -126,7 +126,7 @@ class Menu:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color = 'darkblue',
+            background_color = (60, 150, 140),
             font_color = 'white',
             font_size = 30,
             padding = (25,25,25,25)

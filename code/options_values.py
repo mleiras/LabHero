@@ -15,6 +15,9 @@ mytheme.widget_font_color = 'black'
 # mytheme.background_color=(255,215,0, 255) #gold #transparency 100% = 255
 # mytheme.background_color=(150,190,140)
 
+tutorial_theme = mytheme.copy()
+tutorial_theme.background_color = (255,215,0, 255)
+
 
 from cobra.io import read_sbml_model
 model = read_sbml_model('../data/models/e_coli_core.xml.gz') #('.../data/models/iMM904.xml.gz') #('../data/models/e_coli_core.xml.gz')

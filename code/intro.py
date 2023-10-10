@@ -54,15 +54,12 @@ class Tutorial:
         self.display_surface = pygame.display.get_surface()
         self.font = pygame.font.Font('../font/LycheeSoda.ttf', 30)
 
-        # # movement
-        # self.index = 0
-        # self.timer = Timer(200)
 
     def setup(self):
 
         menu_how_to_play = pygame_menu.Menu('How to Play', 1280, 720,
                                             onclose=pygame_menu.events.BACK,
-                                            theme=mytheme)
+                                            theme=tutorial_theme)
 
         menu_how_to_play.add.vertical_margin(50)
         menu_how_to_play.add.label(
@@ -71,7 +68,7 @@ class Tutorial:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color='darkblue',
+            background_color=(60, 150, 140),
             font_color='white',
             font_size=30,
             padding=(25, 25, 25, 25)
@@ -92,7 +89,7 @@ class Tutorial:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color='darkblue',
+            background_color=(60, 150, 140),
             font_color='white',
             font_size=30,
             padding=(25, 25, 25, 25)
@@ -119,7 +116,7 @@ class Tutorial:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color='darkblue',
+            background_color=(60, 150, 140),
             font_color='white',
             font_size=30,
             padding=(25, 25, 25, 25)
@@ -140,7 +137,7 @@ class Tutorial:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(100, 0),
-            background_color='darkblue',
+            background_color=(60, 150, 140),
             font_color='white',
             font_size=30,
             padding=(25, 25, 25, 25)
