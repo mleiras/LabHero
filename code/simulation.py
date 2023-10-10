@@ -48,7 +48,7 @@ def run_simul():
 
     # choose objective (by default Biomass):
     # objective = ''
-    # simul.objective = objective
+    simul.objective = objective_name
 
     # add constraints here (modifications on the game)
     constraints = {}
