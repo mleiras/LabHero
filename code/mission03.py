@@ -8,7 +8,7 @@ from functions import animation_text_save
 from button import Button
 
 
-class Mission02: 
+class Mission03: 
     def __init__(self, toggle_menu, player) -> None:
         #general setup 
         self.player = player
@@ -23,20 +23,20 @@ class Mission02:
         self.timer = Timer(200)
 
 
-        self.m02_step1 = [
+        self.m03_step1 = [
             "Greetings, intrepid explorer of the microbial world! I'm Dr. Carter!",
             "We've compiled a list of ten genes within E. coli, and we suspect that one of them is",
             "essential for its survival. Can you find each one is the essential one to E. coli's?"
         ]
         
-        self.m02_step2 = ["Did you already find the essential gene?",
+        self.m03_step2 = ["Did you already find the essential gene?",
                           "Can you show me your results?"]
 
-        self.m02_step3 = ["Thank you! Your research will unlock a hidden chapter in E. coli's genetic story.",
+        self.m03_step3 = ["Thank you! Your research will unlock a hidden chapter in E. coli's genetic story.",
                           "Your discoveries may have far-reaching implications in our understanding of microbial life."]
         
 
-        self.menu = Mission02_info(self.toggle_menu, self.player)
+        self.menu = Mission03_info(self.toggle_menu, self.player)
 
     
     def input(self):
@@ -48,14 +48,14 @@ class Mission02:
 
     def update(self):
         self.input()
-        if '02' in self.missions_completed:
-            self.menu_message(self.m02_step3, buttons=False)
+        if '03' in self.missions_completed:
+            self.menu_message(self.m03_step3, buttons=False)
 
-        elif '02' in self.missions_activated:
-            self.menu_message(self.m02_step2)
+        elif '03' in self.missions_activated:
+            self.menu_message(self.m03_step2)
 
         else:
-            self.menu_message(self.m02_step1)
+            self.menu_message(self.m03_step1)
 
        
 
@@ -91,7 +91,7 @@ class Mission02:
 
 
 
-class Mission02_info:
+class Mission03_info:
     def __init__(self, toggle_menu, player) -> None:
 
         # general setup
@@ -106,10 +106,10 @@ class Mission02_info:
         self.index = 0
         self.timer = Timer(200)
 
-        if '02' in self.missions_activated:
-            self.mission02 = True
+        if '03' in self.missions_activated:
+            self.mission03 = True
         else:
-            self.mission02 = False
+            self.mission03 = False
 
         #sounds     
         self.success = pygame.mixer.Sound('../audio/success_3.wav')
@@ -125,7 +125,7 @@ class Mission02_info:
             height=720,
             onclose=self.toggle_menu,
             theme=mytheme,
-            title='Mission 02',
+            title='Mission 03',
             width=1280,
         )
 
@@ -133,7 +133,7 @@ class Mission02_info:
             height=720,
             onclose=self.toggle_menu,
             theme=mytheme,
-            title='Mission 02 Briefing',
+            title='Mission 03 Briefing',
             width=1280
         )
 
@@ -209,14 +209,14 @@ class Mission02_info:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_CENTER,
             font_size=30)
-        menu.add.button('Mission 02 Briefing', menu_text, font_color = 'black',background_color=(255,215,0, 255))
+        menu.add.button('Mission 03 Briefing', menu_text, font_color = 'black',background_color=(255,215,0, 255))
         menu.add.vertical_margin(50)  
-        if self.mission02:
+        if self.mission03:
             menu.add.label('Mission Activated', font_color=(150, 150, 150))
             menu.add.vertical_margin(20)
             menu.add.text_input('Essential Gene: ', default='', input_underline='_', maxchar=5, onreturn=self.deliver_results)
         else:
-            menu.add.button('Activate Mission', action=self.activate_mission02, background_color=(50,100,100))        
+            menu.add.button('Activate Mission', action=self.activate_mission03, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  
 
         menu.mainloop(self.display_surface)
@@ -226,10 +226,10 @@ class Mission02_info:
     def toggle_menu(self):
         self.toggle_talk = not self.toggle_talk
 
-    def activate_mission02(self):
-        self.mission02 = True
-        self.missions_activated.insert(0, '02')
-        animation_text_save('Mission 02 Activated')
+    def activate_mission03(self):
+        self.mission03 = True
+        self.missions_activated.insert(0, '03')
+        animation_text_save('Mission 03 Activated')
 
 
     def deliver_results(self, ans):
@@ -238,7 +238,7 @@ class Mission02_info:
 
         if right:
             self.success.play()
-            self.missions_completed.insert(0, '02')
+            self.missions_completed.insert(0, '03')
             animation_text_save('Congratulations! Mission Completed!', time=2000)
         else:
             self.failed.play()
