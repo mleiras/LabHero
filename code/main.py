@@ -21,7 +21,8 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					pygame.quit()
-					sys.exit() 
+					sys.exit()
+
 				if pygame.key.get_pressed()[pygame.K_RETURN]:
 					# load game if exists
 					try:
