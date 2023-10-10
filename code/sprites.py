@@ -63,8 +63,6 @@ class Tree(Generic):
 
         self.player_add = player_add
 
-        # sounds
-        # self.axe_sound = pygame.mixer.Sound('../audio/axe.mp3')
 
     def create_fruit(self):
         for pos in self.apple_pos: # posição relativa à imagem da arvore, não do mapa

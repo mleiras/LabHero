@@ -67,15 +67,10 @@ class Player(pygame.sprite.Sprite):
         # music
 
         self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
-        # self.music_bg.set_volume(0.07)
-        self.music_bg.set_volume(0)
+        self.music_bg.set_volume(0.07)
+        # self.music_bg.set_volume(0)
         self.music_bg.play(loops = -1)
 
-        # sound
-        # self.watering = pygame.mixer.Sound('../audio/water.mp3')
-        # self.watering.set_volume(0.2)
-
-        # self.music = music
 
     def use_tool(self):
         for tree in self.tree_sprites.sprites():
