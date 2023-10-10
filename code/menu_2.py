@@ -43,9 +43,110 @@ class Menu:
                         onclose=self.toggle_menu,
                         theme=mytheme)
         
+        menu_how_to_play = pygame_menu.Menu('How to Play', 1280, 720,
+                        onclose=self.toggle_menu,
+                        theme=mytheme)
+        
 
+        
+        
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Moving""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = 'darkblue',
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use arrows (up, down, left, righ) or AWSD keys to move the character.
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Interacting""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = 'darkblue',
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use ENTER key to open the dialogue when close to another character (scientists).
+
+            Use ENTER key to open the simulation window when close to your desk.
+
+            Use ENTER key to consult books when close to the library.
+
+            Use ENTER key to take an apple from a tree ("An apple a day keeps the doctor away").
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Buttons""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = 'darkblue',
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use the Mouse to click on the buttons of the dialogues.
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Main Menu""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = 'darkblue',
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use M key to open the Main Menu to control the music/volume, save/exit the game and to see this tutorial again.
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_how_to_play.add.vertical_margin(50)
+        
         # menu.add.button('Play', action=pygame_menu.events.BACK) # VER AQUI OUTRA SOLUÇÃO???
         menu.add.text_input('Name: ', default='Margaret Dayhoff', textinput_id='name')
+        menu.add.button('How to Play', action=menu_how_to_play)
 
         menu.add.selector('Music: ', [('Hope', 0), ('Serene', 1),  ('Happy', 2), ('Surf', 3)], default=self.music_val, onchange=self.set_music)
         menu.add.range_slider('Volume', self.volume*100, (0, 100), 1, onchange=self.set_volume,

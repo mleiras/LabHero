@@ -119,20 +119,21 @@ class Player(pygame.sprite.Sprite):
         if not self.timers['tool_use'].active:
             
             # directions
-            if keys[pygame.K_UP]:
+            if keys[pygame.K_UP] or keys[pygame.K_w]:
                 self.direction.y = -1
                 self.status = 'up'
 
-            elif keys[pygame.K_DOWN]:
+            elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
                 self.direction.y = 1
                 self.status = 'down'
             else:
                 self.direction.y = 0
 
-            if keys[pygame.K_RIGHT]:
+            if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 self.direction.x = 1
                 self.status = 'right'
-            elif keys[pygame.K_LEFT]:
+
+            elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 self.direction.x = -1
                 self.status = 'left'
             else:
@@ -154,7 +155,7 @@ class Player(pygame.sprite.Sprite):
 
 
             # tools use
-            if keys[pygame.K_SPACE]:
+            if keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER]:
                 # timer for tool use
                 self.timers['tool_use'].activate()
                 self.direction = pygame.math.Vector2()
@@ -184,7 +185,7 @@ class Player(pygame.sprite.Sprite):
             #     # print(self.selected_seed)
 
             # interaction
-            if keys[pygame.K_RETURN]:
+            if keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER]:
                 collided_interaction_sprite = pygame.sprite.spritecollide(self, self.interaction, False) # spritecollide(sprite, group, dokill)
                 if collided_interaction_sprite:
                     if collided_interaction_sprite[0].name == 'Mission01':

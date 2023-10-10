@@ -35,7 +35,10 @@ if __name__ == '__main__':
     
     print(GENES)
     # print(REACTIONS)
-    # print(REACTIONS_v0)
-    print(simul.essential_genes())
+    print(REACTIONS_v0)
+    print(simul.find_reactions('EX_etoh_e'))
+    # print(simul.essential_genes())
+    # print(simul.find_genes().reactions)
+    # print(simul.find_reactions().index['dhaK'])
     
     
