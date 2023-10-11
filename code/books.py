@@ -85,7 +85,10 @@ class Books:
             width=1280
         )
 
-
+        menu_how_to_play = pygame_menu.Menu('How to Play', 1280, 720,
+                        onclose=self.toggle_menu,
+                        theme=tutorial_theme)
+        
 
         menu.add.label(
             'Books Available:',
@@ -93,9 +96,10 @@ class Books:
             font_size=50,
             font_color=(70,70,70))
         menu.add.vertical_margin(15)  # Adds margin
+        menu.add.button('How to Play', menu_how_to_play, background_color = (255,215,0, 255)) #aqua»
         menu.add.button('A Brief History of Microorganisms', book_brief_history, background_color = 'green')
         menu.add.button('Intro to Modelling', book_intro_modelling, background_color = 'orange')
-        menu.add.button('How to Simulate', book_how_to_simulate, background_color = 'blue')
+        menu.add.button('How to Simulate', book_how_to_simulate, background_color = 'royalblue')
         menu.add.button('E. coli Basics', book_ecoli, background_color = 'violet')
         menu.add.button('Eat, Breathe and Love', book_eat_breathe_love, background_color = 'red')
         menu.add.button('How to Date a Model', book_date_a_model, background_color = 'pink') #aqua»
@@ -995,7 +999,105 @@ class Books:
         #     margin=(-5, -5)
         # )
         # menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
-        # menu_text.add.vertical_margin(20)  
+        # menu_text.add.vertical_margin(20)
+
+
+
+        
+        
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Moving""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = (60, 150, 140),
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use arrows (up, down, left, righ) or WASD keys to move the character.
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Interacting""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = (60, 150, 140),
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use ENTER key to open the dialogue when close to another character (scientists).
+
+            Use ENTER key to open the simulation window when close to your desk.
+
+            Use ENTER key to consult books when close to the library.
+
+            Use ENTER key to take an apple from a tree ("An apple a day keeps the doctor away").
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Buttons""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = (60, 150, 140),
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use the Mouse to click on the buttons of the dialogues.
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.label(
+            """Main Menu""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = (60, 150, 140),
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        menu_how_to_play.add.label(
+            """
+            Use M key to open the Main Menu to control the music/volume, save/exit the game and to see this tutorial again.
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        menu_how_to_play.add.vertical_margin(50)
+        menu_how_to_play.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_how_to_play.add.vertical_margin(50)
 
         menu.mainloop(self.display_surface)
 
