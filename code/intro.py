@@ -40,6 +40,7 @@ class Intro:
         #     790, 500, 250, 50, self.display_surface, 'Tutorial', self.tutorial.update)
         # botao_continue.process()
         # botao_new.process()
+        
 
         botao_tutorial = Button(
             515, 520, 250, 50, self.display_surface, 'Tutorial', self.tutorial.update)

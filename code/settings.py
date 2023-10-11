@@ -1,9 +1,9 @@
 from pygame.math import Vector2
+
 # screen
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 TILE_SIZE = 64
-
 
 MUSIC = {
     'Serene': '../audio/bg.mp3',
@@ -46,21 +46,21 @@ APPLE_POS = {
 	'Large': [(30,24), (60,65), (50,50), (16,40),(45,50), (42,70)]
 }
 
-GROW_SPEED = {
-	'corn': 1,
-	'tomato': 0.7
-}
+# GROW_SPEED = {
+# 	'corn': 1,
+# 	'tomato': 0.7
+# }
 
-SALE_PRICES = {
-	'wood': 4,
-	'apple': 2,
-	'corn': 10,
-	'tomato': 20
-}
-PURCHASE_PRICES = {
-	'corn': 4,
-	'tomato': 5
-}
+# SALE_PRICES = {
+# 	'wood': 4,
+# 	'apple': 2,
+# 	'corn': 10,
+# 	'tomato': 20
+# }
+# PURCHASE_PRICES = {
+# 	'corn': 4,
+# 	'tomato': 5
+# }
 
 
 DEFAULT_INVENTORY = [{
@@ -75,6 +75,7 @@ DEFAULT_INVENTORY = [{
 
 
 DEFAULT_INVENTORY_2 = [
+    "Margaret Dayhoff",
     [], #'List of Results'
     [], #'List of activated missions'
     [] #'List of completed missions'

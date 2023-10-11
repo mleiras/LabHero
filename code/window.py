@@ -156,7 +156,7 @@ class Window:
             menu.add.button('New Results', action=menu_simul, font_color = 'white', background_color=(0,150,50))
             menu_simul.add.label(self.results)
             save_results(self.results)
-            save_file([self.player.results, self.player.missions_activated, self.player.missions_completed])
+            save_file([self.player.player_name, self.player.results, self.player.missions_activated, self.player.missions_completed])
             menu_simul.add.vertical_margin(100)  # Adds margin
             menu_simul.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
            

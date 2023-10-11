@@ -51,7 +51,7 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					animation_text_save('Saving Game', fullscreen=True)
-					save_file([self.level.player.results, self.level.player.missions_activated, self.level.player.missions_completed])
+					save_file([self.level.player.player_name, self.level.player.results, self.level.player.missions_activated, self.level.player.missions_completed])
 					pygame.quit()
 					sys.exit()
 					

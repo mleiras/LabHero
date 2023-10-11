@@ -32,8 +32,8 @@ class Menu:
 
 
     def save_game(self, menu):
-        name = menu.get_input_data()
-        save_file([self.player.results, self.player.missions_activated, self.player.missions_completed])
+        self.player.player_name = menu.get_input_data()['name']
+        save_file([self.player.player_name, self.player.results, self.player.missions_activated, self.player.missions_completed])
         animation_text_save('Game saved')
     
 
@@ -143,20 +143,22 @@ class Menu:
         menu_how_to_play.add.vertical_margin(50)
         menu_how_to_play.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_how_to_play.add.vertical_margin(50)
+
+        def change_name(teste):
+            self.player.player_name = teste
         
-        # menu.add.button('Play', action=pygame_menu.events.BACK) # VER AQUI OUTRA SOLUÇÃO???
-        menu.add.text_input('Name: ', default='Margaret Dayhoff', textinput_id='name')
+        menu.add.text_input('Name: ', default=self.player.player_name, textinput_id='name', onreturn=change_name)
         menu.add.button('How to Play', action=menu_how_to_play)
 
         menu.add.selector('Music: ', [('Hope', 0), ('Serene', 1),  ('Happy', 2), ('Surf', 3)], default=self.music_val, onchange=self.set_music)
         menu.add.range_slider('Volume', self.volume*100, (0, 100), 1, onchange=self.set_volume,
                       rangeslider_id='volume_music',
                       value_format=lambda x: str(int(x)))
-        # menu.add.progress_bar('Volume', default=100, selectable=True, onselect=self.set_volume)
         menu.add.button('Save Game', self.save_game, menu)
         menu.add.button('Quit Game', pygame_menu.events.EXIT)
         menu.mainloop(self.display_surface)
 
+    
 
     def toggle_menu(self):
         self.toggle_shop = not self.toggle_shop

@@ -23,19 +23,6 @@ class Mission02:
         self.timer = Timer(200)
 
 
-        self.m02_step1 = [
-            "Greetings, intrepid explorer of the microbial world! I'm Dr. Carter!",
-            "We've compiled a list of ten genes within E. coli, and we suspect that one of them is",
-            "essential for its survival. Can you find each one is the essential one to E. coli's?"
-        ]
-        
-        self.m02_step2 = ["Did you already find the essential gene?",
-                          "Can you show me your results?"]
-
-        self.m02_step3 = ["Thank you! Your research will unlock a hidden chapter in E. coli's genetic story.",
-                          "Your discoveries may have far-reaching implications in our understanding of microbial life."]
-        
-
         self.menu = Mission02_info(self.toggle_menu, self.player)
 
     
@@ -47,6 +34,19 @@ class Mission02:
             self.toggle_menu()
 
     def update(self):
+
+        self.m02_step1 = [
+            f"Greetings {self.player.player_name}!, intrepid explorer of the microbial world! I'm Dr. Carter!",
+            "We've compiled a list of ten genes within E. coli, and we suspect that one of them is",
+            "essential for its survival. Can you find each one is the essential one to E. coli's?"
+        ]
+        
+        self.m02_step2 = ["Did you already find the essential gene?",
+                          "Can you show me your results?"]
+
+        self.m02_step3 = ["Thank you! Your research will unlock a hidden chapter in E. coli's genetic story.",
+                          "Your discoveries may have far-reaching implications in our understanding of microbial life."]
+        
         self.input()
         if '02' in self.missions_completed:
             self.menu_message(self.m02_step3, buttons=False)

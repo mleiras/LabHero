@@ -34,7 +34,7 @@ class Player(pygame.sprite.Sprite):
 
         self.item_inventory = DEFAULT_INVENTORY[0]
 
-        self.results, self.missions_activated, self.missions_completed = inventory2[:3]
+        self.player_name, self.results, self.missions_activated, self.missions_completed = inventory2
 
         # interaction
         self.toggle_shop = toggle_shop
