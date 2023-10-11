@@ -23,17 +23,6 @@ class Mission03:
         self.timer = Timer(200)
 
 
-        self.m03_step1 = [
-            "Greetings, intrepid explorer of the microbial world! I'm Dr. Carter!",
-            "We've compiled a list of ten genes within E. coli, and we suspect that one of them is",
-            "essential for its survival. Can you find each one is the essential one to E. coli's?"
-        ]
-        
-        self.m03_step2 = ["Did you already find the essential gene?",
-                          "Can you show me your results?"]
-
-        self.m03_step3 = ["Thank you! Your research will unlock a hidden chapter in E. coli's genetic story.",
-                          "Your discoveries may have far-reaching implications in our understanding of microbial life."]
         
 
         self.menu = Mission03_info(self.toggle_menu, self.player)
@@ -47,7 +36,24 @@ class Mission03:
             self.toggle_menu()
 
     def update(self):
+
+        self.m03_step1 = [
+            "I'm Dr. Carter! I'm on a quest to find a replacement for glucose as E. coli's energy source.",
+            "I've got a list of potential candidates like malate, lactate, and fructose.",
+            "Can you see which one works best?"
+        ]
+        
+        self.m03_step2 = ["Did you already choose the best substitute for glucose?",
+                          "Wow ... can you show me your results?"]
+
+        self.m03_step3 = [f"Thank you {self.player.player_name}!",
+                          " ",
+                          "Finding the right substitute can help in all sorts of science stuff, from making better",
+                          "biofuels to cleaning up the environment."
+                          ]
+
         self.input()
+
         if '03' in self.missions_completed:
             self.menu_message(self.m03_step3, buttons=False)
 
@@ -139,15 +145,20 @@ class Mission03_info:
 
         menu_text.add.label(
             """
-            Welcome back, budding scientist! Your journey through the microbial world continues.
-            In this mission, you'll unravel the secrets of a crucial gene that's vital for E. coli's survival. Get ready for the Genetic Mystery - The Essential Gene challenge!
+            Welcome back, Microbial Explorer! In this mission, we're delving into the world of microbial metabolism once more.
+            Our goal is to find a suitable substitute for glucose, E. coli's preferred carbon source.
+            If we can identify a good substitute, it could have significant implications for various applications, from biotechnology to environmental science.
 
             Objective:
-            Your primary objective in this mission is to identify the essential gene that E. coli cannot live without.
-            Imagine you're solving a microbial puzzle where one missing piece makes all the difference.
+            Your mission is to simulate the growth of E. coli using different carbon sources and determine which one serves as the best substitute for glucose.
+            We've provided you with a list of potential candidates:
+            
+            - malate                           - lactate
+            - glutamate                        - glutamine
+            - fumarate                         - fructose
+            - ethanol                          - 2-oxoglutarate
+            - acetaldehyde                     - acetate
 
-            List of possible genes that are essential:
-            b1241  b3115  b3736  b2975  b1524  b2278  b2926  b2297  b0728  b3919
             """,
             max_char=-1,
             wordwrap=True,
@@ -167,21 +178,20 @@ class Mission03_info:
         )
         menu_text.add.label(
             """
-            Task 1 - The Mystery Genes:
-            You'll start with a list of 10 mystery genes, each associated with a specific cellular function. These genes are like keys to E. coli's survival.
+            Task 1 - Simulate Growth:
+            Use the provided simulation tool to run growth simulations for E. coli using each of the carbon sources listed above.
 
-            Task 2 - Gene Knockout Simulations:
-            Your job is to simulate E. coli's growth without each of these genes, one by one. This process mimics what scientists do in the lab when they "knock out" a gene to observe the consequences.
-            
-            Task 3 - Observe and Compare:
-            As you simulate E. coli's growth without each gene, carefully observe the results. Does the absence of a particular gene affect growth? Do some genes appear more critical than others?
-            
-            Task 4 - Unravel the Mystery:
-            Analyze your observations and deductions. Which gene do you suspect is the essential one? Remember, the essential gene is the one that, when missing, significantly impairs E. coli's growth.
-            
-            Task 5 - Report Your Findings:
-            Compile your findings into a comprehensive report. Explain why you suspect a particular gene is essential and provide evidence from your simulations to support your conclusion.
-            
+            Task 2 - Observe Results:
+            Pay close attention to the growth patterns and biomass yield for each simulation. Biomass represents the microbial population's growth, and a higher yield indicates better growth.
+
+            Task 3 - Identify the Best Substitute:
+            Based on your observations, determine which carbon source serves as the best substitute for glucose in terms of supporting E. coli growth. You can compare the biomass yield of the chosen substitute to that of glucose for reference.
+
+            Why It Matters:
+            Understanding which carbon sources E. coli can thrive on is essential for various fields of research and industry. Finding a suitable substitute for glucose can have far-reaching implications, from optimizing bioprocesses to environmental remediation efforts. Your findings could help shape the future of microbiology and biotechnology.
+
+            Scientist's Notes:
+            Remember, microbial growth can be influenced by various factors, so it's essential to run multiple simulations and ensure the accuracy of your results. Good luck, Microbial Explorer, and may your discoveries be as sweet as fructose!
             """,
             max_char=-1,
             wordwrap=True,
@@ -191,20 +201,24 @@ class Mission03_info:
 
         
         menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_text.add.vertical_margin(20)
 
-        menu.add.label("Welcome back, budding scientist! Your journey through the microbial world continues."
+        menu.add.label("Welcome back, Microbial Explorer! Let's find a suitable substitute for glucose!"
             ,wordwrap=False,
             align=pygame_menu.locals.ALIGN_CENTER,
             font_size=34)
         
         menu.add.label(
             """
-            In this mission, you'll unravel the secrets of a crucial gene that's vital for E. coli's survival.
-            Get ready for the Genetic Mystery - The Essential Gene challenge!
+            If we can identify a good substitute, it could have significant implications for various applications, from biotechnology to environmental science.
 
-            List of possible genes that are essential:
-            b1241  b3115  b3736  b2975  b1524  b2278  b2926  b2297  b0728  b3919
+            We've provided you with a list of potential candidates:
 
+            - malate                           - lactate
+            - glutamate                        - glutamine
+            - fumarate                         - fructose
+            - ethanol                          - 2-oxoglutarate
+            - acetaldehyde                     - acetate
             """,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_CENTER,
@@ -214,7 +228,7 @@ class Mission03_info:
         if self.mission03:
             menu.add.label('Mission Activated', font_color=(150, 150, 150))
             menu.add.vertical_margin(20)
-            menu.add.text_input('Essential Gene: ', default='', input_underline='_', maxchar=5, onreturn=self.deliver_results)
+            menu.add.text_input('Substitute: ', default='', input_underline='_', maxchar=14, onreturn=self.deliver_results)
         else:
             menu.add.button('Activate Mission', action=self.activate_mission03, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  
@@ -246,7 +260,7 @@ class Mission03_info:
 
 
     def check_results(self, ans):
-        if ans == 'b2926':
+        if ans == 'fructose':
             return True
         else:
             return False

@@ -36,7 +36,7 @@ class Mission02:
     def update(self):
 
         self.m02_step1 = [
-            f"Greetings {self.player.player_name}!, intrepid explorer of the microbial world! I'm Dr. Carter!",
+            f"Greetings {self.player.player_name}!, intrepid explorer of the microbial world! I'm Dr. Silva!",
             "We've compiled a list of ten genes within E. coli, and we suspect that one of them is",
             "essential for its survival. Can you find each one is the essential one to E. coli's?"
         ]
@@ -65,7 +65,7 @@ class Mission02:
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
         # pygame.display.set_caption('Cientista')
-        imagem = pygame.image.load("../graphics/dialogues/cientista.jpg").convert()
+        imagem = pygame.image.load("../graphics/dialogues/cientista2.jpg").convert()
         
         x = 25; # x coordnate of image
         y = 520; # y coordinate of image
@@ -73,7 +73,7 @@ class Mission02:
 
         cientista_rect = pygame.draw.rect(self.screen, 'white', [25,675,150,25])
 
-        nome = self.font_nome.render('Dr. Carter', True, 'black')
+        nome = self.font_nome.render('Dr. Silva', True, 'black')
         self.screen.blit(nome,(55,677))
 
         for line, msg in enumerate(message):
@@ -182,6 +182,10 @@ class Mission02_info:
             Task 5 - Report Your Findings:
             Compile your findings into a comprehensive report. Explain why you suspect a particular gene is essential and provide evidence from your simulations to support your conclusion.
             
+            Hints:
+            - Ensure that you simulate with only one gene at a time
+            - Identify the gene that stops growth
+
             """,
             max_char=-1,
             wordwrap=True,
@@ -191,6 +195,7 @@ class Mission02_info:
 
         
         menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_text.add.vertical_margin(20)
 
         menu.add.label("Welcome back, budding scientist! Your journey through the microbial world continues."
             ,wordwrap=False,

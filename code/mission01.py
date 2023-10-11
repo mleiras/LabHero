@@ -185,7 +185,8 @@ class Mission_info:
             wordwrap=True
         )
         menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
-
+        menu_text.add.vertical_margin(20)
+        
         menu.add.label('Welcome, Lab Hero! \nYour journey begins with Mission 01: Into the Microbial World.\n'
             ,wordwrap=False,
             align=pygame_menu.locals.ALIGN_CENTER,
