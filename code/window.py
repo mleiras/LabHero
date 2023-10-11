@@ -99,17 +99,7 @@ class Window:
             menu_results.add.label('You have to make at least one simulation to see results.')
 
 
-        # MENU AFTER SIMULATION RESULTS
-        menu_simul = pygame_menu.Menu(
-            height=720,
-            onclose=pygame_menu.events.BACK,
-            theme=mytheme,
-            title='Run Simulation',
-            width=1280
-        )
         
-        menu_simul.add.label("Results:")
-        menu_simul.add.vertical_margin(50)  # Adds margin
         
 
         # MENU SUB OBJECTIVE
@@ -153,12 +143,31 @@ class Window:
             animation_text_save('Running')
             self.results = run_simul()
             self.player.results.insert(0,self.results)
-            menu.add.button('New Results', action=menu_simul, font_color = 'white', background_color=(0,150,50))
-            menu_simul.add.label(self.results)
+            try:
+                menu.remove_widget('new_results')
+                menu.remove_widget('menu_new_results')
+            except:
+                pass
+            
+            # MENU AFTER SIMULATION RESULTS
+            menu_simul = pygame_menu.Menu(
+                height=720,
+                onclose=self.toggle_menu,
+                theme=mytheme,
+                title='New Results',
+                width=1280,
+                menu_id='menu_new_results'
+            )
+            
+            menu_simul.add.label("Results:")
+            menu_simul.add.vertical_margin(50)  # Adds margin
+            
+            menu.add.button('New Results', action=menu_simul, font_color = 'white', background_color=(0,150,50), button_id='new_results')
+            menu_simul.add.label(self.results, label_id='results')
             save_results(self.results)
             save_file([self.player.player_name, self.player.results, self.player.missions_activated, self.player.missions_completed])
-            menu_simul.add.vertical_margin(100)  # Adds margin
-            menu_simul.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+            menu_simul.add.vertical_margin(100, margin_id='nr_margin')  # Adds margin
+            menu_simul.add.button('Close', pygame_menu.events.CLOSE, background_color=(70, 70, 70), button_id='nr_close')
            
 
 
@@ -198,18 +207,6 @@ class Window:
     def toggle_menu(self):
         self.desk_menu = not self.desk_menu
 
-
-    # def toggle_gene(self, txt, **id) -> None:
-    #     """
-    #     Button event on menus.
-
-    #     :param value: Button value
-    #     :param text: Button text
-    #     """
-    #     if txt:
-    #         print(f'{id} on')
-    #     else:
-    #         print(f'{id} knockout')
 
 
 
