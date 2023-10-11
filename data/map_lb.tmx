@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="60" height="48" tilewidth="64" tileheight="64" infinite="0" nextlayerid="20" nextobjectid="113">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="60" height="48" tilewidth="64" tileheight="64" infinite="0" nextlayerid="20" nextobjectid="114">
  <tileset firstgid="1" source="Tilesets/Grass.tsx"/>
  <tileset firstgid="81" source="Tilesets/House.tsx"/>
  <tileset firstgid="116" source="Tilesets/House Decoration.tsx"/>
@@ -682,6 +682,7 @@
   <object id="87" name="Mission03" x="1217" y="1024.83" width="61.8333" height="62.1667"/>
   <object id="102" name="Books" x="1282" y="1920.5" width="252.667" height="62.3337"/>
   <object id="108" name="Books" x="1024.5" y="1919.83" width="126.75" height="63.667"/>
+  <object id="113" name="Doctor" x="1923" y="2114.5" width="58.5" height="122.5"/>
  </objectgroup>
  <objectgroup id="16" name="Objects" visible="0">
   <object id="7" name="Trader" gid="190" x="1282.31" y="1024.01" width="60.3804" height="63.9457"/>

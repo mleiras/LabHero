@@ -5,7 +5,7 @@ from timers import Timer
 import time
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory2, talk_1, talk_2, talk_3):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory2, talk_1, talk_2, talk_3, dialogues):
         super().__init__(group)
 
         self.import_assets()
@@ -43,9 +43,11 @@ class Player(pygame.sprite.Sprite):
         self.talk_3 = talk_3
         self.desk_menu = desk_menu
         self.books = books
+        self.dialogues = dialogues
         self.tree_sprites = tree_sprites
         self.interaction = interaction
         self.soil_layer = soil_layer
+
 
         	
         # music
@@ -145,7 +147,6 @@ class Player(pygame.sprite.Sprite):
                     elif collided_interaction_sprite[0].name == 'Mission03':
                         self.talk_3()
                     
-
                     elif collided_interaction_sprite[0].name == 'Desk':
                         # print(time.time())
                         animation_text_save('... please wait ...', time = 100) #, time=500)
@@ -153,6 +154,9 @@ class Player(pygame.sprite.Sprite):
 
                     elif collided_interaction_sprite[0].name == 'Books':
                         self.books()
+
+                    elif collided_interaction_sprite[0].name == 'Doctor':
+                        self.dialogues()
                         
             
     def get_status(self):

@@ -11,6 +11,8 @@ from window import Window
 from books import Books
 from mission01 import Mission01
 from mission02 import Mission02
+
+from dialogues import Dialogues
 from save_load import save_file
 from functions import *
 
@@ -45,6 +47,8 @@ class Level:
 		self.menu = Menu(self.player, self.toggle_shop)
 		self.window = Window(self.desk_menu, self.player)
 		self.books = Books(self.read_books)
+		self.dialogues = Dialogues(self.toggle_dialogue, self.player)
+		self.dialogues_active = False
 
 		# sounds
 		self.success = pygame.mixer.Sound('../audio/success.wav') 
@@ -112,6 +116,7 @@ class Level:
 					talk_1 = self.toggle_talk_1,
 					talk_2 = self.toggle_talk_2,
 					talk_3 = self.toggle_talk_3,
+					dialogues = self.toggle_dialogue
 					# music = self.music_bg
 					)
 			
@@ -128,6 +133,9 @@ class Level:
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 			
 			if obj.name == 'Books':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Doctor':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 			
 
@@ -152,6 +160,9 @@ class Level:
 	
 	def toggle_talk_3(self):
 		self.talk_3_active = not self.talk_3_active
+
+	def toggle_dialogue(self):
+		self.dialogues_active = not self.dialogues_active
 
 	def desk_menu(self):
 		self.desk_active = not self.desk_active
@@ -214,6 +225,9 @@ class Level:
 
 		elif self.books_active:
 			self.books.update()
+
+		elif self.dialogues_active:
+			self.dialogues.update()
 			
 		else:
 			self.all_sprites.update(dt)
