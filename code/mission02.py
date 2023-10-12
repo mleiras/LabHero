@@ -217,9 +217,10 @@ class Mission02_info:
         menu.add.button('Mission 02 Briefing', menu_text, font_color = 'black',background_color=(255,215,0, 255))
         menu.add.vertical_margin(50)  
         if self.mission02:
+            menu.add.text_input('Essential Gene: ', default='', input_underline='_', maxchar=5, onreturn=self.deliver_results)
+            menu.add.vertical_margin(50)
             menu.add.label('Mission Activated', font_color=(150, 150, 150))
             menu.add.vertical_margin(20)
-            menu.add.text_input('Essential Gene: ', default='', input_underline='_', maxchar=5, onreturn=self.deliver_results)
         else:
             menu.add.button('Activate Mission', action=self.activate_mission02, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  

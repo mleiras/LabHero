@@ -203,32 +203,35 @@ class Mission03_info:
         menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_text.add.vertical_margin(20)
 
-        menu.add.label("Welcome back, Microbial Explorer! Let's find a suitable substitute for glucose!"
+        menu.add.vertical_margin(20)  
+        menu.add.label("""Welcome back, Microbial Explorer! Let's find a suitable substitute for glucose!"""
             ,wordwrap=False,
             align=pygame_menu.locals.ALIGN_CENTER,
             font_size=34)
-        
+
         menu.add.label(
             """
             If we can identify a good substitute, it could have significant implications for various applications, from biotechnology to environmental science.
 
             We've provided you with a list of potential candidates:
 
-            - malate                           - lactate
+            - malate                             - lactate
             - glutamate                        - glutamine
             - fumarate                         - fructose
-            - ethanol                          - 2-oxoglutarate
-            - acetaldehyde                     - acetate
+            - ethanol                            - 2-oxoglutarate
+            - acetaldehyde                    - acetate
             """,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_CENTER,
             font_size=30)
+        
         menu.add.button('Mission 03 Briefing', menu_text, font_color = 'black',background_color=(255,215,0, 255))
         menu.add.vertical_margin(50)  
         if self.mission03:
+            menu.add.text_input('Substitute: ', default='', input_underline='_', maxchar=14, onreturn=self.deliver_results)
+            menu.add.vertical_margin(50)
             menu.add.label('Mission Activated', font_color=(150, 150, 150))
             menu.add.vertical_margin(20)
-            menu.add.text_input('Substitute: ', default='', input_underline='_', maxchar=14, onreturn=self.deliver_results)
         else:
             menu.add.button('Activate Mission', action=self.activate_mission03, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  

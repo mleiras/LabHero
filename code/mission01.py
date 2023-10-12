@@ -202,9 +202,10 @@ class Mission_info:
         menu.add.button('Mission 01 Briefing', menu_text, font_color = 'black',background_color=(255,215,0, 255))
         menu.add.vertical_margin(50)  
         if self.mission01:
-            menu.add.label('Mission Activated', font_color=(150, 150, 150))
-            menu.add.vertical_margin(20)  
-            menu.add.button('Deliver Results', action=self.deliver_results, background_color=(50,100,100)) ## TASK: ADICIONAR FUNÇÃO ENTREGAR RESULTADOS  
+              menu.add.button('Deliver Results', action=self.deliver_results, background_color=(50,100,100)) ## TASK: ADICIONAR FUNÇÃO ENTREGAR RESULTADOS
+              menu.add.vertical_margin(50)
+              menu.add.label('Mission Activated', font_color=(150, 150, 150))
+              menu.add.vertical_margin(20)
         else:
             menu.add.button('Activate Mission', action=self.activate_mission01, background_color=(50,100,100))        
         menu.add.vertical_margin(20)  
