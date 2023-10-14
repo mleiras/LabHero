@@ -8,8 +8,8 @@
  <tileset firstgid="187" source="Tilesets/interaction.tsx"/>
  <tileset firstgid="189" source="Tilesets/Objects.tsx"/>
  <tileset firstgid="199" source="Tilesets/Plant Decoration.tsx"/>
- <tileset firstgid="209" source="Secondary Characters.tsx"/>
- <tileset firstgid="222" source="Objetos Novos.tsx"/>
+ <tileset firstgid="209" source="Tilesets/Secondary Characters.tsx"/>
+ <tileset firstgid="222" source="Tilesets/Objetos Novos.tsx"/>
  <layer id="10" name="Water" width="60" height="48">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
