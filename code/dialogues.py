@@ -4,7 +4,6 @@ from settings import *
 from save_load import *
 from timers import Timer
 from options_values import *
-from functions import animation_text_save
 from button import Button
 
 
