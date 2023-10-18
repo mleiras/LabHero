@@ -155,7 +155,7 @@ class Player(pygame.sprite.Sprite):
                     elif collided_interaction_sprite[0].name == 'Books':
                         self.books()
 
-                    elif collided_interaction_sprite[0].name == 'Doctor':
+                    elif collided_interaction_sprite[0].name == 'Colleague':
                         self.dialogues()
                         
             

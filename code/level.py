@@ -135,7 +135,7 @@ class Level:
 			if obj.name == 'Books':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Doctor':
+			if obj.name == 'Colleague':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 			
 
