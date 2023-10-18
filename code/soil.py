@@ -28,11 +28,8 @@ class SoilLayer:
         ground = pygame.image.load('../graphics/world/ground_lb.png')
         h_tiles, v_tiles = ground.get_width() // TILE_SIZE, ground.get_height() // TILE_SIZE
 
-        # load game
-        # if load_game: self.grid = load_game.grid else:
         self.grid = [ [[] for col in range(h_tiles)] for row in range(v_tiles) ]
-        for x, y, _ in load_pygame('../data/map_lb.tmx').get_layer_by_name('Farmable').tiles():
-            self.grid[y][x].append('F')
+        
 
     def create_hit_rects(self):
         self.hit_rects = []
