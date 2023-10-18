@@ -47,6 +47,33 @@ class Menu:
                         onclose=self.toggle_menu,
                         theme=tutorial_theme)
         
+        menu_credits = pygame_menu.Menu('Credits', 1280, 720,
+                        onclose=self.toggle_menu,
+                        theme=mytheme)
+        
+        # menu_credits.add.label(
+        #     """
+        #     Font Lychee Soda by jeti {https://fontenddev.com/fonts/lychee-soda/}{link}
+        #     Music by 
+        #     """,
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_CENTER,
+        #     margin=(0, 0)
+        # )
+        menu_credits.add.vertical_margin(50)
+        menu_credits.add.url('https://fontenddev.com/fonts/lychee-soda/', 'Font Lychee Soda by jeti', font_color='firebrick')
+        menu_credits.add.vertical_margin(20)
+        menu_credits.add.url('https://dafonttop.com/munro.font', 'Font Munro by Ed Merrit', font_color='firebrick')
+        menu_credits.add.vertical_margin(20)
+        menu_credits.add.url('https://www.FesliyanStudios.com', 'Royalty free music from https://www.FesliyanStudios.com', font_color=(110,175,221))
+        menu_credits.add.vertical_margin(20)
+        menu_credits.add.url('https://cupnooble.itch.io/', 'Asset Pack by Cup Nooble', font_color=(84,145,76))
+        menu_credits.add.vertical_margin(50)
+        menu_credits.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_credits.add.vertical_margin(50)
+        
+
 
         
         
@@ -155,6 +182,7 @@ class Menu:
                       rangeslider_id='volume_music',
                       value_format=lambda x: str(int(x)))
         menu.add.button('Save Game', self.save_game, menu)
+        menu.add.button('Credits', action=menu_credits)
         menu.add.button('Quit Game', pygame_menu.events.EXIT)
         menu.mainloop(self.display_surface)
 
