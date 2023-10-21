@@ -23,23 +23,6 @@ class Mission01:
         self.screen = pygame.display.get_surface() 
         self.timer = Timer(200)
 
-
-        # self.m01_step1 = [
-        #     f"Hello {self.player.player_name}! I'm Dr. Martinez, and I'm working on groundbreaking research involving E. coli.",
-        #     "We're trying to understand how this remarkable microbe adapts to different environments,",
-        #     "especially anaerobic ones. Can you help me?"
-        # ]
-        #     # "Olá! Tenho uma missão para ti",
-        #     #               "Ajuda-me com este modelo de e coli",
-        #     #               "Consegues?"]
-        
-        # self.m01_step2 = ["Did you already made a simulation?",
-        #                   "Can you show me your results?"]
-
-        # self.m01_step3 = ["Thank you! You're pioneering our understanding of E. coli's resilience.",
-        #                   "Your discoveries will shape our research."]
-        
-
         self.menu = Mission_info(self.toggle_menu, self.player)
 
     
@@ -52,9 +35,9 @@ class Mission01:
 
     def update(self):
         self.m01_step1 = [
-            f"Hello {self.player.player_name}! I'm Dr. Martinez, and I'm working on groundbreaking research involving E. coli.",
-            "We're trying to understand how this remarkable microbe adapts to different environments,",
-            "especially anaerobic ones. Can you help me?"
+            f"Hello {self.player.player_name}! I'm Dr. Martinez, and I'm working on groundbreaking research",
+            "involving E. coli.  We're trying to understand how this remarkable microbe adapts to",
+            "different environments, especially anaerobic ones. Can you help me?"
         ]
             # "Olá! Tenho uma missão para ti",
             #               "Ajuda-me com este modelo de e coli",

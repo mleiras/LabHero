@@ -167,7 +167,7 @@ class Window:
             save_results(self.results)
             save_file([self.player.player_name, self.player.results, self.player.missions_activated, self.player.missions_completed])
             menu_simul.add.vertical_margin(100, margin_id='nr_margin')  # Adds margin
-            menu_simul.add.button('Close', pygame_menu.events.CLOSE, background_color=(70, 70, 70), button_id='nr_close')
+            menu_simul.add.button('Close', pygame_menu.events.BACK, background_color=(70, 70, 70), button_id='nr_close')
            
 
 

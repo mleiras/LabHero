@@ -181,12 +181,11 @@ class Menu:
             self.player.player_name = teste
         
         menu.add.text_input('Name: ', default=self.player.player_name, textinput_id='name', onreturn=change_name)
-        menu.add.button('How to Play', action=menu_how_to_play)
-
         menu.add.selector('Music: ', [('Hope', 0), ('Serene', 1),  ('Happy', 2), ('Surf', 3)], default=self.music_val, onchange=self.set_music)
         menu.add.range_slider('Volume', self.volume*100, (0, 100), 1, onchange=self.set_volume,
                       rangeslider_id='volume_music',
                       value_format=lambda x: str(int(x)))
+        menu.add.button('How to Play', action=menu_how_to_play)
         menu.add.button('Save Game', self.save_game, menu)
         menu.add.button('Credits', action=menu_credits)
         menu.add.button('Quit Game', pygame_menu.events.EXIT)
