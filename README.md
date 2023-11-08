@@ -1,4 +1,4 @@
-![LabHero](data/LabHero.png)
+![LabHero](LabHero.png)
 
 # LabHero
 
@@ -7,8 +7,6 @@ A serious game that empowers non-bioinformaticians to learn how to use genome-sc
 The game consists of simulating distinct environmental and genetic modifications of towards specific objectives. At each game level, the player is required to define a strategy that encompasses selecting a medium and/or choosing genetic modifications to achieve a certain result.
 
 ## Introduction
-
-![LabHero Introduction Screen](data/LabHero_Intro.png)
 
 This game was developed as a part of the master's thesis of Mónica Leiras "Development of a serious game to stimulate the learning of genome-scale metabolic modeling concepts" (MSc in Bioinformatics - University of Minho).
 
