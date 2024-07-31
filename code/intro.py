@@ -3,13 +3,15 @@ from settings import *
 import pygame_menu
 from options_values import *
 from button import Button
+from utils import *
 
 
 class Intro:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf', 100)
-        self.font_text = pygame.font.Font('../font/LycheeSoda.ttf', 30)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path, 100)
+        self.font_text = pygame.font.Font(font_path, 30)
         self.width = 400
         self.space = 10
         self.padding = 8
@@ -53,7 +55,8 @@ class Tutorial:
 
         # genereal setup
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf', 30)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path, 30)
 
 
     def setup(self):

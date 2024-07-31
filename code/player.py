@@ -3,6 +3,7 @@ from settings import *
 from functions import *
 from timers import Timer
 import time
+from utils import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory2, talk_1, talk_2, talk_3, dialogues):
@@ -74,7 +75,8 @@ class Player(pygame.sprite.Sprite):
                            'right_idle': [], 'left_idle': [], 'up_idle': [], 'down_idle': []}
         
         for animation in self.animations.keys():
-            full_path = '../graphics/character/' + animation
+            path_1 = get_resource_path('graphics/character/')
+            full_path = path_1 + animation
             self.animations[animation] = import_folder(full_path)
     
     def animate(self, dt):

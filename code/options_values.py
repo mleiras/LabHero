@@ -2,6 +2,8 @@ import mewpy
 from mewpy.simulation import get_simulator
 import pygame_menu
 from save_load import *
+from utils import *
+from cobra.io import read_sbml_model
 
 mytheme = pygame_menu.themes.THEME_GREEN.copy() #(186,214,177)
 font = pygame_menu.font.FONT_MUNRO
@@ -19,9 +21,8 @@ tutorial_theme = mytheme.copy()
 tutorial_theme.background_color = (255,215,0, 255)
 
 
-from cobra.io import read_sbml_model
-model = read_sbml_model('../data/models/e_coli_core.xml.gz') #('.../data/models/iMM904.xml.gz') #('../data/models/e_coli_core.xml.gz')
-# model = read_sbml_model('.../data/models/iML1515.xml.gz')
+model_path = get_resource_path('data/models/e_coli_core.xml.gz') #('.../data/models/iMM904.xml.gz') #('../data/models/e_coli_core.xml.gz')
+model = read_sbml_model(model_path) 
 simul = get_simulator(model)
 objective = list(simul.objective.keys())[0]
 
@@ -34,7 +35,7 @@ GENES_v0 = simul.find_genes().name # dataframe
 GENES = [name for (name, _) in GENES_v0.items()]
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # tests
     
     print(GENES)
     # print(REACTIONS)

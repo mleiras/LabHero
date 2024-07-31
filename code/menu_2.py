@@ -6,7 +6,7 @@ from options_values import *
 from save_load import *
 from timers import Timer
 from functions import animation_text_save
-
+from utils import *
 
 
 class Menu:
@@ -16,7 +16,8 @@ class Menu:
         self.toggle_menu = toggle_menu
         self.player = player
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path, 30)
 
         # self.setup()
 
