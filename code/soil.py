@@ -3,6 +3,7 @@ from settings import *
 from functions import *
 from pytmx.util_pygame import load_pygame
 from random import choice
+from utils import *
 
 class SoilLayer:
     def __init__(self, all_sprites, collision_sprites):
@@ -15,8 +16,10 @@ class SoilLayer:
         self.water_sprites = pygame.sprite.Group()
 
         # graphics
-        self.soil_surfs= import_folder_dict('../graphics/soil/')
-        self.water_surfs= import_folder('../graphics/soil_water/')
+        soil_path = get_resource_path('graphics/soil/')
+        water_path = get_resource_path('graphics/soil_water/')
+        self.soil_surfs= import_folder_dict(soil_path)
+        self.water_surfs= import_folder(water_path)
 
         self.create_soil_grid()
         self.create_hit_rects()
@@ -25,7 +28,8 @@ class SoilLayer:
 
 
     def create_soil_grid(self):
-        ground = pygame.image.load('../graphics/world/ground_lb.png')
+        ground_path = get_resource_path('graphics/world/ground_lb.png')
+        ground = pygame.image.load(ground_path)
         h_tiles, v_tiles = ground.get_width() // TILE_SIZE, ground.get_height() // TILE_SIZE
 
         self.grid = [ [[] for col in range(h_tiles)] for row in range(v_tiles) ]
@@ -176,7 +180,8 @@ class Plant(pygame.sprite.Sprite):
         self.check_watered = check_watered
 
         #graphics
-        self.frames = import_folder(f'../graphics/fruit/{plant_type}')
+        frames_path = get_resource_path('../graphics/fruit/')
+        self.frames = import_folder(frames_path/plant_type)
         
         # plant growing
         self.age = 0

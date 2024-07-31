@@ -12,7 +12,8 @@ class Books:
         # general setup
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path, 30)
 
         # movement
         self.index = 0

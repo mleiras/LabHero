@@ -15,6 +15,7 @@ from mission03 import Mission03
 from dialogues import Dialogues
 from save_load import save_file
 from functions import *
+from utils import *
 
 class Level:
 	def __init__(self, load_game):
@@ -51,7 +52,8 @@ class Level:
 		self.dialogues_active = False
 
 		# sounds
-		self.success = pygame.mixer.Sound('../audio/success.wav') 
+		success_path = get_resource_path('audio/success.wav')
+		self.success = pygame.mixer.Sound(success_path) 
 		self.success.set_volume(0.1)
 
 		# music
@@ -60,7 +62,9 @@ class Level:
 		# self.music_bg.play(loops = -1)
 
 	def setup(self):
-		tmx_data = load_pygame('../data/map_lb.tmx')
+		map_path = get_resource_path('data/map_lb.tmx')
+		tmx_data = load_pygame(map_path)
+		surf_path = get_resource_path('graphics/world/ground_lb.png')
 
 		# house
 		for layer in ['HouseFloor', 'HouseFurnitureBottom']:
@@ -76,7 +80,8 @@ class Level:
 			Generic((x* TILE_SIZE, y* TILE_SIZE), surf, [self.all_sprites, self.collision_sprites], LAYERS['main'])
 
 		# Water
-		water_frames = import_folder('../graphics/water')
+		water_frames_path = get_resource_path('graphics/water')
+		water_frames = import_folder(water_frames_path)
 		for x, y, surf in tmx_data.get_layer_by_name('Water').tiles():
 			Water((x* TILE_SIZE, y* TILE_SIZE), water_frames, self.all_sprites)
 
@@ -141,7 +146,7 @@ class Level:
 
 		Generic(
 			pos = (0,0),
-			surf = pygame.image.load('../graphics/world/ground_lb.png').convert_alpha(),
+			surf = pygame.image.load(surf_path).convert_alpha(),
 			groups = self.all_sprites,
 			z = LAYERS['ground'])
 

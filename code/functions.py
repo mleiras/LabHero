@@ -29,11 +29,12 @@ def import_folder_dict(path):
 
 def animation_text_save(text, time=1200, fullscreen=False):
         display_surface = pygame.display.get_surface()
+        font_path = get_resource_path('font/LycheeSoda.ttf')
 
         if fullscreen:
             time = 1000
             display_surface.fill('gold')
-            title = pygame.font.Font('../font/LycheeSoda.ttf',100).render('Lab Hero', False, 'black')
+            title = pygame.font.Font(font_path,100).render('Lab Hero', False, 'black')
             title_rect = title.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
             display_surface.blit(title, title_rect)
 
@@ -42,7 +43,7 @@ def animation_text_save(text, time=1200, fullscreen=False):
 
         while not sceneExit:
 
-            text_surf = pygame.font.Font('../font/LycheeSoda.ttf',30).render(text,False,'black')
+            text_surf = pygame.font.Font(font_path, 30).render(text,False,'black')
             text_rect = text_surf.get_rect(midbottom = (SCREEN_WIDTH/2, SCREEN_HEIGHT-20))
             pygame.draw.rect(display_surface, 'white', text_rect.inflate(10,10),0,2) #ultimos 2 argumentos se quiser bordas redondas pode-se adicionar estes argumentos
             display_surface.blit(text_surf, text_rect)

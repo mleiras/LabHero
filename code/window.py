@@ -15,7 +15,8 @@ class Window:
         self.player = player
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path,30)
         self.results = ''
 
         # self.index = 0
@@ -92,7 +93,8 @@ class Window:
         )
         menu_results.add.vertical_margin(20)
         try:
-            res = load_file('player_history/results')
+            res_path = get_resource_path('code/player_history/results')
+            res = load_file(res_path)
 
             menu_results.add.label(res)
         except FileNotFoundError:

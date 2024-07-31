@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from random import randint, choice
 from timers import Timer
-
+from utils import *
 
 class Generic(pygame.sprite.Sprite):
     def __init__(self, pos, surf, groups, z = LAYERS['main']):
@@ -52,7 +52,8 @@ class Tree(Generic):
 
         
         # apples
-        self.apples_surf = pygame.image.load('../graphics/fruit/apple.png')
+        apples_path = get_resource_path('graphics/fruit/apple.png')
+        self.apples_surf = pygame.image.load(apples_path)
         self.apple_pos = APPLE_POS[name]
         self.apple_sprites = pygame.sprite.Group()
         self.create_fruit()

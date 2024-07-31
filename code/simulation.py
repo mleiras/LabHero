@@ -6,7 +6,7 @@ from options_values import *
 
 def run_simul():
 
-    data_simul = load_file('player_history/simulation_file')
+    data_simul = load_file(get_resource_path('code/player_history/simulation_file'))
 
     method, objective, genes, reactions = data_simul
 

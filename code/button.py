@@ -1,5 +1,5 @@
 import pygame
-
+from utils import *
 
 class Button():
     def __init__(self, x, y, width, height, screen, buttonText='Button', onclickFunction=None, onePress=False):
@@ -17,7 +17,8 @@ class Button():
             'hover': '#666666',
             'pressed': '#333333',
         }
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',34)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path,34)
 
         self.buttonSurface = pygame.Surface((self.width, self.height))
         self.buttonRect = pygame.Rect(self.x, self.y, self.width, self.height)

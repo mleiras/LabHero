@@ -17,8 +17,10 @@ class Mission03:
 
         self.toggle_menu = toggle_menu
 
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
-        self.font_nome = pygame.font.Font('../font/LycheeSoda.ttf',24)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+
+        self.font = pygame.font.Font(font_path,30)
+        self.font_nome = pygame.font.Font(font_path,24)
         self.screen = pygame.display.get_surface() 
         self.timer = Timer(200)
 
@@ -71,7 +73,8 @@ class Mission03:
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
         # pygame.display.set_caption('Cientista')
-        imagem = pygame.image.load("../graphics/dialogues/cientista.jpg").convert()
+        imagem_path = get_resource_path('graphics/dialogues/cientista.jpg')
+        imagem = pygame.image.load(imagem_path).convert()
         
         x = 25; # x coordnate of image
         y = 520; # y coordinate of image
@@ -107,7 +110,8 @@ class Mission03_info:
 
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path,30)
         
         self.index = 0
         self.timer = Timer(200)
@@ -117,13 +121,14 @@ class Mission03_info:
         else:
             self.mission03 = False
 
-        #sounds     
-        self.success = pygame.mixer.Sound('../audio/success_3.wav')
+        #sounds
+        success_path = get_resource_path('audio/success_3.wav')
+        self.success = pygame.mixer.Sound(success_path)
         self.success.set_volume(1.2)
 
-        self.failed = pygame.mixer.Sound('../audio/failed.wav')
+        failed_path = get_resource_path('audio/failed.wav')
+        self.failed = pygame.mixer.Sound(failed_path)
         self.failed.set_volume(1.2)
-
 
     def setup(self):
         

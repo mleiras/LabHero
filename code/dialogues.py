@@ -5,7 +5,7 @@ from save_load import *
 from timers import Timer
 from options_values import *
 from button import Button
-
+from utils import *
 
 class Dialogues: 
     def __init__(self, toggle_menu, player) -> None:
@@ -14,8 +14,9 @@ class Dialogues:
 
         self.toggle_menu = toggle_menu
 
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
-        self.font_nome = pygame.font.Font('../font/LycheeSoda.ttf',24)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path,30)
+        self.font_nome = pygame.font.Font(font_path,24)
         self.screen = pygame.display.get_surface() 
         self.timer = Timer(200)
 
@@ -49,7 +50,8 @@ class Dialogues:
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
         # pygame.display.set_caption('Cientista')
-        imagem = pygame.image.load("../graphics/dialogues/Sequeira.jpg").convert()
+        imagem_path = get_resource_path('graphics/dialogues/Sequeira.jpg')
+        imagem = pygame.image.load(imagem_path).convert()
         
         x = 25; # x coordnate of image
         y = 520; # y coordinate of image

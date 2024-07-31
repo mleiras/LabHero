@@ -7,6 +7,7 @@ from options_values import *
 from functions import animation_text_save
 from button import Button
 from math import isclose
+from utils import *
 
 
 class Mission01: 
@@ -18,8 +19,10 @@ class Mission01:
 
         self.toggle_menu = toggle_menu
 
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
-        self.font_nome = pygame.font.Font('../font/LycheeSoda.ttf',24)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+
+        self.font = pygame.font.Font(font_path,30)
+        self.font_nome = pygame.font.Font(font_path,24)
         self.screen = pygame.display.get_surface() 
         self.timer = Timer(200)
 
@@ -68,7 +71,8 @@ class Mission01:
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
         # pygame.display.set_caption('Cientista')
-        imagem = pygame.image.load("../graphics/dialogues/martinez.jpg").convert()
+        imagem_path = get_resource_path('graphics/dialogues/martinez.jpg')
+        imagem = pygame.image.load(imagem_path).convert()
         
         x = 25; # x coordnate of image
         y = 520; # y coordinate of image
@@ -104,7 +108,8 @@ class Mission_info:
 
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
-        self.font = pygame.font.Font('../font/LycheeSoda.ttf',30)
+        font_path = get_resource_path('font/LycheeSoda.ttf')
+        self.font = pygame.font.Font(font_path,30)
         
         self.index = 0
         self.timer = Timer(200)
@@ -114,11 +119,13 @@ class Mission_info:
         else:
             self.mission01 = False
 
-        #sounds     
-        self.success = pygame.mixer.Sound('../audio/success_3.wav')
+        #sounds
+        success_path = get_resource_path('audio/success_3.wav')
+        self.success = pygame.mixer.Sound(success_path)
         self.success.set_volume(1.2)
 
-        self.failed = pygame.mixer.Sound('../audio/failed.wav')
+        failed_path = get_resource_path('audio/failed.wav')
+        self.failed = pygame.mixer.Sound(failed_path)
         self.failed.set_volume(1.2)
 
 
@@ -197,7 +204,7 @@ class Mission_info:
 
 
 
-    def toggle_menu(self):
+    def toggle_menu(self): ### CORRIGIR AQUI NOME
         self.toggle_talk = not self.toggle_talk
 
 
@@ -230,9 +237,12 @@ class Mission_info:
         #     menu_results.add.label(res)
         # except:
         #     menu_results.add.label('You have to make at least one simulation to see results.')
-        m01_results = load_file('player_history/mission01') 
+        m01_path = get_resource_path('code/player_history/mission01')
+        m01_results = load_file(m01_path)
+        
         try:
-            name, *data = load_file('player_history/data')
+            data_path = get_resource_path('code/player_history/data')
+            name, *data = load_file(data_path)
             results = data[0][0]
 
             value = float(results[11:21])
