@@ -10,6 +10,9 @@ The game consists of simulating distinct environmental and genetic modifications
 
 This game was developed as a part of the master's thesis of Mónica Leiras "Development of a serious game to stimulate the learning of genome-scale metabolic modeling concepts" (MSc in Bioinformatics - University of Minho).
 
+## Installation
+
+You can find and download an executable in this [link](https://drive.google.com/file/d/1lnpiL0vEoQQWnRdPfIhEp-e2YUq5Is2z/view?usp=sharing).
 
 ## Game Story 
 

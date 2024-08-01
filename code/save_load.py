@@ -6,7 +6,8 @@ def save_file(data):
         json.dump(data, test_file)
 
 def load_file(filename):
-    with open(f'{filename}.txt') as test_file:
+    filename_path = get_resource_path(filename)
+    with open(f'{filename_path}.txt') as test_file:
         data = json.load(test_file)
         return data
 
