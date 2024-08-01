@@ -1,130 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="git" name="Objetos Novos" tilewidth="64" tileheight="65" tilecount="42" columns="0">
+<tileset version="1.10" tiledversion="1.11.0" name="Objetos Novos" tilewidth="64" tileheight="65" tilecount="44" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
-  <image width="64" height="64" source="../../graphics/environment/canto superior esquerdo.png"/>
+  <image source="../../graphics/environment/canto superior esquerdo.png" width="64" height="64"/>
  </tile>
  <tile id="2">
-  <image width="64" height="64" source="../../graphics/environment/canto superior direito.png"/>
+  <image source="../../graphics/environment/canto superior direito.png" width="64" height="64"/>
  </tile>
  <tile id="3">
-  <image width="64" height="64" source="../../graphics/environment/bancada lateral.png"/>
+  <image source="../../graphics/environment/bancada lateral.png" width="64" height="64"/>
  </tile>
  <tile id="4">
-  <image width="64" height="64" source="../../graphics/environment/bancada lateral fim.png"/>
+  <image source="../../graphics/environment/bancada lateral fim.png" width="64" height="64"/>
  </tile>
  <tile id="5">
-  <image width="64" height="64" source="../../graphics/environment/bancada horizontal.png"/>
+  <image source="../../graphics/environment/bancada horizontal.png" width="64" height="64"/>
  </tile>
  <tile id="6">
-  <image width="64" height="64" source="../../graphics/environment/bancada horizontal esquerda.png"/>
+  <image source="../../graphics/environment/bancada horizontal esquerda.png" width="64" height="64"/>
  </tile>
  <tile id="7">
-  <image width="64" height="64" source="../../graphics/environment/bancada horizontal direita.png"/>
+  <image source="../../graphics/environment/bancada horizontal direita.png" width="64" height="64"/>
  </tile>
  <tile id="8">
-  <image width="64" height="64" source="../../graphics/environment/computer.png"/>
+  <image source="../../graphics/environment/computer.png" width="64" height="64"/>
  </tile>
  <tile id="9">
-  <image width="64" height="64" source="../../graphics/environment/sofá esquerda.png"/>
+  <image source="../../graphics/environment/sofá esquerda.png" width="64" height="64"/>
  </tile>
  <tile id="10">
-  <image width="64" height="64" source="../../graphics/environment/sofá direita.png"/>
+  <image source="../../graphics/environment/sofá direita.png" width="64" height="64"/>
  </tile>
  <tile id="12">
-  <image width="64" height="64" source="../../graphics/environment/microscopio.png"/>
+  <image source="../../graphics/environment/microscopio.png" width="64" height="64"/>
  </tile>
  <tile id="13">
-  <image width="64" height="64" source="../../graphics/environment/maquina de café.png"/>
+  <image source="../../graphics/environment/maquina de café.png" width="64" height="64"/>
  </tile>
  <tile id="14">
-  <image width="64" height="64" source="../../graphics/environment/estante livros up.png"/>
+  <image source="../../graphics/environment/estante livros up.png" width="64" height="64"/>
  </tile>
  <tile id="15">
-  <image width="64" height="64" source="../../graphics/environment/estante livros down.png"/>
+  <image source="../../graphics/environment/estante livros down.png" width="64" height="64"/>
  </tile>
  <tile id="16">
-  <image width="64" height="64" source="../../graphics/environment/Pc-left.png"/>
+  <image source="../../graphics/environment/Pc-left.png" width="64" height="64"/>
  </tile>
  <tile id="17">
-  <image width="64" height="64" source="../../graphics/environment/Pc-right.png"/>
+  <image source="../../graphics/environment/Pc-right.png" width="64" height="64"/>
  </tile>
  <tile id="18">
-  <image width="64" height="64" source="../../graphics/environment/pc down.png"/>
+  <image source="../../graphics/environment/pc down.png" width="64" height="64"/>
  </tile>
  <tile id="19">
-  <image width="64" height="64" source="../../graphics/environment/black_chair_left.png"/>
+  <image source="../../graphics/environment/black_chair_left.png" width="64" height="64"/>
  </tile>
  <tile id="20">
-  <image width="64" height="64" source="../../graphics/environment/black_chair_right.png"/>
+  <image source="../../graphics/environment/black_chair_right.png" width="64" height="64"/>
  </tile>
  <tile id="25">
-  <image width="64" height="64" source="../../graphics/environment/Pc-left_2.png"/>
+  <image source="../../graphics/environment/Pc-left_2.png" width="64" height="64"/>
  </tile>
  <tile id="26">
-  <image width="64" height="64" source="../../graphics/environment/Pc-right_2.png"/>
+  <image source="../../graphics/environment/Pc-right_2.png" width="64" height="64"/>
  </tile>
  <tile id="33">
-  <image width="64" height="64" source="../../graphics/environment/pc down_2.png"/>
+  <image source="../../graphics/environment/pc down_2.png" width="64" height="64"/>
  </tile>
  <tile id="34">
-  <image width="64" height="64" source="../../graphics/environment/pc down_3.png"/>
+  <image source="../../graphics/environment/pc down_3.png" width="64" height="64"/>
  </tile>
  <tile id="35">
-  <image width="64" height="64" source="../../graphics/environment/pc down_4.png"/>
+  <image source="../../graphics/environment/pc down_4.png" width="64" height="64"/>
  </tile>
  <tile id="36">
-  <image width="64" height="64" source="../../graphics/environment/pc down_5.png"/>
+  <image source="../../graphics/environment/pc down_5.png" width="64" height="64"/>
  </tile>
  <tile id="37">
-  <image width="64" height="64" source="../../graphics/environment/computer.png"/>
+  <image source="../../graphics/environment/computer.png" width="64" height="64"/>
  </tile>
  <tile id="38">
-  <image width="64" height="64" source="../../graphics/environment/maquina de café.png"/>
+  <image source="../../graphics/environment/maquina de café.png" width="64" height="64"/>
  </tile>
  <tile id="39">
-  <image width="64" height="64" source="../../graphics/environment/sofá esquerda.png"/>
+  <image source="../../graphics/environment/sofá esquerda.png" width="64" height="64"/>
  </tile>
  <tile id="40">
-  <image width="64" height="64" source="../../graphics/environment/sofá direita.png"/>
+  <image source="../../graphics/environment/sofá direita.png" width="64" height="64"/>
  </tile>
  <tile id="47">
-  <image width="64" height="64" source="../../graphics/environment/tabela_periodica_left.png"/>
+  <image source="../../graphics/environment/tabela_periodica_left.png" width="64" height="64"/>
  </tile>
  <tile id="48">
-  <image width="64" height="64" source="../../graphics/environment/tabela_periodica_right.png"/>
+  <image source="../../graphics/environment/tabela_periodica_right.png" width="64" height="64"/>
  </tile>
  <tile id="49">
-  <image width="64" height="64" source="../../graphics/environment/quadro_dna.png"/>
+  <image source="../../graphics/environment/quadro_dna.png" width="64" height="64"/>
  </tile>
  <tile id="51">
-  <image width="64" height="64" source="../../graphics/environment/flasks.png"/>
+  <image source="../../graphics/environment/flasks.png" width="64" height="64"/>
  </tile>
  <tile id="52">
-  <image width="64" height="64" source="../../graphics/environment/flasks_2.png"/>
+  <image source="../../graphics/environment/flasks_2.png" width="64" height="64"/>
  </tile>
  <tile id="53">
-  <image width="64" height="64" source="../../graphics/environment/flasks_3.png"/>
+  <image source="../../graphics/environment/flasks_3.png" width="64" height="64"/>
  </tile>
  <tile id="54">
-  <image width="64" height="65" source="../../graphics/environment/reator_down.png"/>
+  <image source="../../graphics/environment/reator_down.png" width="64" height="65"/>
  </tile>
  <tile id="55">
-  <image width="64" height="65" source="../../graphics/environment/reator_top.png"/>
+  <image source="../../graphics/environment/reator_top.png" width="64" height="65"/>
  </tile>
  <tile id="56">
-  <image width="64" height="64" source="../../graphics/environment/pc down_6.png"/>
+  <image source="../../graphics/environment/pc down_6.png" width="64" height="64"/>
  </tile>
  <tile id="57">
-  <image width="64" height="64" source="../../graphics/environment/black_chair_back.png"/>
+  <image source="../../graphics/environment/black_chair_back.png" width="64" height="64"/>
  </tile>
  <tile id="58">
-  <image width="64" height="64" source="../../graphics/environment/flasks_4.png"/>
+  <image source="../../graphics/environment/flasks_4.png" width="64" height="64"/>
  </tile>
  <tile id="59">
-  <image width="64" height="64" source="../../graphics/environment/pc down_7.png"/>
+  <image source="../../graphics/environment/pc down_7.png" width="64" height="64"/>
  </tile>
  <tile id="60">
-  <image width="64" height="64" source="../../graphics/environment/microscopio_2.png"/>
+  <image source="../../graphics/environment/microscopio_2.png" width="64" height="64"/>
+ </tile>
+ <tile id="62">
+  <image source="../../graphics/environment/yellow_chair_back.png" width="64" height="64"/>
+ </tile>
+ <tile id="63">
+  <image source="../../graphics/environment/yellow_table.png" width="64" height="64"/>
  </tile>
 </tileset>
