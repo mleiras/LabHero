@@ -9,6 +9,7 @@ from soil import *
 from menu_2 import *
 from window import Window
 from books import Books
+from ecoli import Ecoli
 from mission01 import Mission01
 from mission02 import Mission02
 from mission03 import Mission03
@@ -39,6 +40,7 @@ class Level:
 		self.menu_active = False
 		self.desk_active = False
 		self.books_active = False
+		self.ecoli_active = False
 		self.talk_1_active = False
 		self.talk_1 = Mission01(self.toggle_talk_1, self.player)
 		self.talk_2_active = False
@@ -48,6 +50,7 @@ class Level:
 		self.menu = Menu(self.player, self.toggle_shop)
 		self.window = Window(self.desk_menu, self.player)
 		self.books = Books(self.read_books)
+		self.ecoli = Ecoli(self.see_ecoli)
 		self.dialogues = Dialogues(self.toggle_dialogue, self.player)
 		self.dialogues_active = False
 
@@ -116,6 +119,7 @@ class Level:
 					toggle_shop = self.toggle_shop,
 					desk_menu = self.desk_menu,
 					books = self.read_books,
+					ecoli = self.see_ecoli,
 					# inventory = self.load_game,
 					inventory2 = self.load_game,
 					talk_1 = self.toggle_talk_1,
@@ -140,7 +144,40 @@ class Level:
 			if obj.name == 'Books':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Colleague':
+			if obj.name == 'Ecoli':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)	
+
+			if obj.name == 'Sequeira':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Marta':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Pacheco':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Capela':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Ruben':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Emanuel':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Fernanda':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Nuno':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Oscar':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+
+			if obj.name == 'Vitor':
+				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+				
+			if obj.name == 'Coffee':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 			
 
@@ -174,6 +211,9 @@ class Level:
 
 	def read_books(self):
 		self.books_active = not self.books_active
+
+	def see_ecoli(self):
+		self.ecoli_active = not self.ecoli_active
 
 	def plant_collision(self):
 		if self.soil_layer.plant_sprites: # se houver plantas
@@ -230,6 +270,9 @@ class Level:
 
 		elif self.books_active:
 			self.books.update()
+
+		elif self.ecoli_active:
+			self.ecoli.update()
 
 		elif self.dialogues_active:
 			self.dialogues.update()

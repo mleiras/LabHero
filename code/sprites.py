@@ -70,12 +70,9 @@ class Tree(Generic):
                     pos = (x,y), 
                     surf = self.apples_surf, 
                     groups = [self.apple_sprites, self.groups()[0]],
-                    z = LAYERS['fruit']) # como não há acesso direto ao grupo all_sprites, consegue-se aceder a todos os grupos da classe Tree (level.py) e escolhe-se o grupo pela ordem que aparece (neste caso é o 1º)
+                    z = LAYERS['fruit']) # como não há acesso direto ao grupo all_sprites, consegue-se aceder a todos os grupos da classe Tree (level.py) e escolhe-se o grupo pela ordem que aparece 
 
     def damage(self):
-
-       
-
         #remove an apple
         if len(self.apple_sprites.sprites()) > 0:
             random_apple = choice(self.apple_sprites.sprites())

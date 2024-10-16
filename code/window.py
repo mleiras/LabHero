@@ -88,7 +88,7 @@ class Window:
             height=720,
             onclose=pygame_menu.events.BACK,
             theme=mytheme,
-            title='Last Results',
+            title='Results Log',
             width=1280
         )
         menu_results.add.vertical_margin(20)
@@ -199,7 +199,7 @@ class Window:
 
         menu.add.button('Run Simulation', action=data_fun, font_color = 'white', background_color=(20,100,100))        
         menu.add.vertical_margin(20)  # Adds margin
-        last_results = menu.add.button('Last Results', action=menu_results, font_color = 'white', background_color=(20,0,150))  
+        last_results = menu.add.button('Results Log', action=menu_results, font_color = 'white', background_color=(20,0,150))  
         # menu.add.vertical_margin(50)  # Adds margin
 
         menu.mainloop(self.display_surface)

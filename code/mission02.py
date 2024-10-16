@@ -66,7 +66,7 @@ class Mission02:
         menu_bg = pygame.draw.rect(self.screen, (186,214,177), [5,505,1270,210])
 
         # pygame.display.set_caption('Cientista')
-        imagem_path = get_resource_path('graphics/dialogues/cientista2.jpg')
+        imagem_path = get_resource_path('graphics/dialogues/silva.jpg')
         imagem = pygame.image.load(imagem_path).convert()
         
         x = 25; # x coordnate of image

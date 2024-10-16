@@ -809,7 +809,7 @@
   </object>
   <object id="2" name="Desk" x="2048.67" y="2113.67" width="61.6667" height="123.333"/>
   <object id="3" name="Mission02" x="1665" y="1025" width="61.6673" height="61.3327"/>
-  <object id="83" name="Mission01" x="2113" y="1024.66" width="61.9997" height="61.9997"/>
+  <object id="83" name="Mission01" x="2113" y="1025.16" width="61.9997" height="61.4997"/>
   <object id="87" name="Mission03" x="1217" y="1024.83" width="61.8333" height="62.1667"/>
   <object id="102" name="Books" x="1282" y="1920.5" width="252.667" height="62.3337"/>
   <object id="108" name="Books" x="1024.5" y="1919.83" width="126.75" height="63.667"/>
@@ -826,9 +826,9 @@
   <object id="256" name="Vitor" x="1348.17" y="2175.67" width="55.1667" height="65"/>
   <object id="257" name="Oscar" x="1284.17" y="2175.67" width="55.1667" height="65"/>
   <object id="258" name="Coffee" x="1347.5" y="2047.67" width="55.1667" height="65"/>
-  <object id="259" name="ecoli" x="2239.67" y="1087.99" width="61.9997" height="61.9997"/>
-  <object id="260" name="ecoli" x="1473.67" y="1088.99" width="61.9997" height="61.9997"/>
-  <object id="261" name="ecoli" x="1024.67" y="1085.99" width="61.9997" height="61.9997"/>
+  <object id="259" name="Ecoli" x="2239.67" y="1087.99" width="61.9997" height="65.2497"/>
+  <object id="260" name="Ecoli" x="1473.67" y="1088.99" width="61.9997" height="61.9997"/>
+  <object id="261" name="Ecoli" x="1024.67" y="1085.99" width="61.9997" height="61.9997"/>
  </objectgroup>
  <layer id="11" name="Collision" width="60" height="48" visible="0">
   <data encoding="csv">

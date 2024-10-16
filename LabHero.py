@@ -6,7 +6,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'code'))
 import pygame
 from settings import *
 from level import Level
-from intro import Intro
+from intro import Intro 
 from save_load import *
 from functions import animation_text_save
 from utils import *

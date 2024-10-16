@@ -6,7 +6,7 @@ import time
 from utils import *
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, inventory2, talk_1, talk_2, talk_3, dialogues):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, desk_menu, books, ecoli, inventory2, talk_1, talk_2, talk_3, dialogues):
         super().__init__(group)
 
         self.import_assets()
@@ -44,6 +44,7 @@ class Player(pygame.sprite.Sprite):
         self.talk_3 = talk_3
         self.desk_menu = desk_menu
         self.books = books
+        self.ecoli = ecoli
         self.dialogues = dialogues
         self.tree_sprites = tree_sprites
         self.interaction = interaction
@@ -116,14 +117,14 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_m]:
                 self.toggle_shop()
 
-            if keys[pygame.K_k]:
-                self.desk_menu()
+            # if keys[pygame.K_k]:
+            #     self.desk_menu()
             
-            if keys[pygame.K_b]:
-                self.books()
+            # if keys[pygame.K_b]:
+            #     self.books()
 
-            if keys[pygame.K_t]:
-                self.talk_2()
+            # if keys[pygame.K_t]:
+            #     self.talk_2()
 
 
 
@@ -156,9 +157,13 @@ class Player(pygame.sprite.Sprite):
 
                     elif collided_interaction_sprite[0].name == 'Books':
                         self.books()
+                    
+                    elif collided_interaction_sprite[0].name == 'Ecoli':
+                        self.ecoli()
 
-                    elif collided_interaction_sprite[0].name == 'Colleague':
-                        self.dialogues()
+                    elif collided_interaction_sprite[0].name == 'Sequeira':
+                        self.dialogues() # add variable with name character to change message and id
+                        
                         
             
     def get_status(self):

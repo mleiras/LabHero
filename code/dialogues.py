@@ -8,7 +8,7 @@ from button import Button
 from utils import *
 
 class Dialogues: 
-    def __init__(self, toggle_menu, player) -> None:
+    def __init__(self, toggle_menu, player) -> None: # add variable name character to change message and id
         #general setup 
         self.player = player
 
