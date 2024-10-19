@@ -130,6 +130,17 @@ class Window:
                                    dropselect_id='objective')
         menu_objective.add.range_slider('Fraction', default=90, range_values=(0,100), increment=1, rangeslider_id='obj_fraction')
 
+        menu_objective.add.vertical_margin(30)
+        menu_objective.add.label("TIP: \nBy default, you want \"Biomass” to be set as the objective because you want to see if E. Coli can grow or even survive in the environment you create.",
+                                #  max_char=1,
+                                 wordwrap=True,
+                                #  align=pygame_menu.locals.ALIGN_CENTER,
+                                #  margin=(20, 0),
+                                 padding = (20,30,20,30),
+                                 background_color = "white")
+        menu_objective.add.vertical_margin(20)
+        menu_objective.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+
         
 
         def data_fun() -> None:
@@ -180,26 +191,29 @@ class Window:
             menu_objective.reset_value()
             menu_genes.reset_value()
             menu_reactions.reset_value()
-           
 
-        menu.add.dropselect(title='Simulation Method: ',
+
+        menu.add.label('Change options: ', font_size = 40)
+        menu.add.vertical_margin(20)
+
+        menu.add.dropselect(title='Simulation Method ',
                             items=[('FBA', 'fba'),
                                    ('pFBA', 'pfba'),
                                 #    ('MOMA', 'moma'),
                                    ('lMOMA', 'lmoma'),
                                    ('ROOM','room')],
                                    default=0,
-                                   selection_box_height=5, dropselect_id='method')
-        menu.add.button('Objective', menu_objective)
-        menu.add.button('Genes', menu_genes)
-        menu.add.button('Environmental Conditions', menu_reactions)
+                                   selection_box_height=5, dropselect_id='method', background_color="white", font_color=(20,0,150))
+        menu.add.button('Objective', menu_objective, font_color = (20,0,150), background_color="white")
+        menu.add.button('Genes', menu_genes, font_color = (20,0,150), background_color="white")
+        menu.add.button('Environmental Conditions', menu_reactions, font_color = (20,0,150), background_color="white")
         menu.add.vertical_margin(50)  # Adds margin
         # menu.add.button('Restore Data', restore_data, background_color=(100,0,0))
         # menu.add.vertical_margin(20)  # Adds margin
 
         menu.add.button('Run Simulation', action=data_fun, font_color = 'white', background_color=(20,100,100))        
         menu.add.vertical_margin(20)  # Adds margin
-        last_results = menu.add.button('Results Log', action=menu_results, font_color = 'white', background_color=(20,0,150))  
+        # last_results = menu.add.button('Results Log', action=menu_results, font_color = 'black', background_color="grey")  
         # menu.add.vertical_margin(50)  # Adds margin
 
         menu.mainloop(self.display_surface)
