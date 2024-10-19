@@ -37,7 +37,9 @@ class Ecoli:
             align=pygame_menu.locals.ALIGN_CENTER,
             font_size=50,
             font_color=(70,70,70))
-        menu.add.image('graphics/environment/E.coli.png', scale=(1, 1))
+        
+        ecoli_path = get_resource_path('graphics/environment/E.coli.png')
+        menu.add.image(ecoli_path, scale=(1, 1))
 
         # menu.add.vertical_margin(15)  # Adds margin
         # menu.add.button('How to Play', menu_how_to_play, background_color = (255,215,0, 255)) #aqua»
