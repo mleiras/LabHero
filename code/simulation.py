@@ -30,10 +30,14 @@ def run_simul():
             envconditions[REACTIONS.index[count]] = (reactions_original.lb[count], reactions_original.ub[count])
             if not x:
                 envconditions[REACTIONS.index[count]] = (0, envconditions[REACTIONS.index[count]][1])
+            else:
+                envconditions[REACTIONS.index[count]] = (-1000, envconditions[REACTIONS.index[count]][1])
             count_2 += 1
         else:
             if not x: # if it's uneven, it means the toggle for the flow out
                 envconditions[REACTIONS.index[count]] = (envconditions[REACTIONS.index[count]][0], 0)
+            else:
+                envconditions[REACTIONS.index[count]] = (envconditions[REACTIONS.index[count]][0], 1000)
             count_2 += 1
             count += 1
         
@@ -88,21 +92,20 @@ def run_simul():
     results_str = str(result)
     # print(results_str)
 
-
-    if str(results_str.splitlines()[1]) == 'Status: INFEASIBLE':
-        results = 'Status: INFEASIBLE'
-
-    else:
-        try:
+    
+    try:
+        if str(results_str.splitlines()[1]) == 'Status: INFEASIBLE':
+            results = 'Status: INFEASIBLE'
+        else:
             results = round(float(str(results_str.splitlines()[0])[11:]), 3)
-        except:
-            results = results_str
+    except:
+        results = results_str
 
     # print(result_str)
 
     # save_results(result)
 
-    return results
+    return objective_name, results
 
     # print(simul.objective)
 
