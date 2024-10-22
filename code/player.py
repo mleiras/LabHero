@@ -113,12 +113,13 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.direction.x = 0
             
-            # MENU tests (APAGAR DEPOIS ATALHOS)
             if keys[pygame.K_m]:
                 self.toggle_shop()
 
-            if keys[pygame.K_k]:
-                self.desk_menu()
+            # MENU tests (APAGAR DEPOIS ATALHOS)
+
+            # if keys[pygame.K_k]:
+            #     self.desk_menu()
             
             # if keys[pygame.K_b]:
             #     self.books()
