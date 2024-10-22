@@ -98,12 +98,12 @@ class Books:
             font_color=(70,70,70))
         menu.add.vertical_margin(15)  # Adds margin
         menu.add.button('How to Play', menu_how_to_play, background_color = (255,215,0, 255)) #aqua»
+        menu.add.button('How to Simulate', book_how_to_simulate, background_color = 'royalblue')
         menu.add.button('A Brief History of Microorganisms', book_brief_history, background_color = 'green')
         menu.add.button('Intro to Modelling', book_intro_modelling, background_color = 'orange')
-        menu.add.button('How to Simulate', book_how_to_simulate, background_color = 'royalblue')
         menu.add.button('E. coli Basics', book_ecoli, background_color = 'violet')
         menu.add.button('Eat, Breathe and Love', book_eat_breathe_love, background_color = 'red')
-        menu.add.button('How to Date a Model', book_date_a_model, background_color = 'pink') #aqua»
+        # menu.add.button('How to Date a Model', book_date_a_model, background_color = 'pink') #aqua»
         # menu.add.vertical_margin(20)  # Adds margin
 
 
@@ -427,9 +427,21 @@ class Books:
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
         )
+        # book_how_to_simulate.add.label(
+        #     """
+        #     Chapter 1: Choosing a Simulation Method     
+        #     """,
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(0, 0),
+        #     background_color = 'white',
+        #     font_color = 'darkblue',
+        #     font_size = 35
+        # )
         book_how_to_simulate.add.label(
             """
-            Chapter 1: Choosing a Simulation Method     
+            Chapter 1: Change Simulation Options 
             """,
             max_char=-1,
             wordwrap=True,
@@ -440,8 +452,19 @@ class Books:
             font_size = 35
         )
         book_how_to_simulate.add.vertical_margin(20)
+        # book_how_to_simulate.add.label(
+        #     """FBA: Flux Balance Analysis""",
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(100, 0),
+        #     background_color = 'darkblue',
+        #     font_color = 'white',
+        #     font_size = 30,
+        #     padding = (25,25,25,25)
+        # )
         book_how_to_simulate.add.label(
-            """FBA: Flux Balance Analysis""",
+            """Simulation Method""",
             max_char=-1,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
@@ -451,19 +474,35 @@ class Books:
             font_size = 30,
             padding = (25,25,25,25)
         )
+        # book_how_to_simulate.add.label(
+        #     """
+        #     Meet FBA, your first guide on this adventure. FBA is like a well-balanced explorer. It helps you understand how organisms use nutrients to grow, almost like solving a puzzle to keep everything in harmony.
+        #     In simpler terms, FBA calculates how microorganisms balance their food intake to maximize their growth. It's like making sure you have just the right ingredients for baking the perfect cake.
+
+        #     Analysis of Results:
+
+        #     Example: You ran two simulations, one gave you a result of 0.211 and the other one gave you a result of 0.87. How to interpret this?
+
+        #     This indicates a significant variation in the metabolic activity or growth rate of the organism under different conditions. The value 0.211 represents a lower metabolic activity or growth rate, while 0.87 indicates a higher metabolic activity or growth rate. This difference suggests that the organism is responding differently to the environmental conditions or constraints imposed in the simulations. Factors like nutrient availability, oxygen levels, or genetic modifications may be influencing this variation.
+        #     In practical terms, a result of 0.211 could indicate that the organism is growing more slowly or utilizing resources at a lower rate, possibly because it's operating under suboptimal conditions. Conversely, a result of 0.89 suggests more efficient growth or higher metabolic activity.
+        #     Researchers often use these variations to gain insights into how an organism's metabolism functions. For example, they might investigate why growth is slower in one condition and use that knowledge to optimize industrial processes, design genetic modifications, or understand how diseases affect metabolism.
+        #     In some cases, researchers aim to manipulate conditions to achieve specific growth rates or metabolic outcomes. Understanding how changes in conditions affect these values helps in optimizing bioprocesses.
+        #     """,
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(0, 0)
+        # )
         book_how_to_simulate.add.label(
             """
-            Meet FBA, your first guide on this adventure. FBA is like a well-balanced explorer. It helps you understand how organisms use nutrients to grow, almost like solving a puzzle to keep everything in harmony.
-            In simpler terms, FBA calculates how microorganisms balance their food intake to maximize their growth. It's like making sure you have just the right ingredients for baking the perfect cake.
+            FBA: calculates how microorganisms balance their food intake to maximize their growth.
 
-            Analysis of Results:
+            pFBA: This method is all about being efficient. It helps you find the most economical way for organisms to use nutrients.
 
-            Example: You ran two simulations, one gave you a result of 0.211 and the other one gave you a result of 0.87. How to interpret this?
+            lMOMA: like a flexible thinker. It helps you see how organisms adapt when conditions change.  lMOMA shows how microorganisms change their metabolic plans when the environment shifts.
 
-            This indicates a significant variation in the metabolic activity or growth rate of the organism under different conditions. The value 0.211 represents a lower metabolic activity or growth rate, while 0.87 indicates a higher metabolic activity or growth rate. This difference suggests that the organism is responding differently to the environmental conditions or constraints imposed in the simulations. Factors like nutrient availability, oxygen levels, or genetic modifications may be influencing this variation.
-            In practical terms, a result of 0.211 could indicate that the organism is growing more slowly or utilizing resources at a lower rate, possibly because it's operating under suboptimal conditions. Conversely, a result of 0.89 suggests more efficient growth or higher metabolic activity.
-            Researchers often use these variations to gain insights into how an organism's metabolism functions. For example, they might investigate why growth is slower in one condition and use that knowledge to optimize industrial processes, design genetic modifications, or understand how diseases affect metabolism.
-            In some cases, researchers aim to manipulate conditions to achieve specific growth rates or metabolic outcomes. Understanding how changes in conditions affect these values helps in optimizing bioprocesses.
+            ROOM: the optimal explorer! It helps you understand how organisms make choices, turning some genes on and others off. ROOM reveals how microorganisms regulate their genes to optimize their metabolism.
+            
             """,
             max_char=-1,
             wordwrap=True,
@@ -471,8 +510,9 @@ class Books:
             margin=(0, 0)
         )
         book_how_to_simulate.add.vertical_margin(20)
+
         book_how_to_simulate.add.label(
-            """pFBA: Parsimonious Flux Balance Analysis""",
+            """Objective""",
             max_char=-1,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
@@ -484,19 +524,10 @@ class Books:
         )
         book_how_to_simulate.add.label(
             """
-            Now, say hello to pFBA, the precision artist! This method is all about being efficient. It helps you find the most economical way for organisms to use nutrients, like a budget-savvy chef creating a delicious meal.
-            In other words, pFBA figures out how microorganisms can get the most bang for their buck when it comes to food. It's like finding the best deals at the grocery store to make a tasty and cost-effective dinner.
+            Biomass is a good objective because it reflects how well E. coli is thriving in the given environment.
+            
+            The more biomass, the healthier and more productive the cell is.
 
-            Analysis of Results:
-
-            Example: You ran two simulations, one gave you a result of 518 and the other one gave you a result of 355. How to interpret this?
-
-            pFBA aims to find the most efficient way for an organism to utilize available nutrients and resources to achieve a specific metabolic objective, typically maximizing biomass production.
-            Higher Result: A pFBA result of 518 suggests that the organism is achieving its metabolic objective (e.g., biomass production) while using nutrients and resources in a highly efficient manner. It's like running a factory at peak efficiency, getting the most output with minimal input.
-            Lower Result: Conversely, a pFBA result of 335 indicates that the organism is still achieving its metabolic objective but is using nutrients and resources less efficiently. It's like the same factory, but with some inefficiencies or waste in the production process.
-            Researchers often use pFBA results for comparative analysis. The difference between these two results suggests that something in the conditions or constraints of the second simulation is leading to less efficient resource utilization compared to the first simulation.
-            Understanding these variations can provide insights into how to optimize metabolic processes. For example, if the goal is to produce a specific metabolite, researchers might aim to recreate the conditions that led to the higher pFBA result to maximize production efficiency.
-            These differences can be critical in bioprocess engineering and biotechnology. Achieving higher resource efficiency can lead to cost savings and increased yields in the production of biofuels, pharmaceuticals, and other products.
             """,
             max_char=-1,
             wordwrap=True,
@@ -504,8 +535,9 @@ class Books:
             margin=(0, 0)
         )
         book_how_to_simulate.add.vertical_margin(20)
+
         book_how_to_simulate.add.label(
-            """lMOMA: Linear Minimization of Metabolic Adjustment""",
+            """Genes""",
             max_char=-1,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
@@ -517,9 +549,8 @@ class Books:
         )
         book_how_to_simulate.add.label(
             """
-            lMOMA is like a flexible thinker. It helps you see how organisms adapt when conditions change. Picture it as an organism's strategy for staying fit and adjusting its metabolism on the fly.
+            Knocking out ("turning off") essential genes can stop E. coli from growing, but knocking out non-essential genes may change its metabolism without harming its survival.
 
-            In simple terms, lMOMA shows how microorganisms change their metabolic plans when the environment shifts. It's like switching from running to walking when the terrain changes, staying efficient while adapting.
             """,
             max_char=-1,
             wordwrap=True,
@@ -527,8 +558,9 @@ class Books:
             margin=(0, 0)
         )
         book_how_to_simulate.add.vertical_margin(20)
+
         book_how_to_simulate.add.label(
-            """ROOM: Regulatory On/Off Minimization""",
+            """Environmental Conditions""",
             max_char=-1,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
@@ -540,15 +572,169 @@ class Books:
         )
         book_how_to_simulate.add.label(
             """
-            Lastly, meet ROOM, the optimal explorer! It helps you understand how organisms make choices, turning some genes on and others off, just like a smart thermostat adjusting your home's temperature.
+            Adjust the bounds to control what resources E. coli consumes and how much it produces.
+            
+            A small lower bound limits intake, while a large upper bound accelerates production.
 
-            ROOM reveals how microorganisms regulate their genes to optimize their metabolism. It's like a super-smart control system, ensuring that only the right switches are turned on and off to save energy and stay efficient.
             """,
             max_char=-1,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
         )
+        book_how_to_simulate.add.vertical_margin(40)
+
+        book_how_to_simulate.add.label(
+            """
+            Chapter 2: Results 
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0),
+            background_color = 'white',
+            font_color = 'darkblue',
+            font_size = 35
+        )
+        book_how_to_simulate.add.vertical_margin(20)
+
+        book_how_to_simulate.add.label(
+            """Biomass""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = 'darkblue',
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        book_how_to_simulate.add.vertical_margin(20)
+        book_how_to_simulate.add.label(
+            """ When running a simulation, the key result is usually the objective value.
+            
+            For example, if you're optimizing for biomass, a higher value means E. coli is growing well.
+
+            If it's low, check your inputs or try different knock-outs and reaction limits because it means E. coli is not growing well.
+
+            If it's null, well, I don't know another way to say this but ... it's dead. YOU KILLED HER!
+
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        book_how_to_simulate.add.vertical_margin(20)
+
+        book_how_to_simulate.add.label(
+            """Energy Source""",
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(100, 0),
+            background_color = 'darkblue',
+            font_color = 'white',
+            font_size = 30,
+            padding = (25,25,25,25)
+        )
+        book_how_to_simulate.add.vertical_margin(20)
+        book_how_to_simulate.add.label(
+            """ Energy sources are essential for E. coli to carry out its metabolic processes, powering growth and survival.
+
+            If you remove the glucose bound (set the lower bound to 0), E. coli won't be able to take in glucose, which is its main energy source.
+            
+            Without glucose, the cell won't have enough fuel to grow, leading to a drop in biomass. This means that the cell might not survive, as glucose is crucial for many of its metabolic processes.
+            
+            So, watch the biomass value after removing glucose—it should decrease significantly!
+
+            """,
+            max_char=-1,
+            wordwrap=True,
+            align=pygame_menu.locals.ALIGN_LEFT,
+            margin=(0, 0)
+        )
+        book_how_to_simulate.add.vertical_margin(20)
+
+
+        # book_how_to_simulate.add.label(
+        #     """pFBA: Parsimonious Flux Balance Analysis""",
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(100, 0),
+        #     background_color = 'darkblue',
+        #     font_color = 'white',
+        #     font_size = 30,
+        #     padding = (25,25,25,25)
+        # )
+        # book_how_to_simulate.add.label(
+        #     """
+        #     Now, say hello to pFBA, the precision artist! This method is all about being efficient. It helps you find the most economical way for organisms to use nutrients, like a budget-savvy chef creating a delicious meal.
+        #     In other words, pFBA figures out how microorganisms can get the most bang for their buck when it comes to food. It's like finding the best deals at the grocery store to make a tasty and cost-effective dinner.
+
+        #     Analysis of Results:
+
+        #     Example: You ran two simulations, one gave you a result of 518 and the other one gave you a result of 355. How to interpret this?
+
+        #     pFBA aims to find the most efficient way for an organism to utilize available nutrients and resources to achieve a specific metabolic objective, typically maximizing biomass production.
+        #     Higher Result: A pFBA result of 518 suggests that the organism is achieving its metabolic objective (e.g., biomass production) while using nutrients and resources in a highly efficient manner. It's like running a factory at peak efficiency, getting the most output with minimal input.
+        #     Lower Result: Conversely, a pFBA result of 335 indicates that the organism is still achieving its metabolic objective but is using nutrients and resources less efficiently. It's like the same factory, but with some inefficiencies or waste in the production process.
+        #     Researchers often use pFBA results for comparative analysis. The difference between these two results suggests that something in the conditions or constraints of the second simulation is leading to less efficient resource utilization compared to the first simulation.
+        #     Understanding these variations can provide insights into how to optimize metabolic processes. For example, if the goal is to produce a specific metabolite, researchers might aim to recreate the conditions that led to the higher pFBA result to maximize production efficiency.
+        #     These differences can be critical in bioprocess engineering and biotechnology. Achieving higher resource efficiency can lead to cost savings and increased yields in the production of biofuels, pharmaceuticals, and other products.
+        #     """,
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(0, 0)
+        # )
+        # book_how_to_simulate.add.vertical_margin(20)
+        # book_how_to_simulate.add.label(
+        #     """lMOMA: Linear Minimization of Metabolic Adjustment""",
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(100, 0),
+        #     background_color = 'darkblue',
+        #     font_color = 'white',
+        #     font_size = 30,
+        #     padding = (25,25,25,25)
+        # )
+        # book_how_to_simulate.add.label(
+        #     """
+        #     lMOMA is like a flexible thinker. It helps you see how organisms adapt when conditions change. Picture it as an organism's strategy for staying fit and adjusting its metabolism on the fly.
+
+        #     In simple terms, lMOMA shows how microorganisms change their metabolic plans when the environment shifts. It's like switching from running to walking when the terrain changes, staying efficient while adapting.
+        #     """,
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(0, 0)
+        # )
+        # book_how_to_simulate.add.vertical_margin(20)
+        # book_how_to_simulate.add.label(
+        #     """ROOM: Regulatory On/Off Minimization""",
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(100, 0),
+        #     background_color = 'darkblue',
+        #     font_color = 'white',
+        #     font_size = 30,
+        #     padding = (25,25,25,25)
+        # )
+        # book_how_to_simulate.add.label(
+        #     """
+        #     Lastly, meet ROOM, the optimal explorer! It helps you understand how organisms make choices, turning some genes on and others off, just like a smart thermostat adjusting your home's temperature.
+
+        #     ROOM reveals how microorganisms regulate their genes to optimize their metabolism. It's like a super-smart control system, ensuring that only the right switches are turned on and off to save energy and stay efficient.
+        #     """,
+        #     max_char=-1,
+        #     wordwrap=True,
+        #     align=pygame_menu.locals.ALIGN_LEFT,
+        #     margin=(0, 0)
+        # )
         book_how_to_simulate.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         book_how_to_simulate.add.vertical_margin(20)
 

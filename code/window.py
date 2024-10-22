@@ -15,8 +15,9 @@ class Window:
         self.player = player
         self.toggle_menu = toggle_menu
         self.display_surface = pygame.display.get_surface()
-        font_path = get_resource_path('font/LycheeSoda.ttf')
-        self.font = pygame.font.Font(font_path,30)
+        # font_path = get_resource_path('font/LycheeSoda.ttf')
+        # font2_path = get_resource_path('font/NotoColorEmoji-Regular.ttf')
+        # self.font = pygame.font.Font(font_path,30)
         self.results = ''
 
         # self.index = 0
@@ -54,15 +55,57 @@ class Window:
 
         # MENU REACTIONS
         menu_reactions.add.vertical_margin(50)
+        menu_reactions.add.label("TIP for Mission 03:\nThe lower bound tells the cell if it can reverse the reaction and do it the opposite way (e.g., taking in nutrients).\nThe upper bound tells it how fast or how much of the reaction can happen in the forward direction (e.g., producing metabolites).",
+                                #  max_char=1,
+                                 wordwrap=True,
+                                #  align=pygame_menu.locals.ALIGN_CENTER,
+                                #  margin=(20, 0),
+                                 padding = (20,30,20,30),
+                                 background_color = "white",
+                                 font_size = 26)
+        menu_reactions.add.vertical_margin(20)
         # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
-        
         for i in range(len(REACTIONS.name)):
-            menu_reactions.add.range_slider(REACTIONS.name[i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
-            menu_reactions.add.toggle_switch('Bounds',True, onchange=None, state_text=('Deactivated', 'Active'), state_text_font_size=20, font_size = 24, state_color=('grey','gold')) #, kwargs=txt, toggleswitch_id=txt)
+            menu_reactions.add.label(REACTIONS.name[i])
+            if REACTIONS.lb[i] != 0:
+                default_lb_bool = True
+            else:
+                default_lb_bool = False
+            if REACTIONS.ub[i] != 0:
+                default_ub_bool = True
+            else:
+                default_ub_bool = False
+            menu_reactions.add.toggle_switch('Lower Bound',default_lb_bool, onchange=None, state_text=('Closed', 'Open'), state_text_font_size=20, font_size = 24, state_color=('grey','gold'), state_text_font_color=('black', 'black')) #, kwargs=txt, toggleswitch_id=txt)
+            menu_reactions.add.toggle_switch('Upper Bound',default_ub_bool, onchange=None, state_text=('Closed', 'Open'), state_text_font_size=20, font_size = 24, state_color=('grey','gold'), state_text_font_color=('black', 'black')) #, kwargs=txt, toggleswitch_id=txt)
+            # menu_reactions.add.range_slider('Lower Bound', REACTIONS.lb[i], (-1000,0), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]+'lb') #, rangeslider_id=OPTIONS['Reactions'][i])
+            # menu_reactions.add.range_slider('Upper Bound', REACTIONS.ub[i], (0, 1000), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]+'ub') #, rangeslider_id=OPTIONS['Reactions'][i])
+            
             menu_reactions.add.vertical_margin(30)
         menu_reactions.add.vertical_margin(20)
         menu_reactions.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_reactions.add.vertical_margin(20)
+
+        # menu_reactions_backup = pygame_menu.Menu(
+        #     height=720,
+        #     onclose=pygame_menu.events.BACK,
+        #     theme=mytheme,
+        #     title='Environmental Conditions',
+        #     width=1280
+        # )
+
+        # # MENU REACTIONS
+        # menu_reactions_backup.add.vertical_margin(50)
+        # # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
+        
+        # for i in range(len(REACTIONS.name)):
+        #     menu_reactions_backup.add.range_slider(REACTIONS.name[i], (REACTIONS.lb[i],REACTIONS.ub[i]), (-1000, 1000), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]) #, rangeslider_id=OPTIONS['Reactions'][i])
+        #     menu_reactions_backup.add.toggle_switch('Bounds',True, onchange=None, state_text=('Deactivated', 'Active'), state_text_font_size=20, font_size = 24, state_color=('grey','gold')) #, kwargs=txt, toggleswitch_id=txt)
+        #     menu_reactions_backup.add.vertical_margin(30)
+        # menu_reactions_backup.add.vertical_margin(20)
+        # menu_reactions_backup.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        # menu_reactions_backup.add.vertical_margin(20)
+
+
 
         # def toggle_reaction(txt, **id):
         #     if not txt:
@@ -73,11 +116,25 @@ class Window:
 
         # MENU SUB (Genes)
         menu_genes.add.vertical_margin(50)
+        # menu_genes.add.label('TIP')
+        menu_genes.add.label("TIP for Mission 02: \nSome genes are more important than others, maybe you can try to knock out one of them to see if E. coli survives...",
+                                #  max_char=1,
+                                 wordwrap=True,
+                                #  align=pygame_menu.locals.ALIGN_CENTER,
+                                #  margin=(20, 0),
+                                 padding = (20,30,20,30),
+                                 background_color = "white",
+                                 font_size = 26)
+        menu_genes.add.vertical_margin(20)
         label = '{}'
+        genes_02 = ['b1241','b3115','b3736','b2975','b1524','b2278','b2926','b2297','b0728','b3919']
 
         for i in range(len(GENES)):
             txt = label.format(GENES[i])
-            menu_genes.add.toggle_switch(txt, True, kwargs=txt, toggleswitch_id=txt)
+            if txt in genes_02:
+                menu_genes.add.toggle_switch(txt, True, kwargs=txt, toggleswitch_id=txt, background_color = "gold", font_color = "black")
+            else:
+                menu_genes.add.toggle_switch(txt, True, kwargs=txt, toggleswitch_id=txt)
         menu_genes.add.vertical_margin(20)
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
@@ -88,7 +145,7 @@ class Window:
             height=720,
             onclose=pygame_menu.events.BACK,
             theme=mytheme,
-            title='Results Log',
+            title='History of Past Simulations',
             width=1280
         )
         menu_results.add.vertical_margin(20)
@@ -128,7 +185,7 @@ class Window:
                                    selection_box_height=8,
                                    selection_box_width=500,
                                    dropselect_id='objective')
-        menu_objective.add.range_slider('Fraction', default=90, range_values=(0,100), increment=1, rangeslider_id='obj_fraction')
+        # menu_objective.add.range_slider('Fraction', default=90, range_values=(0,100), increment=1, rangeslider_id='obj_fraction')
 
         menu_objective.add.vertical_margin(30)
         menu_objective.add.label("TIP: \nBy default, you want \"Biomass” to be set as the objective because you want to see if E. Coli can grow or even survive in the environment you create.",
@@ -137,7 +194,8 @@ class Window:
                                 #  align=pygame_menu.locals.ALIGN_CENTER,
                                 #  margin=(20, 0),
                                  padding = (20,30,20,30),
-                                 background_color = "white")
+                                 background_color = "white",
+                                 font_size = 26)
         menu_objective.add.vertical_margin(20)
         menu_objective.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
 
@@ -184,15 +242,17 @@ class Window:
            
 
 
-        def restore_data() -> None:
-            """
-            """
-            menu.reset_value()
-            menu_objective.reset_value()
-            menu_genes.reset_value()
-            menu_reactions.reset_value()
+        # def restore_data() -> None:
+        #     """
+        #     """
+        #     menu.reset_value()
+        #     menu_objective.reset_value()
+        #     menu_genes.reset_value()
+        #     menu_reactions.reset_value()
 
 
+        menu.add.label('TIP: See Book "How to Simulate"', font_size = 20)
+        menu.add.vertical_margin(20)
         menu.add.label('Change options: ', font_size = 40)
         menu.add.vertical_margin(20)
 
@@ -207,6 +267,7 @@ class Window:
         menu.add.button('Objective', menu_objective, font_color = (20,0,150), background_color="white")
         menu.add.button('Genes', menu_genes, font_color = (20,0,150), background_color="white")
         menu.add.button('Environmental Conditions', menu_reactions, font_color = (20,0,150), background_color="white")
+        # menu.add.button('Environmental Conditions', menu_reactions_backup, font_color = (20,0,150), background_color="white")
         menu.add.vertical_margin(50)  # Adds margin
         # menu.add.button('Restore Data', restore_data, background_color=(100,0,0))
         # menu.add.vertical_margin(20)  # Adds margin

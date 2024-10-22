@@ -11,6 +11,7 @@ from save_load import *
 from functions import animation_text_save
 from utils import *
 
+
 class Game:
 	def __init__(self):
 		pygame.init()

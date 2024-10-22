@@ -117,8 +117,8 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_m]:
                 self.toggle_shop()
 
-            # if keys[pygame.K_k]:
-            #     self.desk_menu()
+            if keys[pygame.K_k]:
+                self.desk_menu()
             
             # if keys[pygame.K_b]:
             #     self.books()

@@ -183,11 +183,14 @@ class Mission03_info:
         )
         menu_text.add.label(
             """
-            Task 1 - Simulate Growth:
-            Use the provided simulation tool to run growth simulations for E. coli using each of the carbon sources listed above.
+            Task 1 - Remove Glucose:
+            Remove the flux from glucose to garantee that e. coli only uses the alternative as the carbon source.
 
-            Task 2 - Observe Results:
-            Pay close attention to the growth patterns and biomass yield for each simulation. Biomass represents the microbial population's growth, and a higher yield indicates better growth.
+            Task 2 - Test alternatives:
+            Open the lower bound of each alternative (one at a time) to allow e. coli to intake that nutrient.
+
+            Task 3 - See the growth:
+            Run the simulation for each alternative and see which provides the best growth for e. coli.
 
             Task 3 - Identify the Best Substitute:
             Based on your observations, determine which carbon source serves as the best substitute for glucose in terms of supporting E. coli growth. You can compare the biomass yield of the chosen substitute to that of glucose for reference.

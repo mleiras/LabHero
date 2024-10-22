@@ -173,7 +173,7 @@ class Mission02_info:
         menu_text.add.label(
             """
             Task 1 - The Mystery Genes:
-            You'll start with a list of 10 mystery genes, each associated with a specific cellular function. These genes are like keys to E. coli's survival.
+            You'll start with a list of 10 mystery genes, each associated with a specific cellular function. The genes will appear highlighted in yellow in the simulation menu.
 
             Task 2 - Gene Knockout Simulations:
             Your job is to simulate E. coli's growth without each of these genes, one by one. This process mimics what scientists do in the lab when they "knock out" a gene to observe the consequences.
@@ -188,8 +188,8 @@ class Mission02_info:
             Compile your findings into a comprehensive report. Explain why you suspect a particular gene is essential and provide evidence from your simulations to support your conclusion.
             
             Hints:
-            - Ensure that you simulate with only one gene at a time
-            - Identify the gene that stops growth
+            - Ensure that you simulate with only one gene knocked-out at a time
+            - Identify the gene that stops growth (Biomass is 0 or negative)
 
             """,
             max_char=-1,
@@ -214,6 +214,8 @@ class Mission02_info:
 
             List of possible genes that are essential:
             b1241  b3115  b3736  b2975  b1524  b2278  b2926  b2297  b0728  b3919
+
+            In the simulation menu, they will appear highlighted!
 
             """,
             wordwrap=True,
