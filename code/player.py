@@ -149,36 +149,30 @@ class Player(pygame.sprite.Sprite):
                 self.direction = pygame.math.Vector2()
                 self.frame_index = 0
 
-                # collided_interaction_sprite = pygame.sprite.spritecollide(self, self.interaction, False) # spritecollide(sprite, group, dokill)
-                # if collided_interaction_sprite:
+                collided_interaction_sprite = pygame.sprite.spritecollide(self, self.interaction, False) # spritecollide(sprite, group, dokill)
+                if collided_interaction_sprite:
+                    if collided_interaction_sprite[0].name == 'Mission01':
+                        self.talk_1()
+                    elif collided_interaction_sprite[0].name == 'Mission02':
+                        self.talk_2()
+                    elif collided_interaction_sprite[0].name == 'Mission03':
+                        self.talk_3()
+                    elif collided_interaction_sprite[0].name == 'Desk':
+                        animation_text_save('... please wait ...', time=100)
+                        self.desk_menu()
+                    elif collided_interaction_sprite[0].name == 'Books':
+                        self.books()
+                    elif collided_interaction_sprite[0].name == 'Ecoli':
+                        self.ecoli()
 
-                # Deteta colisão apenas com objetos dentro da área de interação
-                for sprite in self.interaction:
-                    if self.interaction_area.colliderect(sprite.hitbox):
+                    else:
 
-                        if sprite.name == 'Mission01':
-                            self.talk_1()
-
-                        elif sprite.name == 'Mission02':
-                            self.talk_2()
-
-                        elif sprite.name == 'Mission03':
-                            self.talk_3()
-                        
-                        elif sprite.name == 'Desk':
-                            # print(time.time())
-                            animation_text_save('... please wait ...', time = 100) #, time=500)
-                            self.desk_menu()
-
-                        elif sprite.name == 'Books':
-                            self.books()
-                        
-                        elif sprite.name == 'Ecoli':
-                            self.ecoli()
-
-                        elif sprite.name == 'Sequeira' or 'Pacheco' or 'Marta' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela':
-                            self.character = sprite.name
-                            self.dialogues() # add variable with name character to change message and id
+                        # Deteta colisão apenas com objetos dentro da área de interação
+                        for sprite in self.interaction:
+                            if self.interaction_area.colliderect(sprite.hitbox):
+                                if sprite.name == 'Sequeira' or 'Pacheco' or 'Marta' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela':
+                                    self.character = sprite.name
+                                    self.dialogues() # add variable with name character to change message and id
                             
             
     def get_status(self):
