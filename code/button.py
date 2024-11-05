@@ -2,7 +2,7 @@ import pygame
 from utils import *
 
 class Button():
-    def __init__(self, x, y, width, height, screen, buttonText='Button', onclickFunction=None, onePress=False):
+    def __init__(self, x, y, width, height, screen, buttonText='Button', onclickFunction=None, onePress=False, bg_color = 'white', font_color = 'black'):
         self.x = x
         self.y = y
         self.width = width
@@ -13,17 +13,18 @@ class Button():
         self.alreadyPressed = False
 
         self.fillColors = {
-            'normal': '#ffffff',
+            'normal': bg_color,
             'hover': '#666666',
             'pressed': '#333333',
         }
+
         font_path = get_resource_path('font/LycheeSoda.ttf')
         self.font = pygame.font.Font(font_path,34)
 
         self.buttonSurface = pygame.Surface((self.width, self.height))
         self.buttonRect = pygame.Rect(self.x, self.y, self.width, self.height)
 
-        self.buttonSurf = self.font.render(buttonText, True, 'black')
+        self.buttonSurf = self.font.render(buttonText, True, font_color)
 
         # objects.append(self)
 
