@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="48" tilewidth="64" tileheight="64" infinite="0" nextlayerid="20" nextobjectid="262">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="60" height="48" tilewidth="64" tileheight="64" infinite="0" nextlayerid="21" nextobjectid="272">
  <tileset firstgid="1" source="Tilesets/Grass.tsx"/>
  <tileset firstgid="81" source="Tilesets/House.tsx"/>
  <tileset firstgid="116" source="Tilesets/House Decoration.tsx"/>
@@ -807,7 +807,7 @@
   <object id="1" name="Start" x="2384" y="1708">
    <point/>
   </object>
-  <object id="2" name="Desk" x="2048.67" y="2113.67" width="61.6667" height="123.333"/>
+  <object id="2" name="Desk" x="2049" y="2113.09" width="61.4167" height="61.4997"/>
   <object id="3" name="Mission02" x="1665" y="1025" width="61.6673" height="61.3327"/>
   <object id="83" name="Mission01" x="2113" y="1025.16" width="61.9997" height="61.4997"/>
   <object id="87" name="Mission03" x="1217" y="1024.83" width="61.8333" height="62.1667"/>
@@ -815,14 +815,14 @@
   <object id="108" name="Books" x="1024.5" y="1919.83" width="126.75" height="63.667"/>
   <object id="247" name="Books" x="1280.5" y="897.163" width="126.75" height="63.667"/>
   <object id="248" name="Books" x="1921.83" y="895.83" width="126.75" height="63.667"/>
-  <object id="113" name="Sequeira" x="1924.33" y="2114.5" width="55.1667" height="125"/>
-  <object id="249" name="Marta" x="1860.33" y="2114.5" width="55.1667" height="125"/>
-  <object id="250" name="Pacheco" x="1796.83" y="2113" width="55.1667" height="125"/>
-  <object id="251" name="Capela" x="1796.33" y="1985" width="55.1667" height="125"/>
-  <object id="252" name="Ruben" x="1859.83" y="1985" width="55.1667" height="125"/>
-  <object id="253" name="Emanuel" x="1924.83" y="1984" width="55.1667" height="125"/>
-  <object id="254" name="Fernanda" x="1988.33" y="1984" width="55.1667" height="125"/>
-  <object id="255" name="Nuno" x="2051.33" y="1984" width="55.1667" height="125"/>
+  <object id="262" name="Pacheco" x="1793" y="2178" width="61" height="61"/>
+  <object id="249" name="Marta" x="1857" y="2178" width="61" height="61"/>
+  <object id="113" name="Sequeira" x="1921" y="2178" width="61" height="61"/>
+  <object id="251" name="Capela" x="1793" y="1985" width="61" height="61"/>
+  <object id="252" name="Alexandre" x="1857" y="1985" width="61" height="61"/>
+  <object id="253" name="Emanuel" x="1921" y="1985" width="61" height="61"/>
+  <object id="254" name="Fernanda" x="1985.33" y="1985" width="61" height="61"/>
+  <object id="255" name="Nuno" x="2049" y="1985" width="61" height="61"/>
   <object id="256" name="Vitor" x="1348.17" y="2175.67" width="55.1667" height="65"/>
   <object id="257" name="Oscar" x="1284.17" y="2175.67" width="55.1667" height="65"/>
   <object id="258" name="Coffee" x="1347.5" y="2047.67" width="55.1667" height="65"/>

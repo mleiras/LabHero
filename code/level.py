@@ -65,6 +65,7 @@ class Level:
 		# self.music_bg.play(loops = -1)
 
 	def setup(self):
+		
 		map_path = get_resource_path('data/map_lb.tmx')
 		tmx_data = load_pygame(map_path)
 		surf_path = get_resource_path('graphics/world/ground_lb.png')
@@ -147,35 +148,38 @@ class Level:
 			if obj.name == 'Ecoli':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)	
 
-			if obj.name == 'Sequeira':
+			if obj.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Alexandre' or 'Fernanda' or 'Emanuel' or 'Capela' or 'Marta':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+				
 
-			if obj.name == 'Marta':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Marta':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Pacheco':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Pacheco':
+			# 	self.dialogues = Dialogues(obj.name, self.toggle_dialogue, self.player)
+			# 	self.dialogues_active = False
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Capela':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Capela':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Ruben':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Ruben':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Emanuel':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Emanuel':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Fernanda':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Fernanda':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Nuno':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Nuno':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Oscar':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Oscar':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
-			if obj.name == 'Vitor':
-				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
+			# if obj.name == 'Vitor':
+			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 				
 			if obj.name == 'Coffee':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
@@ -275,6 +279,7 @@ class Level:
 			self.ecoli.update()
 
 		elif self.dialogues_active:
+			self.dialogues.choosing_character(self.player.character)
 			self.dialogues.update()
 			
 		else:

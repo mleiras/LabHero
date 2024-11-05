@@ -37,7 +37,7 @@ class Game:
 					except FileNotFoundError:
 						# self.level = Level(DEFAULT_INVENTORY)
 						self.level = Level(DEFAULT_INVENTORY_2)
-						
+						 
 					self.run()
 				elif pygame.key.get_pressed()[pygame.K_SPACE]:
 					self.level = Level(DEFAULT_INVENTORY_2)
