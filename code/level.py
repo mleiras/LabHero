@@ -148,32 +148,8 @@ class Level:
 			if obj.name == 'Ecoli':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)	
 
-			if obj.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Alexandre' or 'Fernanda' or 'Emanuel' or 'Capela' or 'Marta':
+			if obj.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela' or 'Marta' :
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-				
-
-			# if obj.name == 'Marta':
-			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-
-			# if obj.name == 'Pacheco':
-			# 	self.dialogues = Dialogues(obj.name, self.toggle_dialogue, self.player)
-			# 	self.dialogues_active = False
-			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-
-			# if obj.name == 'Capela':
-			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-
-			# if obj.name == 'Ruben':
-			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-
-			# if obj.name == 'Emanuel':
-			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-
-			# if obj.name == 'Fernanda':
-			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-
-			# if obj.name == 'Nuno':
-			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
 			# if obj.name == 'Oscar':
 			# 	Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)

@@ -170,7 +170,7 @@ class Player(pygame.sprite.Sprite):
                         # Deteta colisão apenas com objetos dentro da área de interação
                         for sprite in self.interaction:
                             if self.interaction_area.colliderect(sprite.hitbox):
-                                if sprite.name == 'Sequeira' or 'Pacheco' or 'Marta' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela':
+                                if sprite.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela' or 'Marta' :
                                     self.character = sprite.name
                                     self.dialogues() # add variable with name character to change message and id
                             
