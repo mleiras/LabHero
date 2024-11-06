@@ -61,14 +61,14 @@ class Dialogues:
             self.message = [
             "I'm Marta!"
             ]
-            self.imagem_path = get_resource_path('graphics/dialogues/martinez.jpg')
-            self.nome = self.font_nome.render('Dra. Marta', True, 'black')
+            self.imagem_path = get_resource_path('graphics/dialogues/Marta.jpg')
+            self.nome = self.font_nome.render('Dra. Sampaio', True, 'black')
         
         elif self.character == 'Capela':
             self.message = [
             "I'm Capela!"
             ]
-            self.imagem_path = get_resource_path('graphics/dialogues/silva.jpg')
+            self.imagem_path = get_resource_path('graphics/dialogues/Capela.jpg')
             self.nome = self.font_nome.render('Dr. Capela', True, 'black')
 
         elif self.character == 'Fernanda':
@@ -78,7 +78,7 @@ class Dialogues:
             "by studying their interactions with the host organisms.",
             "Interesting, right?"
             ]
-            self.imagem_path = get_resource_path('graphics/dialogues/martinez.jpg')
+            self.imagem_path = get_resource_path('graphics/dialogues/Fernanda.jpg')
             self.nome = self.font_nome.render('Dra. Vieira', True, 'black')
 
         elif self.character == 'Alexandre':
@@ -88,7 +88,7 @@ class Dialogues:
             "metabolic models.",
             "SARS-COV-2 is a strain of coronavirus that causes COVID-19!"
             ]
-            self.imagem_path = get_resource_path('graphics/dialogues/silva.jpg')
+            self.imagem_path = get_resource_path('graphics/dialogues/Alexandre.jpg')
             self.nome = self.font_nome.render('Dr. Oliveira', True, 'black')
 
         elif self.character == 'Emanuel':
@@ -98,7 +98,7 @@ class Dialogues:
             "genome-scale metabolic models.",
             "Do you already know what GEMs are?"
             ]
-            self.imagem_path = get_resource_path('graphics/dialogues/silva.jpg')
+            self.imagem_path = get_resource_path('graphics/dialogues/Emanuel.jpg')
             self.nome = self.font_nome.render('Dr. Cunha', True, 'black')
 
         else:
