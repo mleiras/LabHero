@@ -42,9 +42,6 @@ class Mission01:
             "involving E. coli.  We're trying to understand how this remarkable microbe adapts to",
             "different environments, especially anaerobic ones. Can you help me?"
         ]
-            # "Olá! Tenho uma missão para ti",
-            #               "Ajuda-me com este modelo de e coli",
-            #               "Consegues?"]
         
         self.m01_step2 = ["Did you already made a simulation?",
                           "Can you show me your results?"]
@@ -167,9 +164,6 @@ class Mission_info:
             "\n"
             "Hints:\n"
             "- Ensure the absence of oxygen in your simulation. "
-            # "- Familiarize yourself with the basics of FBA, such as setting objectives and constraints."
-            # "- Analyze the predicted flux distributions to understand which metabolic pathways are"
-            # " active in anaerobic conditions."
             ,
             max_char=33,
             wordwrap=True
@@ -204,7 +198,7 @@ class Mission_info:
 
 
 
-    def toggle_menu(self): ### CORRIGIR AQUI NOME
+    def toggle_menu(self): 
         self.toggle_talk = not self.toggle_talk
 
 
@@ -221,22 +215,12 @@ class Mission_info:
             self.success.play()
             self.missions_completed.insert(0, '01')
             animation_text_save('Congratulations! Mission Completed!', time=2000)
-            # self.success.play()
         else:
             self.failed.play()
             animation_text_save('No ... Try again!', time=2000)
 
 
     def check_results(self):
-        # try:
-        #     # res = load_file('data')[0]
-        #     res = load_file('player_history/results')
-        #     # print(str(res))
-        #     # print(res2)
-
-        #     menu_results.add.label(res)
-        # except:
-        #     menu_results.add.label('You have to make at least one simulation to see results.')
         m01_path = get_resource_path('code/player_history/mission01')
         m01_results = load_file(m01_path)
         
@@ -244,11 +228,10 @@ class Mission_info:
             data_path = get_resource_path('code/player_history/data')
             name, *data = load_file(data_path)
             results = data[0][0]
+            value = results[1]
 
-            value = float(results[11:21])
-            right_value = float(m01_results[11:21])
-            
-            if isclose(value, right_value, abs_tol=10**-8): 
+            right_value = float(m01_results)
+            if value == right_value:
                 return True
             else:
                 return False

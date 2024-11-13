@@ -164,17 +164,16 @@ class Player(pygame.sprite.Sprite):
                         self.books()
                     elif collided_interaction_sprite[0].name == 'Ecoli':
                         self.ecoli()
-
                     else:
-
                         # Deteta colisão apenas com objetos dentro da área de interação
                         for sprite in self.interaction:
                             if self.interaction_area.colliderect(sprite.hitbox):
-                                if sprite.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela' or 'Marta' :
+                                if sprite.name == 'Coffee':
+                                    self.speed = 400
+                                if sprite.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela' or 'Marta' or 'Oscar' or 'Miguel':
                                     self.character = sprite.name
                                     self.dialogues() # add variable with name character to change message and id
-                            
-            
+                                    
     def get_status(self):
         # if player not moving add idle
         if self.direction.magnitude() == 0:

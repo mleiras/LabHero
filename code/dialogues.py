@@ -59,14 +59,19 @@ class Dialogues:
 
         elif self.character == 'Marta':
             self.message = [
-            "I'm Marta!"
+            "I’m Marta Sampaio, and I developed a Genome-scale metabolic model to study how",
+            "grapevines grow and change throughout the day and night.",
+            "This was really a grape achievement!"
             ]
             self.imagem_path = get_resource_path('graphics/dialogues/Marta.jpg')
             self.nome = self.font_nome.render('Dra. Sampaio', True, 'black')
         
         elif self.character == 'Capela':
             self.message = [
-            "I'm Capela!"
+            "Hi, I’m João Capela! I am a bioinformatics and plant enthusiast,",
+            "so why not combine the two?",
+            "I’m currently exploring AI and systems biology methods to decipher",
+            "plant specialized metabolism!"
             ]
             self.imagem_path = get_resource_path('graphics/dialogues/Capela.jpg')
             self.nome = self.font_nome.render('Dr. Capela', True, 'black')
@@ -100,6 +105,22 @@ class Dialogues:
             ]
             self.imagem_path = get_resource_path('graphics/dialogues/Emanuel.jpg')
             self.nome = self.font_nome.render('Dr. Cunha', True, 'black')
+        elif self.character == 'Oscar':
+            self.message = [
+            "Hello there my young padawan! I’m Oscar Dias, and I study how living things",
+            "work using computers and math. ",
+            "In our lab, we use the data side of the Force to unlock life's mysteries! ",
+            ]
+            self.imagem_path = get_resource_path('graphics/dialogues/Emanuel.jpg') #TODO: Alterar imagem Oscar
+            self.nome = self.font_nome.render('Dr. Dias', True, 'black')
+        elif self.character == 'Miguel':
+            self.message = [
+            "Hi there! I’m Miguel Rocha, and I study how computers can help us understand ",
+            "and solve problems in biology and medicine. ",
+            "We’re not just solving problems, we’re debugging the code of life!"
+            ]
+            self.imagem_path = get_resource_path('graphics/dialogues/Emanuel.jpg') #TODO: alterar imagem Miguel
+            self.nome = self.font_nome.render('Dr. Rocha', True, 'black')
 
         else:
             self.message = ['Hello there! Are you enjoying LabHero so far?']
