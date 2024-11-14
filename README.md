@@ -6,6 +6,16 @@ A serious game that empowers non-bioinformaticians to learn how to use genome-sc
 
 The game consists of simulating distinct environmental and genetic modifications of towards specific objectives. At each game level, the player is required to define a strategy that encompasses selecting a medium and/or choosing genetic modifications to achieve a certain result.
 
+
+## Table of Contents
+
+ 1. [Introduction](#introduction)
+ 2. [Installation](#installation)
+ 3. [Game Story](#game-story)
+ 4. [Controls](#controls)
+ 5. [Playing LabHero](#playing-labhero)
+
+
 ## Introduction
 
 This game was developed as a part of the master's thesis of Mónica Leiras "Development of a serious game to stimulate the learning of genome-scale metabolic modeling concepts" (MSc in Bioinformatics - University of Minho).
@@ -27,7 +37,7 @@ LabHero was tested with Python 3.10.11. It's recommended to use this version or 
     ```
 2. (Recommended) Set up virtual environment
     ```bash
-    python -m venv .venv
+    python3 -m venv .venv
     ```
     
     Windows:
@@ -46,7 +56,7 @@ LabHero was tested with Python 3.10.11. It's recommended to use this version or 
     ```
 3. Run file LabHero.py.
     ```bash
-    python LabHero.py
+    python3 LabHero.py
     ```
 
 
@@ -94,4 +104,4 @@ Use M key to open the Main Menu to change your name, control the music/volume, s
 
 ## Playing LabHero
 
-(coming soon)
+[![Playing LabHero Video](video_labhero.jpg)](https://www.youtube.com/watch?v=ky_Ov7gZDlg)
