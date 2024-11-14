@@ -12,7 +12,43 @@ This game was developed as a part of the master's thesis of Mónica Leiras "Deve
 
 ## Installation
 
-You can find and download an executable in this [link](https://drive.google.com/file/d/1lnpiL0vEoQQWnRdPfIhEp-e2YUq5Is2z/view?usp=sharing).
+### Download Executable:
+Windows: [link for download](https://drive.google.com/file/d/1lnpiL0vEoQQWnRdPfIhEp-e2YUq5Is2z/view?usp=sharing)
+
+macOS: (coming soon)
+
+### Install from GitHub
+
+LabHero was tested with Python 3.10.11. It's recommended to use this version or a compatible one to ensure everything works smoothly.
+
+1. Clone Repository
+    ```bash
+    git clone https://github.com/mleiras/LabHero.git
+    ```
+2. (Recommended) Set up virtual environment
+    ```bash
+    python -m venv .venv
+    ```
+    
+    Windows:
+    ```bash
+    .venv\Scripts\activate
+    ```
+   
+   macOS/Linux:
+    ```bash
+    source .venv/bin/activate
+    ```
+
+2. Install requirements
+    ```bash
+    pip install -r requirements.txt
+    ```
+3. Run file LabHero.py.
+    ```bash
+    python LabHero.py
+    ```
+
 
 ## Game Story 
 
@@ -35,23 +71,27 @@ Use arrows (up, down, left, righ) or WASD keys to move the character.
 
 **Interacting:**
 
-Use ENTER key to open the dialogue when close to another character (scientists).
+Use ENTER key to open the dialogue when close to another character.
+
+Use ESCAPE key to close the dialogue with another character.
 
 Use ENTER key to open the simulation window when close to your desk.
 
 Use ENTER key to consult books when close to the library.
 
-Use ENTER key to take an apple from a tree ("An apple a day keeps the doctor away").
+Use ENTER key to take an apple from a tree, because why not?
+
+Use ENTER key to try some coffee and see if it has some effect on you.
+
 
 **Buttons:**
 
-Use the Mouse to click on the buttons of the dialogues.
+Use the Mouse to click on the buttons of the dialogues and simulation menu.
 
 **Main Menu:**
 
-Use M key to open the Main Menu to control the music/volume, save/exit the game and to see this tutorial again.
+Use M key to open the Main Menu to change your name, control the music/volume, save/exit the game and to see this tutorial again.
 
+## Playing LabHero
 
-## Application
-
-Currently in development to distribute the game more easily.
+(coming soon)
