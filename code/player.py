@@ -54,12 +54,17 @@ class Player(pygame.sprite.Sprite):
         self.soil_layer = soil_layer
 
         	
-        # music
+        # music/audio
 
         self.music_bg = pygame.mixer.Sound(MUSIC_NAME)
         self.music_bg.set_volume(0.07)
         # self.music_bg.set_volume(0)
         self.music_bg.play(loops = -1)
+
+        coffee_path = get_resource_path('audio/coffee.wav')
+        self.coffee = pygame.mixer.Sound(coffee_path)
+        self.coffee.set_volume(0.05)
+
 
     def use_tool(self):
         for tree in self.tree_sprites.sprites():
@@ -169,6 +174,7 @@ class Player(pygame.sprite.Sprite):
                         for sprite in self.interaction:
                             if self.interaction_area.colliderect(sprite.hitbox):
                                 if sprite.name == 'Coffee':
+                                    self.coffee.play()
                                     self.speed = 400
                                 if sprite.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela' or 'Marta' or 'Oscar' or 'Miguel':
                                     self.character = sprite.name
