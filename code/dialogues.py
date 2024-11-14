@@ -111,7 +111,7 @@ class Dialogues:
             "work using computers and math. ",
             "In our lab, we use the data side of the Force to unlock life's mysteries! ",
             ]
-            self.imagem_path = get_resource_path('graphics/dialogues/Emanuel.jpg') #TODO: Alterar imagem Oscar
+            self.imagem_path = get_resource_path('graphics/dialogues/Oscar.jpg') 
             self.nome = self.font_nome.render('Dr. Dias', True, 'black')
         elif self.character == 'Miguel':
             self.message = [
@@ -119,7 +119,7 @@ class Dialogues:
             "and solve problems in biology and medicine. ",
             "We’re not just solving problems, we’re debugging the code of life!"
             ]
-            self.imagem_path = get_resource_path('graphics/dialogues/Emanuel.jpg') #TODO: alterar imagem Miguel
+            self.imagem_path = get_resource_path('graphics/dialogues/Miguel.jpg') 
             self.nome = self.font_nome.render('Dr. Rocha', True, 'black')
 
         else:
