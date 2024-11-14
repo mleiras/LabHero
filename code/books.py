@@ -1234,6 +1234,8 @@ class Books:
             Use ENTER key to consult books when close to the library.
 
             Use ENTER key to take an apple from a tree ("An apple a day keeps the doctor away").
+            
+            Use ENTER key to try some coffee and see if it has some effect on you.
             """,
             max_char=-1,
             wordwrap=True,

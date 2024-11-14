@@ -114,6 +114,8 @@ class Tutorial:
             Use ENTER key to consult books when close to the library.
 
             Use ENTER key to take an apple from a tree, because why not?
+            
+            Use ENTER key to try some coffee and see if it has some effect on you.
             """,
             max_char=-1,
             wordwrap=True,
