@@ -180,7 +180,7 @@ class Window:
             objectives.append((REACTIONS_v0.index[i], REACTIONS_v0.index[i]))
         
         menu_objective.add.dropselect(title='Objective: ',
-                            items=objectives,
+                                   items=objectives,
                                    default=default_obj,
                                    selection_box_height=8,
                                    selection_box_width=500,
@@ -237,9 +237,12 @@ class Window:
             menu_simul.add.label(self.results, label_id='results')
             save_results(self.results)
             save_file([self.player.player_name, self.player.results, self.player.missions_activated, self.player.missions_completed])
-            menu_simul.add.vertical_margin(100, margin_id='nr_margin')  # Adds margin
+            menu_simul.add.vertical_margin(50, margin_id='nr_margin')
+            if self.results[1] == 'Status: INFEASIBLE':
+                ecoli_rip = get_resource_path('graphics/environment/ecoli_rip.jpg')
+                menu_simul.add.image(ecoli_rip, scale=(0.5, 0.5))
+                menu_simul.add.vertical_margin(50)
             menu_simul.add.button('Close', pygame_menu.events.BACK, background_color=(70, 70, 70), button_id='nr_close')
-           
 
 
         # def restore_data() -> None:
