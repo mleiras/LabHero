@@ -26,6 +26,8 @@ class Window:
 
 
     def setup(self):
+
+        ecoli_rip = get_resource_path('graphics/environment/ecoli_rip.jpg')
         
         menu = pygame_menu.Menu(
             height=720,
@@ -141,21 +143,21 @@ class Window:
 
 
         # MENU RESULTS
-        menu_results = pygame_menu.Menu(
-            height=720,
-            onclose=pygame_menu.events.BACK,
-            theme=mytheme,
-            title='History of Past Simulations',
-            width=1280
-        )
-        menu_results.add.vertical_margin(20)
-        try:
-            res_path = get_resource_path('code/player_history/results')
-            res = load_file(res_path)
+        # menu_results = pygame_menu.Menu(
+        #     height=720,
+        #     onclose=pygame_menu.events.BACK,
+        #     theme=mytheme,
+        #     title='History of Past Simulations',
+        #     width=1280
+        # )
+        # menu_results.add.vertical_margin(20)
+        # try:
+        #     res_path = get_resource_path('code/player_history/results')
+        #     res = load_file(res_path)
 
-            menu_results.add.label(res)
-        except FileNotFoundError:
-            menu_results.add.label('You have to make at least one simulation to see results.')
+        #     menu_results.add.label(res)
+        # except FileNotFoundError:
+        #     menu_results.add.label('You have to make at least one simulation to see results.')
 
 
         
@@ -205,6 +207,17 @@ class Window:
             """
             Print data of the menu.
             """
+
+            # MENU AFTER SIMULATION RESULTS
+            menu_simul = pygame_menu.Menu(
+                height=720,
+                onclose=self.toggle_menu,
+                theme=mytheme,
+                title='New Results',
+                width=1280,
+                menu_id='menu_new_results'
+            )
+
             data_simul = menu.get_input_data()
             data_objective = menu_objective.get_input_data()
             data_genes = menu_genes.get_input_data()
@@ -218,17 +231,8 @@ class Window:
                 menu.remove_widget('new_results')
                 menu.remove_widget('menu_new_results')
             except:
+                # print('teste2')
                 pass
-            
-            # MENU AFTER SIMULATION RESULTS
-            menu_simul = pygame_menu.Menu(
-                height=720,
-                onclose=self.toggle_menu,
-                theme=mytheme,
-                title='New Results',
-                width=1280,
-                menu_id='menu_new_results'
-            )
             
             menu_simul.add.label("Results:")
             menu_simul.add.vertical_margin(50)  # Adds margin
@@ -238,10 +242,18 @@ class Window:
             save_results(self.results)
             save_file([self.player.player_name, self.player.results, self.player.missions_activated, self.player.missions_completed])
             menu_simul.add.vertical_margin(50, margin_id='nr_margin')
-            if self.results[1] == 'Status: INFEASIBLE':
-                ecoli_rip = get_resource_path('graphics/environment/ecoli_rip.jpg')
-                menu_simul.add.image(ecoli_rip, scale=(0.5, 0.5))
-                menu_simul.add.vertical_margin(50)
+            if self.results[1] == 'Status: INFEASIBLE' or self.results[1] == 0.0 or self.results[1] == -0.0:
+                menu_simul.add.image(ecoli_rip, scale=(0.5, 0.5), image_id='ecolidead')
+                menu_simul.add.vertical_margin(50, margin_id='deadmargin')
+            else:
+                try:
+                    menu_simul.remove_widget('ecolidead')
+                except:
+                    pass
+                try:
+                    menu_simul.remove_widget('deadmargin')
+                except:
+                    pass
             menu_simul.add.button('Close', pygame_menu.events.BACK, background_color=(70, 70, 70), button_id='nr_close')
 
 
