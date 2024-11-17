@@ -23,9 +23,9 @@ This game was developed as a part of the master's thesis of Mónica Leiras "Deve
 ## Installation
 
 ### Download Executable:
-Windows: [link for download](https://drive.google.com/file/d/1lnpiL0vEoQQWnRdPfIhEp-e2YUq5Is2z/view?usp=sharing)
+[Download for Windows](https://drive.google.com/file/d/1kPUM-_Je9yLfV1HENsKc2g-eleRCFrAv/view?usp=share_link)
 
-macOS: (coming soon)
+[(Download for macOS)](https://drive.google.com/file/d/1hiQkAJ3eCTnbnxp-3bDpbzk9-DYZTnEt/view?usp=share_link)
 
 ### Install from GitHub
 
