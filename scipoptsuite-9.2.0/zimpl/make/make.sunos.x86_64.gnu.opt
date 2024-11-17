@@ -1,0 +1,8 @@
+CPPFLAGS	+=	-DNDEBUG -DNO_MSHELL -D__NO_MATH_INLINES -Wno-format-truncation
+CFLAGS		=	-m64 -O3 -ffp-contract=off -mtune=native
+LDFLAGS		=	-Bstatic -lgmp -lm
+
+ifeq ($(ZLIB),true)
+LDFLAGS		+=	-lz
+endif
+
