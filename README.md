@@ -23,11 +23,41 @@ This game was developed as a part of the master's thesis of Mónica Leiras "Deve
 ## Installation
 
 ### Download Executable:
+
 [Download for Windows](https://drive.google.com/file/d/1kPUM-_Je9yLfV1HENsKc2g-eleRCFrAv/view?usp=share_link)
 
-[(Download for macOS)](https://drive.google.com/file/d/1hiQkAJ3eCTnbnxp-3bDpbzk9-DYZTnEt/view?usp=share_link)
+[Download for macOS](https://drive.google.com/file/d/1hiQkAJ3eCTnbnxp-3bDpbzk9-DYZTnEt/view?usp=share_link)
 
-### Install from GitHub
+
+<details>
+  <summary>"Not Safe" Warning Instructions</summary><br>
+  
+When you try to open the application, you may see a message like this: <br>
+
+> "This app cannot be opened because it is from an unidentified developer."
+
+To open the game anyway, you only need to do this the first time:
+
+#### For Windows Users:
+
+Click "More info" on the dialog box. Then click the "Run anyway" button.
+
+#### For macOS Users:
+
+On your Mac, choose Apple menu > System Settings, then click Privacy & Security in the sidebar. (You may need to scroll down.) 
+Go to Security, then click Open. Click Open Anyway.
+
+#### Why Does This Happen?
+The warning appears because the application is not signed with an official developer certificate. Signing software requires purchasing a certificate, which is a common practice for large-scale or commercial projects to prove their apps are legit, but it can be expensive. Since this is a smaller project, I haven’t gone through that process.
+
+
+</details>
+
+<br>
+
+<details>
+<summary>Download from GitHub</summary>
+<br>
 
 LabHero was tested with Python 3.10.11. It's recommended to use this version or a compatible one to ensure everything works smoothly.
 
@@ -58,6 +88,12 @@ LabHero was tested with Python 3.10.11. It's recommended to use this version or 
     ```bash
     python3 LabHero.py
     ```
+
+    **Note:** If `python3` doesn’t work, try `python` instead.
+
+</details>
+
+
 
 
 ## Game Story 
