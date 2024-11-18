@@ -1,3 +1,0 @@
-presolving/domcol/maxrounds = 0
-heuristics/vbounds/freq = -1
-propagating/probing/maxprerounds = 0

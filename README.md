@@ -1,4 +1,4 @@
-![LabHero](LabHero.png)
+![LabHero](graphics\LabHero.png)
 
 # LabHero
 
@@ -140,4 +140,4 @@ Use M key to open the Main Menu to change your name, control the music/volume, s
 
 ## Playing LabHero
 
-[![Playing LabHero Video](video_labhero.jpg)](https://www.youtube.com/watch?v=ky_Ov7gZDlg)
+[![Playing LabHero Video](graphics\video_labhero.jpg)](https://www.youtube.com/watch?v=ky_Ov7gZDlg)

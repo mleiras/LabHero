@@ -1,3 +1,0 @@
-constraints/components/maxprerounds = 0
-presolving/domcol/maxrounds = 0
-propagating/probing/maxprerounds = 0
