@@ -47,8 +47,9 @@ class WildFlower(Generic):
         self.hitbox = self.rect.copy().inflate(-20,-self.rect.height*0.9)
 
 class Tree(Generic):
-    def __init__(self, pos, surf, groups, name, player_add):
+    def __init__(self, pos, surf, groups, name, player_add, all_sprites):
         super().__init__(pos, surf, groups)
+        self.all_sprites = all_sprites
 
         
         # apples
@@ -69,7 +70,7 @@ class Tree(Generic):
                 Generic(
                     pos = (x,y), 
                     surf = self.apples_surf, 
-                    groups = [self.apple_sprites, self.groups()[0]],
+                    groups = [self.apple_sprites, self.all_sprites],
                     z = LAYERS['fruit']) # como não há acesso direto ao grupo all_sprites, consegue-se aceder a todos os grupos da classe Tree (level.py) e escolhe-se o grupo pela ordem que aparece 
 
     def damage(self):
@@ -79,7 +80,7 @@ class Tree(Generic):
             Particle(
                 pos = random_apple.rect.topleft,
                 surf = random_apple.image,
-                groups =  self.groups()[0],
+                groups =  self.all_sprites,
                 z = LAYERS['fruit'])
             self.player_add('apple')
             random_apple.kill()
