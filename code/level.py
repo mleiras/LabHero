@@ -97,7 +97,8 @@ class Level:
 				surf = obj.image,
 				groups = [self.all_sprites, self.collision_sprites, self.tree_sprites],
 				name = obj.name,
-				player_add = self.player_add)
+				player_add = self.player_add,
+				all_sprites = self.all_sprites)
 
 		# Wildflowers
 		for obj in tmx_data.get_layer_by_name('Decoration'):
