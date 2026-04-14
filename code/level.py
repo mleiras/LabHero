@@ -149,7 +149,7 @@ class Level:
 			if obj.name == 'Ecoli':
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)	
 
-			if obj.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela' or 'Marta' or 'Oscar' or 'Miguel':
+			if obj.name in ('Sequeira', 'Pacheco', 'Nuno', 'Fernanda', 'Emanuel', 'Alexandre', 'Capela', 'Marta', 'Oscar', 'Miguel'):
 				Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
 
 			# if obj.name == 'Oscar':

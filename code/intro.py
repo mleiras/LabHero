@@ -172,7 +172,7 @@ class Tutorial:
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_ESCAPE]:
-            pygame_menu.events.BACK
+            pass  # ESC is handled by pygame-menu's onclose callback
 
     def update(self):
         self.input()
@@ -220,7 +220,7 @@ class Story:
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_ESCAPE]:
-            pygame_menu.events.BACK
+            pass  # ESC is handled by pygame-menu's onclose callback
 
     def update(self):
         self.input()

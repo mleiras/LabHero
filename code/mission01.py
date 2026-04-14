@@ -244,7 +244,7 @@ class Mission_info:
         self.timer.update()
 
         if keys[pygame.K_ESCAPE]:
-            pygame_menu.events.BACK
+            pass  # ESC is handled by pygame-menu's onclose callback
             
 
     def update(self):
