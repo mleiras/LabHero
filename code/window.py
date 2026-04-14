@@ -68,12 +68,12 @@ class Window:
         menu_reactions.add.vertical_margin(20)
         # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
         for i in range(len(REACTIONS.name)):
-            menu_reactions.add.label(REACTIONS.name[i])
-            if REACTIONS.lb[i] != 0:
+            menu_reactions.add.label(REACTIONS.name.iloc[i])
+            if REACTIONS.lb.iloc[i] != 0:
                 default_lb_bool = True
             else:
                 default_lb_bool = False
-            if REACTIONS.ub[i] != 0:
+            if REACTIONS.ub.iloc[i] != 0:
                 default_ub_bool = True
             else:
                 default_ub_bool = False
