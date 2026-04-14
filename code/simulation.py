@@ -27,7 +27,7 @@ def run_simul():
     count_2 = 0 # to access flow in and out inside each reaction (pair by pair)
     for i,(k,x) in enumerate(reactions.items()):
         if count_2 % 2 == 0: # if it's even, it means the toggle for the flow in
-            envconditions[REACTIONS.index[count]] = (reactions_original.lb[count], reactions_original.ub[count])
+            envconditions[REACTIONS.index[count]] = (reactions_original.lb.iloc[count], reactions_original.ub.iloc[count])
             if not x:
                 envconditions[REACTIONS.index[count]] = (0, envconditions[REACTIONS.index[count]][1])
             else:
@@ -60,7 +60,7 @@ def run_simul():
         if not x:
             # print(k)
             # print(simul.find_genes().reactions[i])
-            list_react = simul.find_genes().reactions[i]
+            list_react = simul.find_genes().reactions.iloc[i]
             for react in list_react:
                 envconditions[react] = (0,0)
 
