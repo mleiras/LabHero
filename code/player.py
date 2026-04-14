@@ -176,7 +176,7 @@ class Player(pygame.sprite.Sprite):
                                 if sprite.name == 'Coffee':
                                     self.coffee.play()
                                     self.speed = 400
-                                if sprite.name == 'Sequeira' or 'Pacheco' or 'Nuno' or 'Fernanda' or 'Emanuel' or 'Alexandre' or 'Capela' or 'Marta' or 'Oscar' or 'Miguel':
+                                if sprite.name in ('Sequeira', 'Pacheco', 'Nuno', 'Fernanda', 'Emanuel', 'Alexandre', 'Capela', 'Marta', 'Oscar', 'Miguel'):
                                     self.character = sprite.name
                                     self.dialogues() # add variable with name character to change message and id
                                     

@@ -287,17 +287,17 @@ class Window:
         # menu.add.button('Restore Data', restore_data, background_color=(100,0,0))
         # menu.add.vertical_margin(20)  # Adds margin
 
-        menu.add.button('Run Simulation', action=data_fun, font_color = 'white', background_color=(20,100,100))        
+        menu.add.button('Run Simulation', action=data_fun, font_color = 'white', background_color=(20,100,100))
         menu.add.vertical_margin(20)  # Adds margin
-        # last_results = menu.add.button('Results Log', action=menu_results, font_color = 'black', background_color="grey")  
+        # last_results = menu.add.button('Results Log', action=menu_results, font_color = 'black', background_color="grey")
         # menu.add.vertical_margin(50)  # Adds margin
 
-        menu.mainloop(self.display_surface)
-        
+        def check_escape():
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_ESCAPE] and menu.is_enabled():
+                menu.close()
 
-
-    def toggle_menu(self):
-        self.desk_menu = not self.desk_menu
+        menu.mainloop(self.display_surface, check_escape)
 
 
 
@@ -307,7 +307,7 @@ class Window:
         self.timer.update()
 
         if keys[pygame.K_ESCAPE]:
-            pygame_menu.events.BACK
+            pass  # ESC is handled by pygame-menu's onclose callback
 
 
     def update(self):
