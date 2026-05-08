@@ -225,7 +225,7 @@ class Mission_info:
         m01_results = load_file(m01_path)
         
         try:
-            data_path = get_resource_path('code/player_history/data')
+            data_path = get_save_path('data')
             name, *data = load_file(data_path)
             results = data[0][0]
             value = results[1]
