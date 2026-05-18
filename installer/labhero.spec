@@ -35,6 +35,7 @@ datas += [
     (os.path.join(PROJ, 'font'), 'font'),
     (os.path.join(PROJ, 'data'), 'data'),
     (os.path.join(PROJ, 'code', 'player_history', 'mission01.txt'), 'code/player_history'),
+    (os.path.join(PROJ, 'LabHero-icon.png'), '.'),
 ]
 
 a = Analysis(
@@ -73,6 +74,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=os.path.join(PROJ, 'LabHero.ico'),
 )
 
 coll = COLLECT(
