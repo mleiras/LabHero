@@ -37,16 +37,8 @@ Save files are written to `%APPDATA%\LabHero\` so they persist across game updat
 1. From the latest macOS release, download the file matching your Mac:
    - `LabHero-v0.1.0-macos-arm64.zip` for Apple Silicon Macs (most Macs sold since late 2020).
    - `LabHero-v0.1.0-macos-intel.zip` for older Intel-based Macs.
-
-2. **Do not double-click the zip in Finder.** macOS's default Archive Utility breaks the app bundle during extraction, and `LabHero.app` will refuse to open with a "damaged" error. Instead, open **Terminal** (in Applications → Utilities) and run:
-    ```bash
-    ditto -x -k ~/Downloads/LabHero-v0.1.0-macos-arm64.zip ~/Downloads/
-    ```
-    (Replace `arm64` with `intel` if you downloaded the Intel build. Adjust the path if you downloaded to somewhere other than `~/Downloads`.)
-
-3. Drag `LabHero.app` to your Applications folder, or wherever you'd like to keep it.
-
-4. Double-click `LabHero.app` to play. On first launch macOS will block it with a security warning — open the "Not Safe" Warning Instructions section below to allow it.
+2. Extract the zip and drag `LabHero.app` to your Applications folder (or anywhere you like).
+3. Double-click `LabHero.app` to play.
 
 Save files are written to `~/Library/Application Support/LabHero/`.
 
