@@ -75,11 +75,17 @@ jobs:
       - name: Determine version tag
         id: version
         run: |
-          if [[ "${{ github.event_name }}" == "push" ]]; then
-            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
-          else
-            echo "tag=${{ github.event.inputs.version_tag }}" >> "$GITHUB_OUTPUT"
-          fi
+          case "${{ github.event_name }}" in
+            push)
+              echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+              ;;
+            workflow_dispatch)
+              echo "tag=${{ github.event.inputs.version_tag }}" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "tag=dev" >> "$GITHUB_OUTPUT"
+              ;;
+          esac
 
       - name: Zip LabHero.app with ditto
         run: |
