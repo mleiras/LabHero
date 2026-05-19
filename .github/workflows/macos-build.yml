@@ -7,6 +7,15 @@ on:
         description: 'Version label used in asset filenames (e.g. v0.1.0-macos). Used only for manual runs.'
         required: false
         default: 'dev'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'installer/**'
+      - 'requirements.txt'
+      - 'LabHero.py'
+      - 'code/**'
+      - '.github/workflows/macos-build.yml'
   push:
     tags:
       - 'v*-macos'
