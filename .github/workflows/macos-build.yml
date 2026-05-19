@@ -24,6 +24,10 @@ jobs:
   build:
     name: Build (${{ matrix.asset_suffix }})
     runs-on: ${{ matrix.runner }}
+    # Intel runners (macos-13) are often queue-bound for hours. Mark Intel as
+    # non-blocking so the workflow succeeds on arm64 alone; Intel attaches if
+    # and when it eventually completes.
+    continue-on-error: ${{ matrix.continue_on_error }}
     strategy:
       fail-fast: false
       matrix:
@@ -31,9 +35,11 @@ jobs:
           - runner: macos-13
             arch: x86_64
             asset_suffix: intel
+            continue_on_error: true
           - runner: macos-14
             arch: arm64
             asset_suffix: arm64
+            continue_on_error: false
 
     steps:
       - name: Checkout
