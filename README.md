@@ -32,15 +32,17 @@ The easiest way to play is to download the latest build from the [Releases page]
 
 Save files are written to `%APPDATA%\LabHero\` so they persist across game updates.
 
-### macOS
+### macOS (Apple Silicon)
 
-1. From the latest macOS release, download the file matching your Mac:
-   - `LabHero-v0.1.0-macos-arm64.zip` for Apple Silicon Macs (most Macs sold since late 2020).
-   - `LabHero-v0.1.0-macos-intel.zip` for older Intel-based Macs.
+LabHero ships as a native build for Apple Silicon Macs (M1, M2, M3, M4 — most Macs sold since late 2020). To check your Mac: Apple menu → About This Mac, look for "Chip: Apple M…".
+
+1. Download `LabHero-v0.1.0-macos-arm64.zip` from the latest macOS release.
 2. Extract the zip and drag `LabHero.app` to your Applications folder (or anywhere you like).
 3. Double-click `LabHero.app` to play.
 
 Save files are written to `~/Library/Application Support/LabHero/`.
+
+Using an Intel-based Mac? A native Intel build is not currently packaged. Follow the "Run from source" instructions below.
 
 <details>
   <summary>"Not Safe" Warning Instructions</summary><br>
