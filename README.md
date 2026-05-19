@@ -33,7 +33,7 @@ Save files are written to `%APPDATA%\LabHero\` so they persist across game updat
 A macOS build is planned but not yet available.
 
 <details>
-  <summary>"Not Safe" Warning nstructions</summary><br>
+  <summary>"Not Safe" Warning Instructions</summary><br>
 
 When you try to open the application, Windows may show a message like:
 
@@ -60,8 +60,7 @@ LabHero was tested with Python 3.10.11. Newer Python versions (3.13+) work but m
 
 1. Clone the repository:
     ```bash
-    git clone
-https://github.com/mleiras/LabHero.git
+    git clone https://github.com/mleiras/LabHero.git
     cd LabHero
     ```
 2. (Recommended) Set up a virtual environment:
