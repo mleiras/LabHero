@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use LabHero in your research or teaching, please cite it as below."
 title: "LabHero"
 type: software
-abstract: "A serious game that teaches the basics of genome-scale metabolic modelling through three missions on E. coli, using MEWpy."
+abstract: "A serious game to stimulate the learning of genome-scale metabolic modelling concepts."
 authors:
   - family-names: "Leiras"
     given-names: "Mónica"
