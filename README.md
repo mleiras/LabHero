@@ -22,31 +22,42 @@ This game was developed as a part of the master's thesis of Mónica Leiras "Deve
 
 ## Installation
 
-The easiest way to play is to download the latest Windows build from the [Releases page](https://github.com/mleiras/LabHero/releases/latest).
+The easiest way to play is to download the latest build from the [Releases page](https://github.com/mleiras/LabHero/releases/latest).
 
-  1. Download `LabHero-v0.1.0-windows.zip` from the latest release.
-  2. Extract the zip anywhere on your machine.
-  3. Double-click `LabHero.exe` to play.
+### Windows
+
+1. Download `LabHero-v0.1.0-windows.zip` from the latest Windows release.
+2. Extract the zip anywhere on your machine.
+3. Double-click `LabHero.exe` to play.
 
 Save files are written to `%APPDATA%\LabHero\` so they persist across game updates.
 
-A macOS build is planned but not yet available.
+### macOS
+
+1. From the latest macOS release, download the file matching your Mac:
+   - `LabHero-v0.1.0-macos-arm64.zip` for Apple Silicon Macs (most Macs sold since late 2020).
+   - `LabHero-v0.1.0-macos-intel.zip` for older Intel-based Macs.
+2. Extract the zip and drag `LabHero.app` to your Applications folder (or anywhere you like).
+3. Double-click `LabHero.app` to play.
+
+Save files are written to `~/Library/Application Support/LabHero/`.
 
 <details>
   <summary>"Not Safe" Warning Instructions</summary><br>
 
-When you try to open the application, Windows may show a message like:
+When you try to open the application, your operating system may show a warning. This appears because the executable is not signed with a developer certificate. Signing software requires a paid certificate, which is standard for commercial projects but disproportionate for a small academic project. You only need to override this on the first launch; the system remembers your choice afterwards.
 
-> "Windows protected your PC"
-
-This appears because the executable is not signed with a developer certificate. Signing software requires a paid certificate, which is standard for commercial projects but disproportionate for a small academic project.
-
-To open the game the first time:
+**Windows:**
 
 1. Click "More info" on the dialog box.
 2. Click the "Run anyway" button.
 
-You only need to do this once per machine.
+**macOS:**
+
+1. Right-click (or Control-click) `LabHero.app` and choose "Open".
+2. Click "Open" in the confirmation dialog.
+
+If macOS still refuses to open the app, go to **System Settings → Privacy & Security**, scroll down to find the LabHero warning, and click "Open Anyway".
 
 </details>
 
@@ -89,12 +100,6 @@ LabHero was tested with Python 3.10.11. Newer Python versions (3.13+) work but m
     ```
 
    **Note:** If `python3` doesn't work, try `python` instead.
-
-</details>
-
-A couple of small things to flag while you review:
-
-- The "Releases page" link uses /releases/latest, which is GitHub's auto-redirect to whatever release is currently
 
 </details>
 
