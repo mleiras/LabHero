@@ -54,10 +54,15 @@ When you try to open the application, your operating system may show a warning. 
 
 **macOS:**
 
-1. Right-click (or Control-click) `LabHero.app` and choose "Open".
-2. Click "Open" in the confirmation dialog.
+The first time you double-click `LabHero.app`, macOS will block it with a message like *"Apple could not verify 'LabHero' is free of malware"*. To allow it:
 
-If macOS still refuses to open the app, go to **System Settings → Privacy & Security**, scroll down to find the LabHero warning, and click "Open Anyway".
+1. Click **Done** to dismiss the warning.
+2. Open **System Settings** (Apple menu → System Settings).
+3. Go to **Privacy & Security** in the sidebar and scroll down to the **Security** section near the bottom.
+4. You'll see *"LabHero was blocked to protect your Mac"*. Click **"Open Anyway"** next to it and confirm with your Mac password or Touch ID.
+5. Go back to Finder and double-click `LabHero.app` again. A new dialog appears with an **"Open Anyway"** button. Click it.
+
+The game will launch. From then on, double-clicking `LabHero.app` works normally.
 
 </details>
 
