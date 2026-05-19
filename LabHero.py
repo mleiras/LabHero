@@ -16,7 +16,8 @@ class Game:
 	def __init__(self):
 		pygame.init()
 		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-		pygame.display.set_caption('Lab Hero') 
+		pygame.display.set_icon(pygame.image.load(get_resource_path('LabHero-icon.png')))
+		pygame.display.set_caption('Lab Hero')
 		self.clock = pygame.time.Clock()
 		self.intro = Intro()
 		self.intro_run()
@@ -32,7 +33,7 @@ class Game:
 				if pygame.key.get_pressed()[pygame.K_RETURN]:
 					# load game if exists
 					try:
-						data = load_file(get_resource_path('code/player_history/data'))
+						data = load_file(get_save_path('data'))
 						self.level = Level(data)
 					except FileNotFoundError:
 						# self.level = Level(DEFAULT_INVENTORY)
@@ -41,12 +42,12 @@ class Game:
 					self.run()
 				elif pygame.key.get_pressed()[pygame.K_SPACE]:
 					self.level = Level(DEFAULT_INVENTORY_2)
-					if os.path.exists(get_resource_path("code/player_history/data.txt")):
-						os.remove(get_resource_path("code/player_history/data.txt"))
-					if os.path.exists(get_resource_path("code/player_history/results.txt")):
-						os.remove(get_resource_path("code/player_history/results.txt"))
-					if os.path.exists(get_resource_path("code/player_history/simulation_file.txt")):
-						os.remove(get_resource_path("code/player_history/simulation_file.txt"))
+					if os.path.exists(get_save_path("data.txt")):
+						os.remove(get_save_path("data.txt"))
+					if os.path.exists(get_save_path("results.txt")):
+						os.remove(get_save_path("results.txt"))
+					if os.path.exists(get_save_path("simulation_file.txt")):
+						os.remove(get_save_path("simulation_file.txt"))
 					self.run()
   
 			self.intro.run()
