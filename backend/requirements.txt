@@ -1,0 +1,8 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+h11>=0.16.0
+idna>=3.15
+
+# Step 2: MEWpy integration (heavier image, enable when porting run_simul)
+# mewpy==0.1.36
+# cobra==0.29.0
