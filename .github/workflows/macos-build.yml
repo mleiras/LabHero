@@ -6,7 +6,7 @@ on:
       version_tag:
         description: 'Version label used in asset filenames (e.g. v0.1.0-macos). Used only for manual runs.'
         required: false
-        default: 'dev'
+        default: 'dev-macos'
   pull_request:
     branches:
       - main
@@ -19,6 +19,12 @@ on:
   push:
     tags:
       - 'v*-macos'
+
+# Required for the "Attach zip to GitHub Release" step to upload assets via
+# `gh release upload`. Without contents:write the token is read-only and the
+# release upload fails with HTTP 403.
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -101,7 +107,7 @@ jobs:
               echo "tag=${{ github.event.inputs.version_tag }}" >> "$GITHUB_OUTPUT"
               ;;
             *)
-              echo "tag=dev" >> "$GITHUB_OUTPUT"
+              echo "tag=dev-macos" >> "$GITHUB_OUTPUT"
               ;;
           esac
 
@@ -109,18 +115,18 @@ jobs:
         run: |
           cd dist
           ditto -c -k --sequesterRsrc --keepParent LabHero.app \
-            "../LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip"
+            "../LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip"
 
       - name: Report bundle size
         run: |
-          ls -lh "LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip"
+          ls -lh "LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip"
           du -sh dist/LabHero.app
 
       - name: Upload zip as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}
-          path: LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip
+          name: LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}
+          path: LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip
           if-no-files-found: error
 
       - name: Attach zip to GitHub Release
@@ -129,5 +135,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload "${GITHUB_REF_NAME}" \
-            "LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip" \
+            "LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip" \
             --clobber
