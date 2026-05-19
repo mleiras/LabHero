@@ -10,6 +10,10 @@ authors:
     orcid: "https://orcid.org/0009-0003-4183-1652"
 repository-code: "https://github.com/mleiras/LabHero"
 url: "https://github.com/mleiras/LabHero"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20292021
+    description: "Concept DOI for all versions of LabHero (always resolves to the latest)"
 license: CC-BY-SA-4.0
 version: "0.1.0"
 date-released: "2026-05-19"
