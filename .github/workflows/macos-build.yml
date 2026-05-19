@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version_tag:
-        description: 'Version label used in asset filenames (e.g. v0.1.0-macos). Used only for manual runs.'
+        description: 'Version label used in asset filenames (e.g. v0.1.0). Used only for manual runs.'
         required: false
         default: 'dev'
   pull_request:
@@ -17,8 +17,17 @@ on:
       - 'code/**'
       - '.github/workflows/macos-build.yml'
   push:
+    # Matches single-tag-per-version releases (e.g. v0.1.0, v0.1.1). The
+    # release page bundles both Windows and macOS zips, so this workflow
+    # builds the macOS asset and attaches it to whichever v* release exists.
     tags:
-      - 'v*-macos'
+      - 'v*'
+
+# Required for the "Attach zip to GitHub Release" step to upload assets via
+# `gh release upload`. Without contents:write the token is read-only and the
+# release upload fails with HTTP 403.
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -34,11 +43,11 @@ jobs:
         include:
           - runner: macos-13
             arch: x86_64
-            asset_suffix: intel
+            asset_suffix: macos-intel
             continue_on_error: true
           - runner: macos-14
             arch: arm64
-            asset_suffix: arm64
+            asset_suffix: macos-arm64
             continue_on_error: false
 
     steps:
@@ -109,18 +118,18 @@ jobs:
         run: |
           cd dist
           ditto -c -k --sequesterRsrc --keepParent LabHero.app \
-            "../LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip"
+            "../LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip"
 
       - name: Report bundle size
         run: |
-          ls -lh "LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip"
+          ls -lh "LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip"
           du -sh dist/LabHero.app
 
       - name: Upload zip as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}
-          path: LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip
+          name: LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}
+          path: LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip
           if-no-files-found: error
 
       - name: Attach zip to GitHub Release
@@ -129,5 +138,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload "${GITHUB_REF_NAME}" \
-            "LabHero-${{ steps.version.outputs.tag }}-macos-${{ matrix.asset_suffix }}.zip" \
+            "LabHero-${{ steps.version.outputs.tag }}-${{ matrix.asset_suffix }}.zip" \
             --clobber
