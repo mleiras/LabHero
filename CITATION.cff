@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use LabHero in your research or teaching, please cite it as below."
+title: "LabHero"
+type: software
+abstract: "A serious game that teaches the basics of genome-scale metabolic modelling through three missions on E. coli, using MEWpy."
+authors:
+  - family-names: "Leiras"
+    given-names: "Mónica"
+    affiliation: "University of Minho, Centre of Biological Engineering"
+    orcid: "https://orcid.org/0009-0003-4183-1652"
+repository-code: "https://github.com/mleiras/LabHero"
+url: "https://github.com/mleiras/LabHero"
+license: CC-BY-SA-4.0
+version: "0.1.0"
+date-released: "2026-05-19"
+keywords:
+  - "serious game"
+  - "metabolic modelling"
+  - "genome-scale metabolic models"
+  - "bioinformatics education"
+  - "MEWpy"
+  - "Escherichia coli"
+  - "systems biology"
