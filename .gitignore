@@ -43,6 +43,9 @@ MANIFEST
 *.spec
 !installer/labhero.spec
 
+# macOS app icon, generated from LabHero-icon.png at build time
+LabHero.icns
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt

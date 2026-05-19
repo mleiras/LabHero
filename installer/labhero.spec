@@ -1,13 +1,17 @@
 # -*- mode: python ; coding: utf-8 -*-
 # PyInstaller spec for LabHero
-# Run from repo root: py -m PyInstaller --noconfirm --clean installer/labhero.spec
+# Run from repo root:
+#   Windows: py -m PyInstaller --noconfirm --clean installer/labhero.spec
+#   macOS:   python -m PyInstaller --noconfirm --clean installer/labhero.spec
 
 import os
+import sys
 from PyInstaller.utils.hooks import collect_all, collect_submodules
 
 # Paths in this spec are resolved relative to the spec file's directory, so we
 # anchor everything to the project root one level up.
 PROJ = os.path.dirname(SPECPATH)
+IS_MACOS = sys.platform == 'darwin'
 
 datas = []
 binaries = []
@@ -37,6 +41,17 @@ datas += [
     (os.path.join(PROJ, 'code', 'player_history', 'mission01.txt'), 'code/player_history'),
     (os.path.join(PROJ, 'LabHero-icon.png'), '.'),
 ]
+
+# Pick the platform's native icon format. .icns is generated at build time on
+# macOS (see .github/workflows/macos-build.yml); .ico is checked in for Windows.
+if IS_MACOS:
+    icon_path = os.path.join(PROJ, 'LabHero.icns')
+else:
+    icon_path = os.path.join(PROJ, 'LabHero.ico')
+
+# target_arch is only honoured on macOS. We set it from an env var so CI can
+# pin the Mach-O header to arm64 or x86_64 matching the runner's native arch.
+target_arch = os.environ.get('PYI_TARGET_ARCH') if IS_MACOS else None
 
 a = Analysis(
     [os.path.join(PROJ, 'LabHero.py')],
@@ -71,10 +86,10 @@ exe = EXE(
     console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
-    target_arch=None,
+    target_arch=target_arch,
     codesign_identity=None,
     entitlements_file=None,
-    icon=os.path.join(PROJ, 'LabHero.ico'),
+    icon=icon_path,
 )
 
 coll = COLLECT(
@@ -86,3 +101,20 @@ coll = COLLECT(
     upx_exclude=[],
     name='LabHero',
 )
+
+# On macOS, wrap the collected output in a .app bundle so users get the
+# expected double-clickable application instead of a folder of files.
+if IS_MACOS:
+    app = BUNDLE(
+        coll,
+        name='LabHero.app',
+        icon=icon_path,
+        bundle_identifier='io.github.mleiras.labhero',
+        info_plist={
+            'NSHighResolutionCapable': True,
+            'CFBundleShortVersionString': '0.1.0',
+            'CFBundleVersion': '0.1.0',
+            'LSMinimumSystemVersion': '11.0',
+            'NSHumanReadableCopyright': 'Copyright (c) 2024-2026 Monica Leiras. CC BY-SA 4.0.',
+        },
+    )
