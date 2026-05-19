@@ -53,6 +53,13 @@ else:
 # pin the Mach-O header to arm64 or x86_64 matching the runner's native arch.
 target_arch = os.environ.get('PYI_TARGET_ARCH') if IS_MACOS else None
 
+# On Apple Silicon, macOS rejects unsigned binaries with a "damaged" error.
+# Ad-hoc signing ('-') is enough to satisfy the "must be signed" requirement
+# without needing a paid Apple Developer certificate. The user still sees a
+# Gatekeeper "unidentified developer" prompt on first launch, which is handled
+# by the right-click + Open instructions in the README.
+codesign_identity = '-' if IS_MACOS else None
+
 a = Analysis(
     [os.path.join(PROJ, 'LabHero.py')],
     pathex=[os.path.join(PROJ, 'code')],  # so 'from settings import *' etc. resolve inside code/
@@ -87,7 +94,7 @@ exe = EXE(
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=target_arch,
-    codesign_identity=None,
+    codesign_identity=codesign_identity,
     entitlements_file=None,
     icon=icon_path,
 )

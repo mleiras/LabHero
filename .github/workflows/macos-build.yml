@@ -78,6 +78,18 @@ jobs:
           PYI_TARGET_ARCH: ${{ matrix.arch }}
         run: python -m PyInstaller --noconfirm --clean installer/labhero.spec
 
+      - name: Ad-hoc sign the .app bundle
+        # PyInstaller's codesign_identity only signs the main executable.
+        # macOS on Apple Silicon refuses unsigned embedded binaries with a
+        # "damaged" error, so we recursively sign everything inside the bundle.
+        # The '-' identity means ad-hoc (no Apple Developer cert needed).
+        run: codesign --force --deep --sign - dist/LabHero.app
+
+      - name: Verify signature
+        run: |
+          codesign --verify --verbose=2 dist/LabHero.app
+          codesign --display --verbose=2 dist/LabHero.app
+
       - name: Determine version tag
         id: version
         run: |
