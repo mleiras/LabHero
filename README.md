@@ -22,79 +22,82 @@ This game was developed as a part of the master's thesis of Mónica Leiras "Deve
 
 ## Installation
 
-### Download Executable:
+The easiest way to play is to download the latest Windows build from the [Releases page](https://github.com/mleiras/LabHero/releases/latest).
 
-[Download for Windows](https://drive.google.com/file/d/1kPUM-_Je9yLfV1HENsKc2g-eleRCFrAv/view?usp=share_link)
+  1. Download `LabHero-v0.1.0-windows.zip` from the latest release.
+  2. Extract the zip anywhere on your machine.
+  3. Double-click `LabHero.exe` to play.
 
-[Download for macOS](https://drive.google.com/file/d/1hiQkAJ3eCTnbnxp-3bDpbzk9-DYZTnEt/view?usp=share_link)
+Save files are written to `%APPDATA%\LabHero\` so they persist across game updates.
 
+A macOS build is planned but not yet available.
 
 <details>
-  <summary>"Not Safe" Warning Instructions</summary><br>
-  
-When you try to open the application, you may see a message like this: <br>
+  <summary>"Not Safe" Warning nstructions</summary><br>
 
-> "This app cannot be opened because it is from an unidentified developer."
+When you try to open the application, Windows may show a message like:
 
-To open the game anyway, you only need to do this the first time:
+> "Windows protected your PC"
 
-#### For Windows Users:
+This appears because the executable is not signed with a developer certificate. Signing software requires a paid certificate, which is standard for commercial projects but disproportionate for a small academic project.
 
-Click "More info" on the dialog box. Then click the "Run anyway" button.
+To open the game the first time:
 
-#### For macOS Users:
+1. Click "More info" on the dialog box.
+2. Click the "Run anyway" button.
 
-On your Mac, choose Apple menu > System Settings, then click Privacy & Security in the sidebar. (You may need to scroll down.) 
-Go to Security, then click Open. Click Open Anyway.
-
-#### Why Does This Happen?
-The warning appears because the application is not signed with an official developer certificate. Signing software requires purchasing a certificate, which is a common practice for large-scale or commercial projects to prove their apps are legit, but it can be expensive. Since this is a smaller project, I haven’t gone through that process.
-
+You only need to do this once per machine.
 
 </details>
 
 <br>
 
 <details>
-<summary>Download from GitHub</summary>
+<summary>Run from source</summary>
 <br>
 
-LabHero was tested with Python 3.10.11. It's recommended to use this version or a compatible one to ensure everything works smoothly.
+LabHero was tested with Python 3.10.11. Newer Python versions (3.13+) work but may need a workaround for the pinned MEWpy version.
 
-1. Clone Repository
+1. Clone the repository:
     ```bash
-    git clone https://github.com/mleiras/LabHero.git
+    git clone
+https://github.com/mleiras/LabHero.git
+    cd LabHero
     ```
-2. (Recommended) Set up virtual environment
+2. (Recommended) Set up a virtual environment:
     ```bash
     python3 -m venv .venv
     ```
-    
+
     Windows:
     ```bash
     .venv\Scripts\activate
     ```
-   
-   macOS/Linux:
+
+    macOS/Linux:
     ```bash
     source .venv/bin/activate
     ```
 
-2. Install requirements
+3. Install requirements:
     ```bash
     pip install -r requirements.txt
     ```
-3. Run file LabHero.py.
+
+4. Run the game:
     ```bash
     python3 LabHero.py
     ```
 
-    **Note:** If `python3` doesn’t work, try `python` instead.
+   **Note:** If `python3` doesn't work, try `python` instead.
 
 </details>
 
+A couple of small things to flag while you review:
 
+- The "Releases page" link uses /releases/latest, which is GitHub's auto-redirect to whatever release is currently
 
+</details>
 
 ## Game Story 
 
