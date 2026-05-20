@@ -41,7 +41,10 @@ def save_simulation_file(data):
 def save_results(data):
     if _IS_WEB:
         old = _MEMSTORE.get('results')
-        _MEMSTORE['results'] = data + '\n' + '\n' + old if old else data
+        try:
+            _MEMSTORE['results'] = data + '\n' + '\n' + old if old else data
+        except Exception:
+            _MEMSTORE['results'] = data
         return
     try:
         results = open(get_save_path('results.txt'), 'r')

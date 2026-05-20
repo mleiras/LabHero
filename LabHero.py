@@ -5,6 +5,23 @@ import asyncio
 sys.path.append(os.path.join(os.path.dirname(__file__), 'code'))
 
 import pygame
+
+if sys.platform == 'emscripten':
+	class _SilentSound:
+		def __init__(self, *args, **kwargs):
+			pass
+		def play(self, *args, **kwargs):
+			return self
+		def stop(self, *args, **kwargs):
+			return None
+		def set_volume(self, *args, **kwargs):
+			return None
+		def get_volume(self):
+			return 0.0
+	pygame.mixer.Sound = _SilentSound
+	pygame.mixer.stop = lambda *a, **kw: None
+	pygame.mixer.init = lambda *a, **kw: None
+
 from settings import *
 from level import Level
 from intro import Intro
@@ -31,14 +48,11 @@ class Game:
 					sys.exit()
 
 				if pygame.key.get_pressed()[pygame.K_RETURN]:
-					# load game if exists
 					try:
 						data = load_file(get_save_path('data'))
 						self.level = Level(data)
 					except FileNotFoundError:
-						# self.level = Level(DEFAULT_INVENTORY)
 						self.level = Level(DEFAULT_INVENTORY_2)
-
 					await self.run()
 				elif pygame.key.get_pressed()[pygame.K_SPACE]:
 					self.level = Level(DEFAULT_INVENTORY_2)
