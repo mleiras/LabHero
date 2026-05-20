@@ -39,7 +39,7 @@ class Books:
             theme=mytheme,
             title='A Brief History of Microorganisms',
             width=1280,
-            column_max_width=1254
+            column_max_width=1280
         )
 
         book_intro_modelling = pygame_menu.Menu(
@@ -48,7 +48,7 @@ class Books:
             theme=mytheme,
             title='Intro to Modelling',
             width=1280,
-            column_max_width=1254
+            column_max_width=1280
         )
 
         book_how_to_simulate = pygame_menu.Menu(
@@ -57,7 +57,7 @@ class Books:
             theme=mytheme,
             title='How to Simulate',
             width=1280,
-            column_max_width=1260
+            column_max_width=1280
         )
 
         book_ecoli = pygame_menu.Menu(
@@ -66,7 +66,7 @@ class Books:
             theme=mytheme,
             title='E. coli Basics',
             width=1280,
-            column_max_width=1265
+            column_max_width=1280
         )
 
         book_eat_breathe_love = pygame_menu.Menu(
@@ -75,7 +75,7 @@ class Books:
             theme=mytheme,
             title='Eat, Breathe and Love',
             width=1280,
-            column_max_width=1255
+            column_max_width=1280
         )
 
 
