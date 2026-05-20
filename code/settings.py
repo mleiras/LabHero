@@ -16,6 +16,9 @@ MUSIC = {
 MUSIC_NAME = MUSIC['Hope']
 
 
+BACKEND_URL = 'http://localhost:8000'
+
+
 # overlay positions 
 OVERLAY_POSITIONS = {
 	'tool' : (40, SCREEN_HEIGHT - 15), 
