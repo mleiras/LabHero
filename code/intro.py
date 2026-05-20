@@ -172,10 +172,16 @@ class Tutorial:
             font_size=30,
             padding=(25, 25, 25, 25)
         )
-        menu_how_to_play.add.label(
+        if sys.platform == 'emscripten':
+            main_menu_text = """
+            Use M key to open the Main Menu to control the music/volume, exit the game and to see this tutorial again.
             """
+        else:
+            main_menu_text = """
             Use M key to open the Main Menu to control the music/volume, save/exit the game and to see this tutorial again.
-            """,
+            """
+        menu_how_to_play.add.label(
+            main_menu_text,
             max_char=-1,
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
