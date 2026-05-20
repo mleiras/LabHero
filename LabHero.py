@@ -9,7 +9,7 @@ from settings import *
 from level import Level
 from intro import Intro
 from save_load import *
-from functions import animation_text_save
+from functions import animation_text_save, drain_animations
 from utils import *
 
 
@@ -51,7 +51,12 @@ class Game:
 					await self.run()
 
 			self.intro.run()
+			if self.intro.pending is not None:
+				coro_factory = self.intro.pending
+				self.intro.pending = None
+				await coro_factory()
 			pygame.display.update()
+			await drain_animations()
 			await asyncio.sleep(0)
 
 
@@ -60,13 +65,15 @@ class Game:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					animation_text_save('Saving Game', fullscreen=True)
+					await drain_animations()
 					save_file([self.level.player.player_name, self.level.player.results, self.level.player.missions_activated, self.level.player.missions_completed])
 					pygame.quit()
 					sys.exit()
 
 			dt = self.clock.tick() / 1000
-			self.level.run(dt)
+			await self.level.run(dt)
 			pygame.display.update()
+			await drain_animations()
 			await asyncio.sleep(0)
 
 

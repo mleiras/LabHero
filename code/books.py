@@ -4,6 +4,7 @@ from settings import *
 from save_load import *
 from timers import Timer
 from options_values import *
+from async_menu import run_menu
 
 
 class Books:
@@ -21,8 +22,8 @@ class Books:
 
 
 
-    def setup(self):
-        
+    async def setup(self):
+
         menu = pygame_menu.Menu(
             height=720,
             onclose=self.toggle_menu,
@@ -1288,9 +1289,7 @@ class Books:
         menu_how_to_play.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_how_to_play.add.vertical_margin(50)
 
-        menu.mainloop(self.display_surface)
-
-        # return menu
+        await run_menu(menu, self.display_surface)
 
 
     
@@ -1310,9 +1309,9 @@ class Books:
             self.toggle_menu()
             
 
-    def update(self):
+    async def update(self):
         self.input()
-        self.setup()
+        await self.setup()
         
 
 

@@ -6,6 +6,7 @@ from timers import Timer
 from options_values import *
 from functions import animation_text_save
 from button import Button
+from async_menu import run_menu
 
 
 class Mission03: 
@@ -25,11 +26,12 @@ class Mission03:
         self.timer = Timer(200)
 
 
-        
+
 
         self.menu = Mission03_info(self.toggle_menu, self.player)
+        self.pending = None
 
-    
+
     def input(self):
         keys = pygame.key.get_pressed()
         self.timer.update()
@@ -37,7 +39,7 @@ class Mission03:
         if keys[pygame.K_ESCAPE]:
             self.toggle_menu()
 
-    def update(self):
+    async def update(self):
 
         self.m03_step1 = [
             "I'm Dr. Carter! I'm on a quest to find a replacement for glucose as E. coli's energy source.",
@@ -65,7 +67,11 @@ class Mission03:
         else:
             self.menu_message(self.m03_step1)
 
-       
+        if self.pending is not None:
+            coro_factory = self.pending
+            self.pending = None
+            await coro_factory()
+
 
     def menu_message(self, message, buttons = True):
 
@@ -90,7 +96,9 @@ class Mission03:
             self.screen.blit(surf,(200,525+(line*20)+(15*line)))
 
         if buttons:
-            botao_teste = Button(200,650,150,50,self.screen, 'Yes', self.menu.update)
+            def click_yes():
+                self.pending = self.menu.update
+            botao_teste = Button(200,650,150,50,self.screen, 'Yes', click_yes)
             botao_teste_2 = Button(370,650,220,50,self.screen, 'Not now', self.toggle_menu)
             botao_teste.process()
             botao_teste_2.process()
@@ -130,8 +138,8 @@ class Mission03_info:
         self.failed = pygame.mixer.Sound(failed_path)
         self.failed.set_volume(1.2)
 
-    def setup(self):
-        
+    async def setup(self):
+
         menu = pygame_menu.Menu(
             height=720,
             onclose=self.toggle_menu,
@@ -242,9 +250,9 @@ class Mission03_info:
             menu.add.vertical_margin(20)
         else:
             menu.add.button('Activate Mission', action=self.activate_mission03, background_color=(50,100,100))        
-        menu.add.vertical_margin(20)  
+        menu.add.vertical_margin(20)
 
-        menu.mainloop(self.display_surface)
+        await run_menu(menu, self.display_surface)
 
 
 
@@ -286,7 +294,7 @@ class Mission03_info:
             pass  # ESC is handled by pygame-menu's onclose callback
             
 
-    def update(self):
+    async def update(self):
         self.input()
-        self.setup()
+        await self.setup()
         

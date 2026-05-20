@@ -4,6 +4,7 @@ from settings import *
 from save_load import *
 from timers import Timer
 from options_values import *
+from async_menu import run_menu
 
 
 class Ecoli:
@@ -21,8 +22,8 @@ class Ecoli:
 
 
 
-    def setup(self):
-        
+    async def setup(self):
+
         menu = pygame_menu.Menu(
             height=720,
             onclose=self.toggle_menu,
@@ -37,18 +38,11 @@ class Ecoli:
             align=pygame_menu.locals.ALIGN_CENTER,
             font_size=50,
             font_color=(70,70,70))
-        
+
         ecoli_path = get_resource_path('graphics/environment/E.coli.png')
         menu.add.image(ecoli_path, scale=(1, 1))
 
-        # menu.add.vertical_margin(15)  # Adds margin
-        # menu.add.button('How to Play', menu_how_to_play, background_color = (255,215,0, 255)) #aqua»
-       # menu.add.vertical_margin(20)  # Adds margin
-
-
-        menu.mainloop(self.display_surface)
-
-        # return menu
+        await run_menu(menu, self.display_surface)
 
 
     
@@ -68,9 +62,9 @@ class Ecoli:
             self.toggle_menu()
             
 
-    def update(self):
+    async def update(self):
         self.input()
-        self.setup()
+        await self.setup()
         
 
 
