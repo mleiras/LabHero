@@ -1,4 +1,4 @@
-from pygame.math import Vector2
+from pygame import Vector2
 from utils import *
 
 # screen
@@ -16,7 +16,7 @@ MUSIC = {
 MUSIC_NAME = MUSIC['Hope']
 
 
-BACKEND_URL = 'http://localhost:8000'
+BACKEND_URL = 'http://localhost:8002'
 
 
 # overlay positions 

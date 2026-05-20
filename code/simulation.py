@@ -1,13 +1,11 @@
 import json
 import sys
 
-import mewpy
-from cobra.io import read_sbml_model
-from mewpy.simulation import get_simulator
 from save_load import *
 from options_values import *
 
 def run_simul():
+    from mewpy.simulation import get_simulator
 
     data_simul = load_file(get_save_path('simulation_file'))
 
@@ -151,8 +149,13 @@ def _build_request_payload():
 def _http_post_json(url, payload):
     body = json.dumps(payload)
     if sys.platform == 'emscripten':
-        from js import XMLHttpRequest
-        xhr = XMLHttpRequest.new()
+        # pygbag's pyodide does not expose `from js import XMLHttpRequest`
+        # as a constructable JsProxy (XMLHttpRequest.new is None and the
+        # plain JsProxy is not callable), so we instantiate via js.eval.
+        # Synchronous XHR lets us stay inside the sync pygame_menu callback
+        # at window.py:229 — no async bridge needed for the simulate call.
+        import js
+        xhr = js.eval("new XMLHttpRequest()")
         xhr.open('POST', url, False)
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(body)
