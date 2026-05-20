@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 import pygame_menu
 from settings import *
@@ -188,7 +190,8 @@ class Menu:
                       rangeslider_id='volume_music',
                       value_format=lambda x: str(int(x)))
         menu.add.button('How to Play', action=menu_how_to_play)
-        menu.add.button('Save Game', self.save_game, menu)
+        if sys.platform != 'emscripten':
+            menu.add.button('Save Game', self.save_game, menu)
         menu.add.button('Credits', action=menu_credits)
         menu.add.button('Quit Game', pygame_menu.events.EXIT)
         await run_menu(menu, self.display_surface)
