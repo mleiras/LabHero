@@ -1,3 +1,6 @@
+import json
+import sys
+
 import mewpy
 from cobra.io import read_sbml_model
 from mewpy.simulation import get_simulator
@@ -109,6 +112,73 @@ def run_simul():
 
     # print(simul.objective)
 
+
+
+def _build_request_payload():
+    data_simul = load_file(get_save_path('simulation_file'))
+    method, objective, genes, reactions = data_simul
+
+    method_name = method['method'][0][0]
+    objective_name = objective['objective'][0][0]
+
+    reactions_original = REACTIONS
+
+    env_conditions = {}
+    count = 0
+    count_2 = 0
+    for i, (k, x) in enumerate(reactions.items()):
+        rid = reactions_original.index[count]
+        if count_2 % 2 == 0:
+            lb = -1000 if x else 0
+            env_conditions[rid] = [lb, reactions_original.ub.iloc[count]]
+            count_2 += 1
+        else:
+            ub = 1000 if x else 0
+            env_conditions[rid] = [env_conditions[rid][0], ub]
+            count_2 += 1
+            count += 1
+
+    gene_knockouts = [k for k, x in genes.items() if not x]
+
+    return {
+        'method': method_name,
+        'objective': objective_name,
+        'gene_knockouts': gene_knockouts,
+        'env_conditions': env_conditions,
+    }
+
+
+def _http_post_json(url, payload):
+    body = json.dumps(payload)
+    if sys.platform == 'emscripten':
+        from js import XMLHttpRequest
+        xhr = XMLHttpRequest.new()
+        xhr.open('POST', url, False)
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(body)
+        return json.loads(xhr.responseText)
+    import urllib.request
+    req = urllib.request.Request(
+        url,
+        data=body.encode('utf-8'),
+        headers={'Content-Type': 'application/json'},
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read().decode('utf-8'))
+
+
+def run_simul_remote(backend_url):
+    payload = _build_request_payload()
+    try:
+        response = _http_post_json(backend_url.rstrip('/') + '/simulate', payload)
+    except Exception as e:
+        return payload['objective'], f'Error: {e}'
+
+    if response.get('status') == 'ok':
+        return response['objective'], response['result']
+    if response.get('status') == 'infeasible':
+        return response['objective'], 'Status: INFEASIBLE'
+    return response.get('objective', payload['objective']), f'Error: {response.get("message", "unknown")}'
 
 
 if __name__ == '__main__':

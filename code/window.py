@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 import pygame_menu
 from settings import *
@@ -226,7 +228,10 @@ class Window:
 
             save_simulation_file([data_simul, data_objective, data_genes, data_reac])
             animation_text_save('Running')
-            self.results = run_simul()
+            if sys.platform == 'emscripten':
+                self.results = run_simul_remote(BACKEND_URL)
+            else:
+                self.results = run_simul()
             self.player.results.insert(0,self.results)
             try:
                 menu.remove_widget('new_results')
