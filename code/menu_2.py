@@ -7,6 +7,7 @@ from save_load import *
 from timers import Timer
 from functions import animation_text_save
 from utils import *
+from async_menu import run_menu
 
 
 class Menu:
@@ -39,7 +40,7 @@ class Menu:
     
 
 
-    def setup(self):
+    async def setup(self):
         menu = pygame_menu.Menu('Lab Hero Settings', 1280, 720,
                         onclose=self.toggle_menu,
                         theme=mytheme)
@@ -190,7 +191,7 @@ class Menu:
         menu.add.button('Save Game', self.save_game, menu)
         menu.add.button('Credits', action=menu_credits)
         menu.add.button('Quit Game', pygame_menu.events.EXIT)
-        menu.mainloop(self.display_surface)
+        await run_menu(menu, self.display_surface)
 
     
 
@@ -220,8 +221,8 @@ class Menu:
             pass  # ESC is handled by pygame-menu's onclose callback
             
 
-    def update(self):
+    async def update(self):
         self.input()
-        self.setup()
+        await self.setup()
         
 

@@ -6,6 +6,7 @@ from timers import Timer
 from options_values import *
 from simulation import *
 from functions import animation_text_save
+from async_menu import run_menu
 
 
 class Window:
@@ -25,7 +26,7 @@ class Window:
 
 
 
-    def setup(self):
+    async def setup(self):
 
         ecoli_rip = get_resource_path('graphics/environment/ecoli_rip.jpg')
         
@@ -297,7 +298,7 @@ class Window:
             if keys[pygame.K_ESCAPE] and menu.is_enabled():
                 menu.close()
 
-        menu.mainloop(self.display_surface, check_escape)
+        await run_menu(menu, self.display_surface, on_update=check_escape)
 
 
 
@@ -310,7 +311,7 @@ class Window:
             pass  # ESC is handled by pygame-menu's onclose callback
 
 
-    def update(self):
+    async def update(self):
         self.input()
-        self.setup()
+        await self.setup()
 

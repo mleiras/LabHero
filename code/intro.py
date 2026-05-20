@@ -4,6 +4,7 @@ import pygame_menu
 from options_values import *
 from button import Button
 from utils import *
+from async_menu import run_menu
 
 
 class Intro:
@@ -17,6 +18,7 @@ class Intro:
         self.padding = 8
         self.controls = Tutorial()
         self.story = Story()
+        self.pending = None
 
     def run(self):
 
@@ -45,12 +47,18 @@ class Intro:
         # botao_new.process()
         
 
+        def show_tutorial():
+            self.pending = self.controls.update
+
+        def show_story():
+            self.pending = self.story.update
+
         botao_tutorial = Button(
-            515, 450, 250, 50, self.display_surface, 'Controls', self.controls.update, bg_color= 'black', font_color='white')
+            515, 450, 250, 50, self.display_surface, 'Controls', show_tutorial, bg_color= 'black', font_color='white')
         botao_tutorial.process()
 
         botao_story = Button(
-            515, 510, 250, 50, self.display_surface, 'Story', self.story.update)
+            515, 510, 250, 50, self.display_surface, 'Story', show_story)
         botao_story.process()
 
 
@@ -64,7 +72,7 @@ class Tutorial:
         self.font = pygame.font.Font(font_path, 30)
 
 
-    def setup(self):
+    async def setup(self):
 
         menu_how_to_play = pygame_menu.Menu('How to Play', 1280, 720,
                                             onclose=pygame_menu.events.BACK,
@@ -166,7 +174,7 @@ class Tutorial:
         )
         menu_how_to_play.add.vertical_margin(50)
 
-        menu_how_to_play.mainloop(self.display_surface)
+        await run_menu(menu_how_to_play, self.display_surface)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -174,9 +182,9 @@ class Tutorial:
         if keys[pygame.K_ESCAPE]:
             pass  # ESC is handled by pygame-menu's onclose callback
 
-    def update(self):
+    async def update(self):
         self.input()
-        self.setup()
+        await self.setup()
 
 
 class Story:
@@ -188,7 +196,7 @@ class Story:
         self.font = pygame.font.Font(font_path, 30)
 
 
-    def setup(self):
+    async def setup(self):
 
         menu_story = pygame_menu.Menu('LabHero Story', 1280, 720,
                                             onclose=pygame_menu.events.BACK,
@@ -214,7 +222,7 @@ class Story:
             padding = (50,50)
         )
         
-        menu_story.mainloop(self.display_surface)
+        await run_menu(menu_story, self.display_surface)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -222,6 +230,6 @@ class Story:
         if keys[pygame.K_ESCAPE]:
             pass  # ESC is handled by pygame-menu's onclose callback
 
-    def update(self):
+    async def update(self):
         self.input()
-        self.setup()
+        await self.setup()

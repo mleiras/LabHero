@@ -226,7 +226,7 @@ class Level:
 			tree.create_fruit()
 
 
-	def run(self,dt): #delta time
+	async def run(self,dt): #delta time
 
 		# drawing logic
 		self.display_surface.fill('black')
@@ -235,30 +235,30 @@ class Level:
 		#updates
 		if self.menu_active:
 			# self.menu.update()
-			self.menu.update()
+			await self.menu.update()
 
 		elif self.talk_1_active:
-			self.talk_1.update()
+			await self.talk_1.update()
 
 		elif self.talk_2_active:
-			self.talk_2.update()
+			await self.talk_2.update()
 
 		elif self.talk_3_active:
-			self.talk_3.update()
+			await self.talk_3.update()
 
 		elif self.desk_active:
-			self.window.update()
+			await self.window.update()
 
 		elif self.books_active:
-			self.books.update()
+			await self.books.update()
 
 		elif self.ecoli_active:
-			self.ecoli.update()
+			await self.ecoli.update()
 
 		elif self.dialogues_active:
 			self.dialogues.choosing_character(self.player.character)
 			self.dialogues.update()
-			
+
 		else:
 			self.all_sprites.update(dt)
 			self.plant_collision()

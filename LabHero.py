@@ -1,14 +1,15 @@
 import sys
 import os
+import asyncio
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'code'))
 
 import pygame
 from settings import *
 from level import Level
-from intro import Intro 
+from intro import Intro
 from save_load import *
-from functions import animation_text_save
+from functions import animation_text_save, drain_animations
 from utils import *
 
 
@@ -20,10 +21,9 @@ class Game:
 		pygame.display.set_caption('Lab Hero')
 		self.clock = pygame.time.Clock()
 		self.intro = Intro()
-		self.intro_run()
 
 
-	def intro_run(self):
+	async def intro_run(self):
 		while True:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -38,8 +38,8 @@ class Game:
 					except FileNotFoundError:
 						# self.level = Level(DEFAULT_INVENTORY)
 						self.level = Level(DEFAULT_INVENTORY_2)
-						 
-					self.run()
+
+					await self.run()
 				elif pygame.key.get_pressed()[pygame.K_SPACE]:
 					self.level = Level(DEFAULT_INVENTORY_2)
 					if os.path.exists(get_save_path("data.txt")):
@@ -48,24 +48,39 @@ class Game:
 						os.remove(get_save_path("results.txt"))
 					if os.path.exists(get_save_path("simulation_file.txt")):
 						os.remove(get_save_path("simulation_file.txt"))
-					self.run()
-  
+					await self.run()
+
 			self.intro.run()
+			if self.intro.pending is not None:
+				coro_factory = self.intro.pending
+				self.intro.pending = None
+				await coro_factory()
 			pygame.display.update()
+			await drain_animations()
+			await asyncio.sleep(0)
 
 
-	def run(self):
+	async def run(self):
 		while True:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					animation_text_save('Saving Game', fullscreen=True)
+					await drain_animations()
 					save_file([self.level.player.player_name, self.level.player.results, self.level.player.missions_activated, self.level.player.missions_completed])
 					pygame.quit()
 					sys.exit()
-					
-			dt = self.clock.tick() / 1000 
-			self.level.run(dt)
+
+			dt = self.clock.tick() / 1000
+			await self.level.run(dt)
 			pygame.display.update()
-	
-if __name__ == '__main__':
+			await drain_animations()
+			await asyncio.sleep(0)
+
+
+async def main():
 	game = Game()
+	await game.intro_run()
+
+
+if __name__ == '__main__':
+	asyncio.run(main())
