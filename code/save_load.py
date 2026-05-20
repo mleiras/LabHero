@@ -1,23 +1,48 @@
 import json
+import os
+import sys
+
 from utils import *
 
+_IS_WEB = sys.platform == 'emscripten'
+_MEMSTORE = {}
+
+
+def _memkey(filename):
+    return os.path.basename(filename)
+
+
 def save_file(data):
+    if _IS_WEB:
+        _MEMSTORE['data'] = data
+        return
     with open(get_save_path('data.txt'), 'w') as test_file:
         json.dump(data, test_file)
 
+
 def load_file(filename):
+    if _IS_WEB:
+        key = _memkey(filename)
+        if key in _MEMSTORE:
+            return _MEMSTORE[key]
     with open(f'{filename}.txt') as test_file:
         data = json.load(test_file)
         return data
 
 
 def save_simulation_file(data):
+    if _IS_WEB:
+        _MEMSTORE['simulation_file'] = data
+        return
     with open(get_save_path('simulation_file.txt'), 'w') as test_file:
         json.dump(data, test_file)
 
 
-
-def save_results(data): # TASK: add date and number of result
+def save_results(data):
+    if _IS_WEB:
+        old = _MEMSTORE.get('results')
+        _MEMSTORE['results'] = data + '\n' + '\n' + old if old else data
+        return
     try:
         results = open(get_save_path('results.txt'), 'r')
         old_data = json.load(results)
