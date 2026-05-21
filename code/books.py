@@ -20,10 +20,20 @@ class Books:
         self.index = 0
         self.timer = Timer(200)
 
+        # lazy book state
+        self._pending_book = None
+        self._top_menu = None
 
 
-    async def setup(self):
+    def _on_book_click(self, book_id):
+        def handler():
+            self._pending_book = book_id
+            if self._top_menu is not None:
+                self._top_menu.disable()
+        return handler
 
+
+    def _build_top_menu(self):
         menu = pygame_menu.Menu(
             height=720,
             onclose=self.toggle_menu,
@@ -31,8 +41,40 @@ class Books:
             title='Books',
             width=1280
         )
+        menu.add.label(
+            'Books Available:',
+            align=pygame_menu.locals.ALIGN_CENTER,
+            font_size=50,
+            font_color=(70,70,70))
+        menu.add.vertical_margin(15)
+        menu.add.button('How to Play', self._on_book_click('how_to_play'), background_color = (255,215,0, 255))
+        menu.add.button('How to Simulate', self._on_book_click('how_to_simulate'), background_color = 'royalblue')
+        menu.add.button('A Brief History of Microorganisms', self._on_book_click('brief_history'), background_color = 'green')
+        menu.add.button('Intro to Modelling', self._on_book_click('intro_modelling'), background_color = 'orange')
+        menu.add.button('E. coli Basics', self._on_book_click('ecoli'), background_color = 'violet')
+        menu.add.button('Eat, Breathe and Love', self._on_book_click('eat_breathe_love'), background_color = 'red')
+        return menu
 
 
+    def _build_book(self, book_id):
+        builders = {
+            'how_to_play': self._build_how_to_play,
+            'how_to_simulate': self._build_how_to_simulate,
+            'brief_history': self._build_brief_history,
+            'intro_modelling': self._build_intro_modelling,
+            'ecoli': self._build_ecoli,
+            'eat_breathe_love': self._build_eat_breathe_love,
+        }
+        return builders[book_id]()
+
+
+    def _close_back(self, menu):
+        def handler():
+            menu.disable()
+        return handler
+
+
+    def _build_brief_history(self):
         book_brief_history = pygame_menu.Menu(
             height=720,
             onclose=self.toggle_menu,
@@ -42,74 +84,6 @@ class Books:
             column_max_width=1280
         )
 
-        book_intro_modelling = pygame_menu.Menu(
-            height=720,
-            onclose=self.toggle_menu,
-            theme=mytheme,
-            title='Intro to Modelling',
-            width=1280,
-            column_max_width=1280
-        )
-
-        book_how_to_simulate = pygame_menu.Menu(
-            height=720,
-            onclose=self.toggle_menu,
-            theme=mytheme,
-            title='How to Simulate',
-            width=1280,
-            column_max_width=1280
-        )
-
-        book_ecoli = pygame_menu.Menu(
-            height=720,
-            onclose=self.toggle_menu,
-            theme=mytheme,
-            title='E. coli Basics',
-            width=1280,
-            column_max_width=1280
-        )
-
-        book_eat_breathe_love = pygame_menu.Menu(
-            height=720,
-            onclose=self.toggle_menu,
-            theme=mytheme,
-            title='Eat, Breathe and Love',
-            width=1280,
-            column_max_width=1280
-        )
-
-
-        book_date_a_model = pygame_menu.Menu(
-            height=720,
-            onclose=self.toggle_menu,
-            theme=mytheme,
-            title='Book Intro to Modelation',
-            width=1280
-        )
-
-        menu_how_to_play = pygame_menu.Menu('How to Play', 1280, 720,
-                        onclose=self.toggle_menu,
-                        theme=tutorial_theme)
-        
-
-        menu.add.label(
-            'Books Available:',
-            align=pygame_menu.locals.ALIGN_CENTER,
-            font_size=50,
-            font_color=(70,70,70))
-        menu.add.vertical_margin(15)  # Adds margin
-        menu.add.button('How to Play', menu_how_to_play, background_color = (255,215,0, 255)) #aqua»
-        menu.add.button('How to Simulate', book_how_to_simulate, background_color = 'royalblue')
-        menu.add.button('A Brief History of Microorganisms', book_brief_history, background_color = 'green')
-        menu.add.button('Intro to Modelling', book_intro_modelling, background_color = 'orange')
-        menu.add.button('E. coli Basics', book_ecoli, background_color = 'violet')
-        menu.add.button('Eat, Breathe and Love', book_eat_breathe_love, background_color = 'red')
-        # menu.add.button('How to Date a Model', book_date_a_model, background_color = 'pink') #aqua»
-        # menu.add.vertical_margin(20)  # Adds margin
-
-
-        ### BOOK 1 BRIEF HISTORY OF MICROORGANISMS
-
         book_brief_history.add.label(
             """
             This book is your guide to the incredible world of microorganisms. You'll learn how these tiny beings are everywhere around us, how they help or sometimes harm us, and how science and technology have helped us understand and live safely with them. Enjoy your journey into the microscopic world!
@@ -118,10 +92,10 @@ class Books:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
-        ) 
+        )
         book_brief_history.add.label(
             """
-            Chapter 1: Microscopic Marvels     
+            Chapter 1: Microscopic Marvels
             """,
             max_char=-1,
             wordwrap=True,
@@ -143,10 +117,10 @@ class Books:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
-        )  
+        )
         book_brief_history.add.label(
             """
-            Chapter 2: Microbes: Team Players     
+            Chapter 2: Microbes: Team Players
             """,
             max_char=-1,
             wordwrap=True,
@@ -171,7 +145,7 @@ class Books:
         )
         book_brief_history.add.label(
             """
-            Chapter 3: Breathing and Living     
+            Chapter 3: Breathing and Living
             """,
             max_char=-1,
             wordwrap=True,
@@ -201,7 +175,7 @@ class Books:
         )
         book_brief_history.add.label(
             """
-            Chapter 4: Microscopes: Windows to the Tiny World     
+            Chapter 4: Microscopes: Windows to the Tiny World
             """,
             max_char=-1,
             wordwrap=True,
@@ -226,7 +200,7 @@ class Books:
         )
         book_brief_history.add.label(
             """
-            Chapter 5: Good Guys and Bad Guys     
+            Chapter 5: Good Guys and Bad Guys
             """,
             max_char=-1,
             wordwrap=True,
@@ -251,7 +225,7 @@ class Books:
         )
         book_brief_history.add.label(
             """
-            Chapter 6: Staying Healthy     
+            Chapter 6: Staying Healthy
             """,
             max_char=-1,
             wordwrap=True,
@@ -273,11 +247,21 @@ class Books:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
-        )     
-        book_brief_history.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
-        book_brief_history.add.vertical_margin(20) 
+        )
+        book_brief_history.add.button('Back', self._close_back(book_brief_history), background_color=(70, 70, 70))
+        book_brief_history.add.vertical_margin(20)
+        return book_brief_history
 
-        ### BOOK 2 INTRO TO MODELLING
+
+    def _build_intro_modelling(self):
+        book_intro_modelling = pygame_menu.Menu(
+            height=720,
+            onclose=self.toggle_menu,
+            theme=mytheme,
+            title='Intro to Modelling',
+            width=1280,
+            column_max_width=1280
+        )
 
         book_intro_modelling.add.label(
             """
@@ -291,7 +275,7 @@ class Books:
         )
         book_intro_modelling.add.label(
             """
-            Chapter 1: The Secret Life of Cells     
+            Chapter 1: The Secret Life of Cells
             """,
             max_char=-1,
             wordwrap=True,
@@ -316,7 +300,7 @@ class Books:
         )
         book_intro_modelling.add.label(
             """
-            Chapter 2: Meet E. coli     
+            Chapter 2: Meet E. coli
             """,
             max_char=-1,
             wordwrap=True,
@@ -341,7 +325,7 @@ class Books:
         )
         book_intro_modelling.add.label(
             """
-            Chapter 3: The Puzzle of Metabolic Models     
+            Chapter 3: The Puzzle of Metabolic Models
             """,
             max_char=-1,
             wordwrap=True,
@@ -366,7 +350,7 @@ class Books:
         )
         book_intro_modelling.add.label(
             """
-            Chapter 4: The Power of Investigation     
+            Chapter 4: The Power of Investigation
             """,
             max_char=-1,
             wordwrap=True,
@@ -391,7 +375,7 @@ class Books:
         )
         book_intro_modelling.add.label(
             """
-            Chapter 5: Join the Adventure!     
+            Chapter 5: Join the Adventure!
             """,
             max_char=-1,
             wordwrap=True,
@@ -414,10 +398,20 @@ class Books:
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
         )
-        book_intro_modelling.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        book_intro_modelling.add.button('Back', self._close_back(book_intro_modelling), background_color=(70, 70, 70))
         book_intro_modelling.add.vertical_margin(20)
+        return book_intro_modelling
 
-        ### BOOK 3 HOW TO SIMULATE
+
+    def _build_how_to_simulate(self):
+        book_how_to_simulate = pygame_menu.Menu(
+            height=720,
+            onclose=self.toggle_menu,
+            theme=mytheme,
+            title='How to Simulate',
+            width=1280,
+            column_max_width=1280
+        )
 
         book_how_to_simulate.add.label(
             """
@@ -428,21 +422,9 @@ class Books:
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
         )
-        # book_how_to_simulate.add.label(
-        #     """
-        #     Chapter 1: Choosing a Simulation Method     
-        #     """,
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(0, 0),
-        #     background_color = 'white',
-        #     font_color = 'darkblue',
-        #     font_size = 35
-        # )
         book_how_to_simulate.add.label(
             """
-            Chapter 1: Change Simulation Options 
+            Chapter 1: Change Simulation Options
             """,
             max_char=-1,
             wordwrap=True,
@@ -453,17 +435,6 @@ class Books:
             font_size = 35
         )
         book_how_to_simulate.add.vertical_margin(20)
-        # book_how_to_simulate.add.label(
-        #     """FBA: Flux Balance Analysis""",
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(100, 0),
-        #     background_color = 'darkblue',
-        #     font_color = 'white',
-        #     font_size = 30,
-        #     padding = (25,25,25,25)
-        # )
         book_how_to_simulate.add.label(
             """Simulation Method""",
             max_char=-1,
@@ -475,25 +446,6 @@ class Books:
             font_size = 30,
             padding = (25,25,25,25)
         )
-        # book_how_to_simulate.add.label(
-        #     """
-        #     Meet FBA, your first guide on this adventure. FBA is like a well-balanced explorer. It helps you understand how organisms use nutrients to grow, almost like solving a puzzle to keep everything in harmony.
-        #     In simpler terms, FBA calculates how microorganisms balance their food intake to maximize their growth. It's like making sure you have just the right ingredients for baking the perfect cake.
-
-        #     Analysis of Results:
-
-        #     Example: You ran two simulations, one gave you a result of 0.211 and the other one gave you a result of 0.87. How to interpret this?
-
-        #     This indicates a significant variation in the metabolic activity or growth rate of the organism under different conditions. The value 0.211 represents a lower metabolic activity or growth rate, while 0.87 indicates a higher metabolic activity or growth rate. This difference suggests that the organism is responding differently to the environmental conditions or constraints imposed in the simulations. Factors like nutrient availability, oxygen levels, or genetic modifications may be influencing this variation.
-        #     In practical terms, a result of 0.211 could indicate that the organism is growing more slowly or utilizing resources at a lower rate, possibly because it's operating under suboptimal conditions. Conversely, a result of 0.89 suggests more efficient growth or higher metabolic activity.
-        #     Researchers often use these variations to gain insights into how an organism's metabolism functions. For example, they might investigate why growth is slower in one condition and use that knowledge to optimize industrial processes, design genetic modifications, or understand how diseases affect metabolism.
-        #     In some cases, researchers aim to manipulate conditions to achieve specific growth rates or metabolic outcomes. Understanding how changes in conditions affect these values helps in optimizing bioprocesses.
-        #     """,
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(0, 0)
-        # )
         book_how_to_simulate.add.label(
             """
             FBA: calculates how microorganisms balance their food intake to maximize their growth.
@@ -503,7 +455,7 @@ class Books:
             lMOMA: like a flexible thinker. It helps you see how organisms adapt when conditions change.  lMOMA shows how microorganisms change their metabolic plans when the environment shifts.
 
             ROOM: the optimal explorer! It helps you understand how organisms make choices, turning some genes on and others off. ROOM reveals how microorganisms regulate their genes to optimize their metabolism.
-            
+
             """,
             max_char=-1,
             wordwrap=True,
@@ -526,7 +478,7 @@ class Books:
         book_how_to_simulate.add.label(
             """
             Biomass is a good objective because it reflects how well E. coli is thriving in the given environment.
-            
+
             The more biomass, the healthier and more productive the cell is.
 
             """,
@@ -574,7 +526,7 @@ class Books:
         book_how_to_simulate.add.label(
             """
             Adjust the bounds to control what resources E. coli consumes and how much it produces.
-            
+
             A small lower bound limits intake, while a large upper bound accelerates production.
 
             """,
@@ -587,7 +539,7 @@ class Books:
 
         book_how_to_simulate.add.label(
             """
-            Chapter 2: Results 
+            Chapter 2: Results
             """,
             max_char=-1,
             wordwrap=True,
@@ -613,7 +565,7 @@ class Books:
         book_how_to_simulate.add.vertical_margin(20)
         book_how_to_simulate.add.label(
             """ When running a simulation, the key result is usually the objective value.
-            
+
             For example, if you're optimizing for biomass, a higher value means E. coli is growing well.
 
             If it's low, check your inputs or try different knock-outs and reaction limits because it means E. coli is not growing well.
@@ -644,9 +596,9 @@ class Books:
             """ Energy sources are essential for E. coli to carry out its metabolic processes, powering growth and survival.
 
             If you remove the glucose bound (set the lower bound to 0), E. coli won't be able to take in glucose, which is its main energy source.
-            
+
             Without glucose, the cell won't have enough fuel to grow, leading to a drop in biomass. This means that the cell might not survive, as glucose is crucial for many of its metabolic processes.
-            
+
             So, watch the biomass value after removing glucose—it should decrease significantly!
 
             """,
@@ -656,90 +608,20 @@ class Books:
             margin=(0, 0)
         )
         book_how_to_simulate.add.vertical_margin(20)
-
-
-        # book_how_to_simulate.add.label(
-        #     """pFBA: Parsimonious Flux Balance Analysis""",
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(100, 0),
-        #     background_color = 'darkblue',
-        #     font_color = 'white',
-        #     font_size = 30,
-        #     padding = (25,25,25,25)
-        # )
-        # book_how_to_simulate.add.label(
-        #     """
-        #     Now, say hello to pFBA, the precision artist! This method is all about being efficient. It helps you find the most economical way for organisms to use nutrients, like a budget-savvy chef creating a delicious meal.
-        #     In other words, pFBA figures out how microorganisms can get the most bang for their buck when it comes to food. It's like finding the best deals at the grocery store to make a tasty and cost-effective dinner.
-
-        #     Analysis of Results:
-
-        #     Example: You ran two simulations, one gave you a result of 518 and the other one gave you a result of 355. How to interpret this?
-
-        #     pFBA aims to find the most efficient way for an organism to utilize available nutrients and resources to achieve a specific metabolic objective, typically maximizing biomass production.
-        #     Higher Result: A pFBA result of 518 suggests that the organism is achieving its metabolic objective (e.g., biomass production) while using nutrients and resources in a highly efficient manner. It's like running a factory at peak efficiency, getting the most output with minimal input.
-        #     Lower Result: Conversely, a pFBA result of 335 indicates that the organism is still achieving its metabolic objective but is using nutrients and resources less efficiently. It's like the same factory, but with some inefficiencies or waste in the production process.
-        #     Researchers often use pFBA results for comparative analysis. The difference between these two results suggests that something in the conditions or constraints of the second simulation is leading to less efficient resource utilization compared to the first simulation.
-        #     Understanding these variations can provide insights into how to optimize metabolic processes. For example, if the goal is to produce a specific metabolite, researchers might aim to recreate the conditions that led to the higher pFBA result to maximize production efficiency.
-        #     These differences can be critical in bioprocess engineering and biotechnology. Achieving higher resource efficiency can lead to cost savings and increased yields in the production of biofuels, pharmaceuticals, and other products.
-        #     """,
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(0, 0)
-        # )
-        # book_how_to_simulate.add.vertical_margin(20)
-        # book_how_to_simulate.add.label(
-        #     """lMOMA: Linear Minimization of Metabolic Adjustment""",
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(100, 0),
-        #     background_color = 'darkblue',
-        #     font_color = 'white',
-        #     font_size = 30,
-        #     padding = (25,25,25,25)
-        # )
-        # book_how_to_simulate.add.label(
-        #     """
-        #     lMOMA is like a flexible thinker. It helps you see how organisms adapt when conditions change. Picture it as an organism's strategy for staying fit and adjusting its metabolism on the fly.
-
-        #     In simple terms, lMOMA shows how microorganisms change their metabolic plans when the environment shifts. It's like switching from running to walking when the terrain changes, staying efficient while adapting.
-        #     """,
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(0, 0)
-        # )
-        # book_how_to_simulate.add.vertical_margin(20)
-        # book_how_to_simulate.add.label(
-        #     """ROOM: Regulatory On/Off Minimization""",
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(100, 0),
-        #     background_color = 'darkblue',
-        #     font_color = 'white',
-        #     font_size = 30,
-        #     padding = (25,25,25,25)
-        # )
-        # book_how_to_simulate.add.label(
-        #     """
-        #     Lastly, meet ROOM, the optimal explorer! It helps you understand how organisms make choices, turning some genes on and others off, just like a smart thermostat adjusting your home's temperature.
-
-        #     ROOM reveals how microorganisms regulate their genes to optimize their metabolism. It's like a super-smart control system, ensuring that only the right switches are turned on and off to save energy and stay efficient.
-        #     """,
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(0, 0)
-        # )
-        book_how_to_simulate.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        book_how_to_simulate.add.button('Back', self._close_back(book_how_to_simulate), background_color=(70, 70, 70))
         book_how_to_simulate.add.vertical_margin(20)
+        return book_how_to_simulate
 
-        ### BOOK 4 E. COLI BASICS
+
+    def _build_ecoli(self):
+        book_ecoli = pygame_menu.Menu(
+            height=720,
+            onclose=self.toggle_menu,
+            theme=mytheme,
+            title='E. coli Basics',
+            width=1280,
+            column_max_width=1280
+        )
 
         book_ecoli.add.label(
             """
@@ -753,7 +635,7 @@ class Books:
         )
         book_ecoli.add.label(
             """
-            Chapter 1: Meet E. coli     
+            Chapter 1: Meet E. coli
             """,
             max_char=-1,
             wordwrap=True,
@@ -769,27 +651,27 @@ class Books:
 
             Meet Escherichia coli, or E. coli for short. It's a microscopic superstar! This tiny bacterium might look simple, but it holds the secrets to understanding how life works at its core.
 
-            
+
             E. coli's Microscopic Machinery
 
             E. coli is like a well-oiled machine, with tiny parts that work together flawlessly. Inside, it has a metabolic model — a set of instructions that tells it how to grow, eat, and survive. Think of it as E. coli's rulebook for life.
 
-            
+
             Feeding the Beast
 
             Just like us, E. coli needs to eat. But instead of burgers and fries, its favorite meal is glucose. It knows how to transform this sugar into energy, fueling its daily activities and growth.
 
-            
+
             Breathing Lessons for Microbes
 
             E. coli has its own way of breathing. Some breathe with oxygen, just like we do. Others are like tiny rebels, thriving without oxygen. It's all part of their amazing adaptability.
 
-            
+
             Reproduction, E. coli Style
 
             E. coli might not have families like we do, but it knows how to make baby E. coli. When conditions are perfect, it multiplies rapidly, filling its world with new generations.
 
-            
+
             Beyond the Microscope
 
             E. coli isn't just a fascinating microbe; it's also a superstar in science and industry. Scientists use it to study life's mysteries, and it plays a vital role in creating medicines, biofuels, and more.
@@ -801,7 +683,7 @@ class Books:
         )
         book_ecoli.add.label(
             """
-            Chapter 2: Metabolic Model     
+            Chapter 2: Metabolic Model
             """,
             max_char=-1,
             wordwrap=True,
@@ -833,7 +715,7 @@ class Books:
             They help visualize complex metabolic networks and gain insights into how genes, enzymes, and metabolites interact to support cellular functions.
             This understanding has applications in various fields, including biotechnology, systems biology, and metabolic engineering.
 
-            
+
             Key Features:
 
             Interactive Exploration: Escher maps are highly interactive. You can zoom in and out, pan across the map, and click on individual metabolites and reactions to view detailed information.
@@ -853,10 +735,20 @@ class Books:
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
         )
-        book_ecoli.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        book_ecoli.add.button('Back', self._close_back(book_ecoli), background_color=(70, 70, 70))
         book_ecoli.add.vertical_margin(20)
+        return book_ecoli
 
-        ### BOOK 5 EAT BREATHE AND LOVE
+
+    def _build_eat_breathe_love(self):
+        book_eat_breathe_love = pygame_menu.Menu(
+            height=720,
+            onclose=self.toggle_menu,
+            theme=mytheme,
+            title='Eat, Breathe and Love',
+            width=1280,
+            column_max_width=1280
+        )
 
         book_eat_breathe_love.add.label(
             """
@@ -867,10 +759,10 @@ class Books:
             wordwrap=True,
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
-        )  
+        )
         book_eat_breathe_love.add.label(
             """
-            Chapter 1: Eat     
+            Chapter 1: Eat
             """,
             max_char=-1,
             wordwrap=True,
@@ -895,7 +787,7 @@ class Books:
         )
         book_eat_breathe_love.add.label(
             """
-            Chapter 2: Breathe     
+            Chapter 2: Breathe
             """,
             max_char=-1,
             wordwrap=True,
@@ -920,7 +812,7 @@ class Books:
         )
         book_eat_breathe_love.add.label(
             """
-            Chapter 3: Love     
+            Chapter 3: Love
             """,
             max_char=-1,
             wordwrap=True,
@@ -943,256 +835,16 @@ class Books:
             align=pygame_menu.locals.ALIGN_LEFT,
             margin=(0, 0)
         )
-        book_eat_breathe_love.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        book_eat_breathe_love.add.button('Back', self._close_back(book_eat_breathe_love), background_color=(70, 70, 70))
         book_eat_breathe_love.add.vertical_margin(20)
-
-        ### BOOK 6 HOW TO DATE A MODEL
-
-        book_date_a_model.add.label(
-            """
-            This light-hearted book humorously explores the world of metabolic models, providing a playful twist on dating and relationships.
-            It's a fun and informative way to learn about these essential scientific tools.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )  
-        book_date_a_model.add.label(
-            """
-            Chapter 1: Love at First Equation     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            Metabolic Models Unveiled
-
-            Our journey begins with the intriguing world of metabolic models. They're not runway models, but they're just as fascinating! Discover how these models help us understand the secrets of life.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.label(
-            """
-            Chapter 2: Wine and Dine the Data     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            Courting the Equations
-
-            Imagine taking metabolic equations out for a fancy dinner. We explore how to wine and dine these mathematical marvels, even though they don't have appetites.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.label(
-            """
-            Chapter 3: Dancing with Variables     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            The Cha-Cha of Chemistry
-
-            Metabolic models involve a lot of variables. Learn how to twirl through these equations gracefully, making sure every variable feels like the belle of the ball.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.label(
-            """
-            Chapter 4: Midnight Conversations with Fluxes     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            Late-Night Chats with Metabolites
-
-            Late at night, delve into deep conversations with fluxes, discussing how they move through metabolic pathways. It's like having a heart-to-heart with a mathematical mystery.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.label(
-            """
-            Chapter 5: Model Relationships 101     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            Commitment to Compartments
-            
-            Metabolic models have different compartments, just like different rooms in a relationship. Discover how to navigate these compartments with love and care.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.label(
-            """
-            Chapter 6: When Models Multiply     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            A Model Family
-
-            Sometimes, metabolic models multiply into multiple versions. Learn how to handle these model families and keep their relationships harmonious.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.label(
-            """
-            Chapter 7: Model Breakups and Makeups     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            It's Complicated
-
-            Metabolic models can be complex, leading to occasional breakups. But don't worry; we'll guide you through making up with your models and finding that perfect equation.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.label(
-            """
-            Chapter 8: Happily Ever After     
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0),
-            background_color = 'white',
-            font_color = 'palevioletred',
-            font_size = 35
-        )
-        book_date_a_model.add.label(
-            """
-            Modeling Bliss
-
-            In the end, you'll find that dating metabolic models isn't about romantic love but the love of discovery. Embrace the joy of understanding life's intricate dance through the world of metabolic models.
-            """,
-            max_char=-1,
-            wordwrap=True,
-            align=pygame_menu.locals.ALIGN_LEFT,
-            margin=(0, 0)
-        )
-        book_date_a_model.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
-        book_date_a_model.add.vertical_margin(20)
-
-        # menu_text.add.label(
-        #     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-        #     'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
-        #     'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
-        #     'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate '
-        #     'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-        #     'cupidatat non proident, sunt in culpa qui officia deserunt mollit anim '
-        #     'id est laborum.'
-        #     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-        #     'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
-        #     'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
-        #     'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate '
-        #     'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-        #     'cupidatat non proident, sunt in culpa qui officia deserunt mollit anim '
-        #     'id est laborum.'
-        #     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-        #     'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
-        #     'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
-        #     'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate '
-        #     'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-        #     'cupidatat non proident, sunt in culpa qui officia deserunt mollit anim '
-        #     'id est laborum.'
-        #     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-        #     'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
-        #     'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
-        #     'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate '
-        #     'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-        #     'cupidatat non proident, sunt in culpa qui officia deserunt mollit anim '
-        #     'id est laborum.'
-        #     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-        #     'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim '
-        #     'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea '
-        #     'commodo consequat. Duis aute irure dolor in reprehenderit in voluptate '
-        #     'velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-        #     'cupidatat non proident, sunt in culpa qui officia deserunt mollit anim '
-        #     'id est laborum.',
-        #     max_char=-1,
-        #     wordwrap=True,
-        #     align=pygame_menu.locals.ALIGN_LEFT,
-        #     margin=(-5, -5)
-        # )
-        # menu_text.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
-        # menu_text.add.vertical_margin(20)
+        return book_eat_breathe_love
 
 
+    def _build_how_to_play(self):
+        menu_how_to_play = pygame_menu.Menu('How to Play', 1280, 720,
+                        onclose=self.toggle_menu,
+                        theme=tutorial_theme)
 
-        
-        
         menu_how_to_play.add.vertical_margin(50)
         menu_how_to_play.add.label(
             """Moving""",
@@ -1235,7 +887,7 @@ class Books:
             Use ENTER key to consult books when close to the library.
 
             Use ENTER key to take an apple from a tree ("An apple a day keeps the doctor away").
-            
+
             Use ENTER key to try some coffee and see if it has some effect on you.
             """,
             max_char=-1,
@@ -1286,13 +938,26 @@ class Books:
             margin=(0, 0)
         )
         menu_how_to_play.add.vertical_margin(50)
-        menu_how_to_play.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
+        menu_how_to_play.add.button('Back', self._close_back(menu_how_to_play), background_color=(70, 70, 70))
         menu_how_to_play.add.vertical_margin(50)
+        return menu_how_to_play
 
-        await run_menu(menu, self.display_surface)
+
+    async def setup(self):
+        while True:
+            self._top_menu = self._build_top_menu()
+            await run_menu(self._top_menu, self.display_surface)
+
+            if self._pending_book is None:
+                self._top_menu = None
+                return
+
+            book_id = self._pending_book
+            self._pending_book = None
+            book_menu = self._build_book(book_id)
+            await run_menu(book_menu, self.display_surface)
 
 
-    
     def on_button_click(self, value: str, text = None) -> None:
         if not text:
             print(f'Hello from {value}')
@@ -1307,11 +972,8 @@ class Books:
 
         if keys[pygame.K_ESCAPE]:
             self.toggle_menu()
-            
+
 
     async def update(self):
         self.input()
         await self.setup()
-        
-
-
