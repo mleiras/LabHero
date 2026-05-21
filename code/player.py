@@ -39,6 +39,9 @@ class Player(pygame.sprite.Sprite):
 
         self.player_name, self.results, self.missions_activated, self.missions_completed = inventory2
 
+        # web-only: when True, the outer LabHero.run() loop breaks back to intro_run()
+        self.restart_to_intro = False
+
         # interaction
         self.toggle_shop = toggle_shop
         self.talk_1 = talk_1
