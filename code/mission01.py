@@ -125,11 +125,11 @@ class Mission_info:
             self.mission01 = False
 
         #sounds
-        success_path = get_resource_path('audio/success_3.wav')
+        success_path = get_resource_path('audio/success_3.ogg')
         self.success = pygame.mixer.Sound(success_path)
         self.success.set_volume(1.2)
 
-        failed_path = get_resource_path('audio/failed.wav')
+        failed_path = get_resource_path('audio/failed.ogg')
         self.failed = pygame.mixer.Sound(failed_path)
         self.failed.set_volume(1.2)
 

@@ -7,10 +7,10 @@ SCREEN_HEIGHT = 720
 TILE_SIZE = 64
 
 MUSIC = {
-    'Serene': get_resource_path('audio/bg.mp3'),
-    'Hope': get_resource_path('audio/Hope.mp3'),
-    'Happy': get_resource_path('audio/Happy.mp3'),
-    'Surf': get_resource_path('audio/Surf.mp3'),
+    'Serene': get_resource_path('audio/bg.ogg'),
+    'Hope': get_resource_path('audio/Hope.ogg'),
+    'Happy': get_resource_path('audio/Happy.ogg'),
+    'Surf': get_resource_path('audio/Surf.ogg'),
 }
 
 MUSIC_NAME = MUSIC['Hope']

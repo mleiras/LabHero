@@ -61,7 +61,7 @@ class Player(pygame.sprite.Sprite):
         # self.music_bg.set_volume(0)
         self.music_bg.play(loops = -1)
 
-        coffee_path = get_resource_path('audio/coffee.wav')
+        coffee_path = get_resource_path('audio/coffee.ogg')
         self.coffee = pygame.mixer.Sound(coffee_path)
         self.coffee.set_volume(0.05)
 
