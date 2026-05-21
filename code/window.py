@@ -1,3 +1,4 @@
+import asyncio
 import sys
 
 import pygame
@@ -9,6 +10,9 @@ from options_values import *
 from simulation import *
 from functions import animation_text_save
 from async_menu import run_menu
+
+
+_YIELD_ON_WEB = sys.platform == 'emscripten'
 
 
 class Window:
@@ -69,7 +73,7 @@ class Window:
                                  background_color = "white",
                                  font_size = 26)
         menu_reactions.add.vertical_margin(20)
-        # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)  
+        # Reactions (Range slider) // pode-se alterar as bounds para text inputs de forma a alterar para 0,0 (com range slider não é possível)
         for i in range(len(REACTIONS.name)):
             menu_reactions.add.label(REACTIONS.name.iloc[i])
             if REACTIONS.lb.iloc[i] != 0:
@@ -84,8 +88,11 @@ class Window:
             menu_reactions.add.toggle_switch('Upper Bound',default_ub_bool, onchange=None, state_text=('Closed', 'Open'), state_text_font_size=20, font_size = 24, state_color=('grey','gold'), state_text_font_color=('black', 'black')) #, kwargs=txt, toggleswitch_id=txt)
             # menu_reactions.add.range_slider('Lower Bound', REACTIONS.lb[i], (-1000,0), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]+'lb') #, rangeslider_id=OPTIONS['Reactions'][i])
             # menu_reactions.add.range_slider('Upper Bound', REACTIONS.ub[i], (0, 1000), 10, font_size=30, range_box_color = 'gold', rangeslider_id=REACTIONS.index[i]+'ub') #, rangeslider_id=OPTIONS['Reactions'][i])
-            
+
             menu_reactions.add.vertical_margin(30)
+
+            if _YIELD_ON_WEB and (i + 1) % 4 == 0:
+                await asyncio.sleep(0)
         menu_reactions.add.vertical_margin(20)
         menu_reactions.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_reactions.add.vertical_margin(20)
@@ -140,6 +147,9 @@ class Window:
                 menu_genes.add.toggle_switch(txt, True, kwargs=txt, toggleswitch_id=txt, background_color = "gold", font_color = "black")
             else:
                 menu_genes.add.toggle_switch(txt, True, kwargs=txt, toggleswitch_id=txt)
+
+            if _YIELD_ON_WEB and (i + 1) % 8 == 0:
+                await asyncio.sleep(0)
         menu_genes.add.vertical_margin(20)
         menu_genes.add.button('Back', pygame_menu.events.BACK, background_color=(70, 70, 70))
         menu_genes.add.vertical_margin(20)
