@@ -193,7 +193,17 @@ class Menu:
         if sys.platform != 'emscripten':
             menu.add.button('Save Game', self.save_game, menu)
         menu.add.button('Credits', action=menu_credits)
-        menu.add.button('Quit Game', pygame_menu.events.EXIT)
+
+        if sys.platform == 'emscripten':
+            def back_to_title():
+                clear_memstore()
+                self.player.restart_to_intro = True
+                self.toggle_menu()
+                menu.disable()
+            menu.add.button('Back to Title', back_to_title)
+        else:
+            menu.add.button('Quit Game', pygame_menu.events.EXIT)
+
         await run_menu(menu, self.display_surface)
 
     

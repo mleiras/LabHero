@@ -1,6 +1,7 @@
 import sys
 import os
 import asyncio
+import copy
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'code'))
 
@@ -34,12 +35,12 @@ class Game:
 				if pygame.key.get_pressed()[pygame.K_RETURN]:
 					try:
 						data = load_file(get_save_path('data'))
-						self.level = Level(data)
+						self.level = Level(copy.deepcopy(data))
 					except FileNotFoundError:
-						self.level = Level(DEFAULT_INVENTORY_2)
+						self.level = Level(copy.deepcopy(DEFAULT_INVENTORY_2))
 					await self.run()
 				elif pygame.key.get_pressed()[pygame.K_SPACE]:
-					self.level = Level(DEFAULT_INVENTORY_2)
+					self.level = Level(copy.deepcopy(DEFAULT_INVENTORY_2))
 					if os.path.exists(get_save_path("data.txt")):
 						os.remove(get_save_path("data.txt"))
 					if os.path.exists(get_save_path("results.txt")):
@@ -73,6 +74,10 @@ class Game:
 			pygame.display.update()
 			await drain_animations()
 			await asyncio.sleep(0)
+
+			if self.level.player.restart_to_intro:
+				pygame.mixer.stop()
+				return
 
 
 async def main():

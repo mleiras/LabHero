@@ -38,6 +38,11 @@ def save_simulation_file(data):
         json.dump(data, test_file)
 
 
+def clear_memstore():
+    if _IS_WEB:
+        _MEMSTORE.clear()
+
+
 def save_results(data):
     if _IS_WEB:
         old = _MEMSTORE.get('results')
