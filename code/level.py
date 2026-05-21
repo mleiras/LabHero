@@ -55,7 +55,7 @@ class Level:
 		self.dialogues_active = False
 
 		# sounds
-		success_path = get_resource_path('audio/success.wav')
+		success_path = get_resource_path('audio/success.ogg')
 		self.success = pygame.mixer.Sound(success_path) 
 		self.success.set_volume(0.1)
 
