@@ -1,0 +1,42 @@
+# Build context is the LabHero repo root; keep this aligned with
+# pygbag.ini ignoreDirs / ignoreFiles so the docker image stays small
+# and no stale local state leaks into the deployed bundle.
+
+# Python / venv
+.venv
+**/__pycache__
+**/*.pyc
+**/*.pyo
+
+# VCS
+.git
+.gitignore
+.gitattributes
+
+# Backend (gets its own image)
+backend
+
+# Build outputs and scratch
+build
+installer
+outputs
+tmp
+build-aux
+
+# Editor / OS
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+
+# Desktop-only save files (gitignored, but may exist locally after dev play)
+code/player_history/data.txt
+code/player_history/results.txt
+code/player_history/simulation_file.txt
+
+# Misc
+LabHero.ico
+LabHero.icns
+video_labhero.jpg
+CITATION.cff
+graphics/wip

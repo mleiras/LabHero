@@ -1,0 +1,23 @@
+# Stage 1: build the pygbag bundle from the LabHero source tree.
+FROM python:3.11-slim AS bundler
+
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+RUN pip install --no-cache-dir pygbag==0.9.3
+
+WORKDIR /src
+COPY . .
+
+# `--build` builds the bundle into ./build/web and exits without serving.
+# `--ume_block 0` silences the user-media-engine warning in headless builds.
+RUN python -m pygbag --build --ume_block 0 .
+
+
+# Stage 2: serve the bundle + reverse-proxy /api to the backend.
+FROM nginx:1.27-alpine
+
+COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=bundler /src/build/web/ /usr/share/nginx/html/
+
+EXPOSE 80

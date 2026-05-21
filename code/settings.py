@@ -16,7 +16,10 @@ MUSIC = {
 MUSIC_NAME = MUSIC['Hope']
 
 
-BACKEND_URL = 'http://localhost:8002'
+# Relative URL: the frontend hits /api/... on whatever origin it is served from,
+# which an nginx reverse proxy forwards to the backend container. For local dev
+# without a proxy, override to an absolute URL like 'http://localhost:8002'.
+BACKEND_URL = '/api'
 
 
 # overlay positions 
